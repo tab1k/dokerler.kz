@@ -10,7 +10,7 @@
         <link rel="alternate" hreflang="tr" href="https://dokerler.com/tr/">
         <link rel="alternate" hreflang="x-default" href="https://dokerler.com/">
         <!-- This site is optimized with the Yoast SEO plugin v25.9 - https://yoast.com/wordpress/plugins/seo/ -->
-        <title>Home - Dökerler Döküm ve Plastik Polietilen San. İth. İhr. ve Tic. Ltd. Şti.</title>
+        <title>{% block title %}Главная - Прямые поставки электросварных фитингов без посредников.{% endblock %}</title>
         <link rel="canonical" href="https://dokerler.com/">
         <meta property="og:locale" content="en_US">
         <meta property="og:type" content="website">
@@ -83,10 +83,10 @@
         <script src="{% static 'js/custom-home.js' %}" id="custom-home-js"></script>
         <meta name="generator" content="Elementor 3.32.2; features: e_font_icon_svg; settings: css_print_method-external, google_font-enabled, font_display-swap">
         <meta name="generator" content="Powered by Slider Revolution 6.6.20 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface.">
-        <link rel="icon" href="{% static 'uploads/2024/02/cropped-favicon-32x32.png' %}" sizes="32x32">
-        <link rel="icon" href="{% static 'uploads/2024/02/cropped-favicon-192x192.png' %}" sizes="192x192">
-        <link rel="apple-touch-icon" href="{% static 'uploads/2024/02/cropped-favicon-180x180.png' %}">
-        <meta name="msapplication-TileImage" content="https://dokerler.com/uploads/2024/02/cropped-favicon-270x270.png">
+        <link rel="icon" href="{% static 'img/logo2.PNG' %}" sizes="32x32">
+        <link rel="icon" href="{% static 'img/logo2.PNG' %}" sizes="192x192">
+        <link rel="apple-touch-icon" href="{% static 'img/logo2.PNG' %}">
+        <meta name="msapplication-TileImage" content="{% static 'img/logo2.PNG' %}">
         <link rel="stylesheet" id="widget-icon-list-css" href="{% static 'plugins/elementor/assets/css/widget-icon-list.min_ver=3.32.2.css' %}" type="text/css" media="all">
         <link rel="stylesheet" id="widget-social-icons-css" href="{% static 'plugins/elementor/assets/css/widget-social-icons.min_ver=3.32.2.css' %}" type="text/css" media="all">
         <link rel="stylesheet" id="e-apple-webkit-css" href="{% static 'plugins/elementor/assets/css/conditionals/apple-webkit.min_ver=3.32.2.css' %}" type="text/css" media="all">
@@ -115,7 +115,10 @@
                     <div class="gva-offcanvas-content mobile">
                         <div class="top-canvas">
                             <a class="logo-mm" href="https://dokerler.com/">
-                                <img src="{% static 'uploads/2024/02/logo.png' %}" alt="Dökerler Döküm ve Plastik Polietilen San. İth. İhr. ve Tic. Ltd. Şti.">
+                                <span class="dual-logo-mobile">
+                                    <img src="{% static 'uploads/2024/02/logo.png' %}" alt="Dökerler">
+                                    <img src="{% static 'img/logo2.PNG' %}" alt="Partner">
+                                </span>
                             </a>
                             <a class="control-close-mm" href="#">
                                 <i class="far fa-times-circle">
@@ -191,9 +194,12 @@
                                                 <div class="elementor-element elementor-element-2dde7099 elementor-widget__width-auto elementor-widget elementor-widget-gva-logo" data-id="2dde7099" data-element_type="widget" data-widget_type="gva-logo.default">
                                                     <div class="elementor-widget-container">
                                                         <div class="gva-element-gva-logo gva-element">
-                                                            <div class="gsc-logo text-center">
+                                                            <div class="gsc-logo text-center dual-logo">
                                                                 <a class="site-branding-logo" href="/">
-                                                                    <img src="{% static 'uploads/2023/07/dokerler-logo-m.png' %}" alt="">
+                                                                    <img src="{% static 'uploads/2023/07/dokerler-logo-m.png' %}" alt="Dokerler">
+                                                                </a>
+                                                                <a class="site-branding-logo partner" href="/">
+                                                                    <img src="{% static 'img/logo2.PNG' %}" alt="Partner">
                                                                 </a>
                                                             </div>
                                                         </div>
