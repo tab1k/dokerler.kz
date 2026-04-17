@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero section-full" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      ✦ Официальный дистрибьютор в Казахстане
+    </div>
+    <h1 class="hero-title">
+      <span>Электросварные</span>
+      <span class="line-gold">Фитинги</span>
+      <span class="line-outline">Dökerler</span>
+    </h1>
+    <p class="hero-subtitle">
+      Прямые поставки от завода Dökerler. Единственный официальный дистрибьютор в Казахстане. 
+      Более 10 лет опыта, склад в наличии и доставка во все регионы РК.
+    </p>
+    <div class="hero-actions">
+      <a href="#order-modal" class="btn-primary" onclick="openModal('order-modal')"><span>Оставить заказ</span></a>
+      <a href="#about" class="btn-secondary">
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        О компании
+      </a>
+    </div>
+  </div>
+
+  <!-- SVG pipe decoration -->
+  <svg style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:520px;height:520px;opacity:0.12;pointer-events:none" viewBox="0 0 520 520">
+    <circle cx="260" cy="260" r="200" fill="none" stroke="#C9A84C" stroke-width="1" stroke-dasharray="4 8"/>
+    <circle cx="260" cy="260" r="150" fill="none" stroke="#C9A84C" stroke-width="0.5"/>
+    <circle cx="260" cy="260" r="80" fill="#C9A84C" opacity="0.06"/>
+    <line x1="60" y1="260" x2="460" y2="260" stroke="#C9A84C" stroke-width="0.5"/>
+    <line x1="260" y1="60" x2="260" y2="460" stroke="#C9A84C" stroke-width="0.5"/>
+    <rect x="200" y="200" width="120" height="120" fill="none" stroke="#C9A84C" stroke-width="1" transform="rotate(45,260,260)"/>
+    <!-- Pipe cross section -->
+    <circle cx="260" cy="260" r="50" fill="none" stroke="#C9A84C" stroke-width="3"/>
+    <circle cx="260" cy="260" r="35" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
+  </svg>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num" id="count1">0</div>
+      <div class="stat-label">Позиций в каталоге</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="count2">0</div>
+      <div class="stat-label">Стран-производителей</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="count3">0</div>
+      <div class="stat-label">Клиентов доверяют нам</div>
+    </div>
+  </div>
+</section>
+
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker">
+    <span class="ticker-text">ПРЯМЫЕ ПОСТАВКИ ОТ ЗАВОДА DÖKERLER</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">ОФИЦИАЛЬНЫЙ ДИСТРИБЬЮТОР В КАЗАХСТАНЕ</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">БОЛЕЕ 10 ЛЕТ ОПЫТА</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">СКЛАД В АСТАНЕ</span><span class="ticker-dot">◆</span>
+    <span class="ticker-text">ДОСТАВКА ПО ВСЕМУ РК</span><span class="ticker-dot">◆</span>
+  </div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="section-label">О компании</div>
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-card-main">
+        <svg viewBox="0 0 400 400" style="width:100%;height:100%;padding:40px">
+          <!-- Industrial pipe fitting SVG illustration -->
+          <rect x="30" y="175" width="340" height="50" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+          <rect x="30" y="185" width="340" height="30" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+          <rect x="175" y="30" width="50" height="175" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+          <rect x="185" y="30" width="30" height="175" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+          <rect x="165" y="165" width="70" height="70" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" rx="4"/>
+          <circle cx="200" cy="200" r="22" fill="none" stroke="rgba(201,168,76,0.8)" stroke-width="2.5"/>
+          <circle cx="200" cy="200" r="14" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+          <circle cx="200" cy="200" r="5" fill="rgba(201,168,76,0.6)"/>
+          <line x1="165" y1="200" x2="140" y2="200" stroke="rgba(201,168,76,0.4)" stroke-width="1" stroke-dasharray="3 3"/>
+          <line x1="235" y1="200" x2="260" y2="200" stroke="rgba(201,168,76,0.4)" stroke-width="1" stroke-dasharray="3 3"/>
+          <rect x="22" y="168" width="14" height="64" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" rx="2"/>
+          <rect x="364" y="168" width="14" height="64" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" rx="2"/>
+          <rect x="168" y="22" width="64" height="14" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" rx="2"/>
+          <circle cx="32" cy="180" r="3" fill="rgba(201,168,76,0.5)"/>
+          <circle cx="32" cy="200" r="3" fill="rgba(201,168,76,0.5)"/>
+          <circle cx="32" cy="220" r="3" fill="rgba(201,168,76,0.5)"/>
+          <circle cx="368" cy="180" r="3" fill="rgba(201,168,76,0.5)"/>
+          <circle cx="368" cy="200" r="3" fill="rgba(201,168,76,0.5)"/>
+          <circle cx="368" cy="220" r="3" fill="rgba(201,168,76,0.5)"/>
+          <circle cx="180" cy="28" r="3" fill="rgba(201,168,76,0.5)"/>
+          <circle cx="200" cy="28" r="3" fill="rgba(201,168,76,0.5)"/>
+          <circle cx="220" cy="28" r="3" fill="rgba(201,168,76,0.5)"/>
+          <line x1="30" y1="270" x2="370" y2="270" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+          <line x1="30" y1="265" x2="30" y2="275" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+          <line x1="370" y1="265" x2="370" y2="275" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+          <text x="200" y="286" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="10" font-family="monospace">DN 110 — DN 500</text>
+        </svg>
+      </div>
+      <div class="about-badge">
+        <span class="big">10+</span>
+        <span class="sm">Лет опыта</span>
+      </div>
+    </div>
+    <div class="about-features">
+      <div>
+        <div class="section-label">Почему выбирают нас</div>
+        <h2 class="section-title">Прямые поставки <br>без посредников</h2>
+        <p class="section-desc">Мы являемся единственным официальным дистрибьютором завода Dökerler в Казахстане, что гарантирует лучшую цену и оригинальное качество.</p>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">✓</div>
+        <div>
+          <div class="feature-title">Официальный дистрибьютор Dökerler</div>
+          <div class="feature-desc">Полная заводская поддержка и эксклюзивные условия поставок на территорию РК.</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🛡️</div>
+        <div>
+          <div class="feature-title">Более 10 лет на рынке</div>
+          <div class="feature-desc">Проверенная временем надежность и сотни успешно реализованных проектов.</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">📍</div>
+        <div>
+          <div class="feature-title">Склад в Астане</div>
+          <div class="feature-desc">Большинство позиций всегда в наличии на нашем складе для быстрой отгрузки.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<div class="products-bg section-full" id="products">
+  <section>
+    <div class="section-label">Каталог</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px">
+      <h2 class="section-title reveal">Линейка продукции</h2>
+      <p class="section-desc reveal">Полный ассортимент электросварных фитингов для газо- и водоснабжения.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <span class="product-num">01</span>
+        <span class="product-icon">◉</span>
+        <div class="product-name">Электросварные муфты</div>
+        <div class="product-desc">Соединительные муфты из ПЭ 100 для прямых участков трубопровода.</div>
+        <div class="product-specs">
+          <span class="spec-tag">DN 20–630</span>
+          <span class="spec-tag">PE 100</span>
+          <span class="spec-tag">PN 16</span>
+        </div>
+        <a href="#" class="product-link">Подробнее →</a>
+      </div>
+      <div class="product-card">
+        <span class="product-num">02</span>
+        <span class="product-icon">⌀</span>
+        <div class="product-name">Отводы 45° и 90°</div>
+        <div class="product-desc">Угловые фитинги для изменения направления трубопровода.</div>
+        <div class="product-specs">
+          <span class="spec-tag">DN 63–500</span>
+          <span class="spec-tag">45° / 90°</span>
+        </div>
+        <a href="#" class="product-link">Подробнее →</a>
+      </div>
+      <div class="product-card">
+        <span class="product-num">03</span>
+        <span class="product-icon">⑂</span>
+        <div class="product-name">Тройники равные</div>
+        <div class="product-desc">Разветвительные тройники для создания ответвлений.</div>
+        <div class="product-specs">
+          <span class="spec-tag">DN 32–500</span>
+          <span class="spec-tag">PE 100</span>
+        </div>
+        <a href="#" class="product-link">Подробнее →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Process -->
+<section id="process">
+  <div class="section-label">Как мы работаем</div>
+  <h2 class="section-title reveal">Процесс поставки</h2>
+  <div class="process-row">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Консультация</div>
+      <div class="step-desc">Подбор фитингов и расчет спецификации.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Предложение</div>
+      <div class="step-desc">Формирование детального КП за 1 день.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Контроль</div>
+      <div class="step-desc">Производство и входная приемка по нормам.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Доставка</div>
+      <div class="step-desc">Оперативная поставка в любой регион РК.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Europe -->
+<section id="quality" style="padding-top:0">
+  <div style="border-top: 1px solid rgba(139,155,180,0.1); padding-top:80px">
+    <div class="europe-grid">
+      <div>
+        <div class="section-label">Стандарты качества</div>
+        <h2 class="section-title reveal">Европейское превосходство</h2>
+        <p class="section-desc reveal">Фитинги производятся по жёстким нормам DIN, EN и ISO.</p>
+        <div class="europe-cards" style="margin-top:40px">
+          <div class="europe-card">
+            <div class="europe-card-icon">🔬</div>
+            <div class="europe-card-title">Материал PE 100</div>
+          </div>
+          <div class="europe-card">
+            <div class="europe-card-icon">🌡️</div>
+            <div class="europe-card-title">Стойкость</div>
+          </div>
+        </div>
+      </div>
+      <div class="europe-img reveal">
+        <svg viewBox="0 0 380 460" style="width:90%;height:90%">
+          <g opacity="0.3" stroke="#C9A84C" stroke-width="0.7" fill="none">
+            <path d="M140,60 L155,55 L170,62 L185,58 L195,65 L200,75 L195,85 L205,90 L200,100 L210,108 L215,115 L220,125 L215,135 L225,145 L230,155 L225,165 L235,175 L240,185 L235,195 L245,205 L250,215 L245,230 L255,240 L250,250 L240,258 L245,268 L240,278 L230,285 L220,278 L210,282 L200,290 L190,285 L180,290 L170,285 L165,295 L155,290 L145,295 L135,290 L125,295 L115,285 L110,275 L120,270 L115,260 L120,250 L110,245 L105,235 L115,228 L110,220 L115,210 L105,205 L100,195 L110,190 L105,180 L115,175 L110,165 L120,160 L115,150 L125,145 L130,135 L125,125 L135,120 L130,110 L140,105 L135,95 L145,90 L140,80 L145,70 Z"/>
+          </g>
+          <circle cx="185" cy="130" r="18" fill="rgba(201,168,76,0.12)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+          <circle cx="310" cy="350" r="20" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.6)" stroke-width="1.5"/>
+          <circle cx="310" cy="350" r="6" fill="rgba(201,168,76,0.8)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<div class="cta-banner reveal">
+    <h2 class="cta-title">Готовы обсудить ваш проект?</h2>
+    <p class="cta-desc">Получите расчет стоимости и техническую консультацию в течение часа.</p>
+    <div class="cta-actions">
+        <button class="btn-primary" onclick="openModal('order-modal')"><span>Получить КП</span></button>
+    </div>
+</div>
+{% endblock %}
