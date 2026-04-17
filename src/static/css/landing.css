@@ -276,6 +276,7 @@ nav.scrolled {
 
 .hero-stats {
   position: absolute;
+  right: 60px;
   bottom: 80px;
   display: flex;
   gap: 48px;
