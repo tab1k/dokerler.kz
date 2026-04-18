@@ -1,269 +1,346 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
-<!-- Hero -->
-<section class="hero section-full" id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
+{% block title %}Главная{% endblock %}
 
-  <div class="hero-content">
-    <div class="hero-tag">
-      ✦ Официальный дистрибьютор в Казахстане
+{% block content %}
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blueprint">
+    <svg viewBox="0 0 800 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Technical drawing components ... (omitted for brevity in this thought, but will include full SVG in the actual write) -->
+      <g stroke="#0B38D4" stroke-width="1">
+        <rect x="100" y="290" width="600" height="120" rx="0"/>
+        <rect x="100" y="310" width="600" height="80" rx="0"/>
+        <rect x="80" y="270" width="28" height="160" rx="0"/>
+        <rect x="88" y="280" width="12" height="140" rx="0"/>
+        <rect x="692" y="270" width="28" height="160" rx="0"/>
+        <rect x="700" y="280" width="12" height="140" rx="0"/>
+        <rect x="340" y="290" width="120" height="120" rx="0"/>
+        <circle cx="400" cy="350" r="40"/>
+        <circle cx="400" cy="350" r="28"/>
+        <circle cx="400" cy="350" r="10"/>
+        <line x1="360" y1="305" x2="360" y2="395"/>
+        <line x1="375" y1="305" x2="375" y2="395"/>
+        <line x1="390" y1="305" x2="390" y2="395"/>
+        <line x1="405" y1="305" x2="405" y2="395"/>
+        <line x1="420" y1="305" x2="420" y2="395"/>
+        <line x1="435" y1="305" x2="435" y2="395"/>
+        <line x1="100" y1="250" x2="700" y2="250"/>
+        <line x1="100" y1="244" x2="100" y2="256"/>
+        <line x1="700" y1="244" x2="700" y2="256"/>
+        <line x1="80" y1="460" x2="720" y2="460"/>
+        <line x1="80" y1="454" x2="80" y2="466"/>
+        <line x1="720" y1="454" x2="720" y2="466"/>
+        <line x1="50" y1="290" x2="80" y2="290" stroke-dasharray="4 4"/>
+        <line x1="50" y1="410" x2="80" y2="410" stroke-dasharray="4 4"/>
+        <line x1="720" y1="290" x2="750" y2="290" stroke-dasharray="4 4"/>
+        <line x1="720" y1="410" x2="750" y2="410" stroke-dasharray="4 4"/>
+        <circle cx="400" cy="350" r="60" stroke-dasharray="6 6" opacity=".4"/>
+        <circle cx="400" cy="350" r="80" stroke-dasharray="6 6" opacity=".3"/>
+        <circle cx="400" cy="350" r="100" stroke-dasharray="6 6" opacity=".2"/>
+        <line x1="0" y1="350" x2="800" y2="350" opacity=".15"/>
+        <line x1="400" y1="0" x2="400" y2="700" opacity=".15"/>
+        <path d="M120 270 L120 290 L100 290" opacity=".5"/>
+        <path d="M680 270 L680 290 L700 290" opacity=".5"/>
+        <path d="M120 430 L120 410 L100 410" opacity=".5"/>
+        <path d="M680 430 L680 410 L700 410" opacity=".5"/>
+      </g>
+      <text x="400" y="242" text-anchor="middle" fill="#0B38D4" font-size="11" font-family="monospace" opacity=".6">DN 110 — 630 mm</text>
+      <text x="400" y="476" text-anchor="middle" fill="#0B38D4" font-size="11" font-family="monospace" opacity=".6">L = 220 — 860 mm</text>
+      <text x="250" y="230" fill="#0B38D4" font-size="9" font-family="monospace" opacity=".5">PE 100 / PN 16</text>
+      <text x="500" y="230" fill="#0B38D4" font-size="9" font-family="monospace" opacity=".5">EN 12201 / ISO 8085</text>
+    </svg>
+  </div>
+  <div class="hero-accent-line"></div>
+
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Официальный дистрибьютор в РК</div>
+      <h1 class="hero-title">
+        Фитинги<br>
+        <span class="accent">от завода</span>
+        <span class="outlined">Dökerler</span>
+      </h1>
+      <p class="hero-body">Официальный дистрибьютор в Казахстане. Наличие на складе в Астане, быстрые отгрузки и помощь в подборе под ваш объект. </p>
+      <div class="hero-ctas">
+        <a href="/catalog/" class="btn-primary">
+          Смотреть каталог
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#process" class="btn-outline">Как мы работаем</a>
+      </div>
+      <div class="hero-kpis">
+        <div class="kpi">
+          <div class="kpi-num"><span id="k1">0</span>+</div>
+          <div class="kpi-label">Позиций<br>в каталоге</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num"><span id="k2">0</span></div>
+          <div class="kpi-label">Стран-<br>производителей</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num"><span id="k3">0</span>+</div>
+          <div class="kpi-label">Клиентов<br>доверяют нам</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num"><span id="k4">0</span></div>
+          <div class="kpi-label">Лет<br>на рынке</div>
+        </div>
+      </div>
     </div>
-    <h1 class="hero-title">
-      <span>Электросварные</span>
-      <span class="line-gold">Фитинги</span>
-      <span class="line-outline">Dökerler</span>
-    </h1>
-    <p class="hero-subtitle">
-      Прямые поставки от завода Dökerler. Единственный официальный дистрибьютор в Казахстане. 
-      Более 10 лет опыта, склад в наличии и доставка во все регионы РК.
-    </p>
-    <div class="hero-actions">
-      <a href="#order-modal" class="btn-primary" onclick="openModal('order-modal')"><span>Оставить заказ</span></a>
-      <a href="#about" class="btn-secondary">
-        <span class="arrow">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <div class="hero-visual">
+      <div class="hero-vis-card">
+        <div id="container3d"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tick-inner">
+    <span class="ticker-item">80+ лет опыта производства</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ISO 9001 / EN 12201</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Прямые поставки с завода</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Наличие в Астане</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Диаметры 20–630 мм</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Быстрая доставка по Казахстану</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Помощь в подборе</span><span class="ticker-sep">·</span>
+    <!-- Repeat for seamless loop -->
+    <span class="ticker-item">80+ лет опыта производства</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ISO 9001 / EN 12201</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Прямые поставки с завода</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Наличие в Астане</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Диаметры 20–630 мм</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Быстрая доставка по Казахстану</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Помощь в подборе</span><span class="ticker-sep">·</span>
+  </div>
+</div>
+
+<!-- PRODUCTS PREVIEW -->
+<div id="products">
+  <div class="section">
+    <div class="sec-tag reveal">Продукция</div>
+    <div class="products-header" style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+      <h2 class="sec-title reveal" style="margin:0">Линейка<br>фитингов</h2>
+      <a href="/catalog/" class="btn-primary reveal" style="display:inline-flex; white-space: nowrap;">Полный каталог <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:8px"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </div>
+    <p class="sec-desc reveal" style="margin-top: 24px; max-width: 520px;">Полный ассортимент электросварных фитингов для газо- и водоснабжения, промышленных трубопроводов ПЭ.</p>
+    
+    <div class="products-grid">
+      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.0s">
+        <div class="prod-num">01 / МУФТЫ</div>
+        <div class="prod-img">
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <rect x="20" y="45" width="160" height="50" fill="rgba(11,56,212,.05)"/>
+            <rect x="20" y="55" width="160" height="30" fill="rgba(11,56,212,.04)"/>
+            <rect x="10" y="35" width="16" height="70" fill="rgba(11,56,212,.08)"/>
+            <rect x="174" y="35" width="16" height="70" fill="rgba(11,56,212,.08)"/>
+            <rect x="72" y="45" width="56" height="50" fill="rgba(11,56,212,.1)"/>
+            <circle cx="100" cy="70" r="20"/>
           </svg>
-        </span>
-        О компании
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Муфты электросварные</div>
+          <div class="prod-specs">SDR 11 / SDR 17 · PN 16</div>
+        </div>
+      </a>
+      
+      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.1s">
+        <div class="prod-num">02 / ОТВОДЫ</div>
+        <div class="prod-img">
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <path d="M40 100 Q 40 40 100 40" stroke-width="16" fill="none" opacity=".1"/>
+            <path d="M40 100 Q 40 40 100 40" />
+            <rect x="30" y="90" width="20" height="30" />
+            <rect x="90" y="30" width="30" height="20" />
+          </svg>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Отводы 90° и 45°</div>
+          <div class="prod-specs">DN 32 — 630 mm</div>
+        </div>
+      </a>
+      
+      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.2s">
+        <div class="prod-num">03 / ТРОЙНИКИ</div>
+        <div class="prod-img">
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <rect x="40" y="60" width="120" height="20" />
+            <rect x="90" y="20" width="20" height="40" />
+            <rect x="30" y="55" width="15" height="30" />
+            <rect x="155" y="55" width="15" height="30" />
+            <rect x="85" y="10" width="30" height="15" />
+          </svg>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Тройники равнопроходные</div>
+          <div class="prod-specs">SDR 11 · PE 100</div>
+        </div>
+      </a>
+
+      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.3s">
+        <div class="prod-num">04 / ПЕРЕХОДЫ</div>
+        <div class="prod-img">
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <path d="M40 40 L160 55 L160 85 L40 100 Z" fill="rgba(11,56,212,.05)"/>
+            <path d="M40 40 L160 55 L160 85 L40 100 Z" />
+            <rect x="30" y="35" width="15" height="70" />
+            <rect x="155" y="50" width="15" height="40" />
+          </svg>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Редукции и переходы</div>
+          <div class="prod-specs">Разные диаметры</div>
+        </div>
       </a>
     </div>
   </div>
+</div>
 
-  <div class="hero-visual">
-    <div class="hero-visual-glow"></div>
-    <div class="hero-image-wrapper">
-      <img src="{% static 'img/hero-image.png' %}" alt="Dökerler Fittings" class="hero-image">
+<!-- FEATURES -->
+<div class="features-bg" id="about">
+  <div class="section">
+    <div class="sec-tag reveal">Наши преимущества</div>
+    <div class="sec-header-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:60px; align-items:end">
+      <h2 class="sec-title reveal">Надёжность в каждом соединении</h2>
+      <p class="sec-desc reveal" style="margin:0">Мы поставляем только сертифицированную продукцию от ведущих европейских заводов с историей более 80 лет.</p>
     </div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num" id="count1">0</div>
-      <div class="stat-label">Позиций в каталоге</div>
+    
+    <div class="features-grid">
+      <div class="feat-cell reveal">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="feat-title">Высшее качество</div>
+        <div class="feat-text">Материал PE 100-RC с повышенной стойкостью к трещинам и давлению.</div>
+      </div>
+      <div class="feat-cell reveal" style="transition-delay:.1s">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="feat-title">Оперативность</div>
+        <div class="feat-text">Складская программа в Астане позволяет делать отгрузки день в день.</div>
+      </div>
+      <div class="feat-cell reveal" style="transition-delay:.2s">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div class="feat-title">Полный ассортимент</div>
+        <div class="feat-text">Диаметры от 20 до 630 мм всегда в наличии для любых задач ГВС и ХВС.</div>
+      </div>
     </div>
-    <div class="stat-item">
-      <div class="stat-num" id="count2">0</div>
-      <div class="stat-label">Стран-производителей</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" id="count3">0</div>
-      <div class="stat-label">Клиентов доверяют нам</div>
-    </div>
-  </div>
-</section>
-
-<!-- Ticker -->
-<div class="ticker">
-  <div class="ticker-track" id="ticker">
-    <span class="ticker-text">ПРЯМЫЕ ПОСТАВКИ ОТ ЗАВОДА DÖKERLER</span><span class="ticker-dot">◆</span>
-    <span class="ticker-text">ОФИЦИАЛЬНЫЙ ДИСТРИБЬЮТОР В КАЗАХСТАНЕ</span><span class="ticker-dot">◆</span>
-    <span class="ticker-text">БОЛЕЕ 10 ЛЕТ ОПЫТА</span><span class="ticker-dot">◆</span>
-    <span class="ticker-text">СКЛАД В АСТАНЕ</span><span class="ticker-dot">◆</span>
-    <span class="ticker-text">ДОСТАВКА ПО ВСЕМУ РК</span><span class="ticker-dot">◆</span>
   </div>
 </div>
 
-<!-- About -->
-<section id="about">
-  <div class="section-label">О компании</div>
-  <div class="about-grid">
-    <div class="about-visual reveal">
-      <div class="about-card-main">
-        <svg viewBox="0 0 400 400" style="width:100%;height:100%;padding:40px">
-          <!-- Industrial pipe fitting SVG illustration -->
-          <rect x="30" y="175" width="340" height="50" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-          <rect x="30" y="185" width="340" height="30" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
-          <rect x="175" y="30" width="50" height="175" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-          <rect x="185" y="30" width="30" height="175" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
-          <rect x="165" y="165" width="70" height="70" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" rx="4"/>
-          <circle cx="200" cy="200" r="22" fill="none" stroke="rgba(201,168,76,0.8)" stroke-width="2.5"/>
-          <circle cx="200" cy="200" r="14" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
-          <circle cx="200" cy="200" r="5" fill="rgba(201,168,76,0.6)"/>
-          <line x1="165" y1="200" x2="140" y2="200" stroke="rgba(201,168,76,0.4)" stroke-width="1" stroke-dasharray="3 3"/>
-          <line x1="235" y1="200" x2="260" y2="200" stroke="rgba(201,168,76,0.4)" stroke-width="1" stroke-dasharray="3 3"/>
-          <rect x="22" y="168" width="14" height="64" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" rx="2"/>
-          <rect x="364" y="168" width="14" height="64" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" rx="2"/>
-          <rect x="168" y="22" width="64" height="14" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" rx="2"/>
-          <circle cx="32" cy="180" r="3" fill="rgba(201,168,76,0.5)"/>
-          <circle cx="32" cy="200" r="3" fill="rgba(201,168,76,0.5)"/>
-          <circle cx="32" cy="220" r="3" fill="rgba(201,168,76,0.5)"/>
-          <circle cx="368" cy="180" r="3" fill="rgba(201,168,76,0.5)"/>
-          <circle cx="368" cy="200" r="3" fill="rgba(201,168,76,0.5)"/>
-          <circle cx="368" cy="220" r="3" fill="rgba(201,168,76,0.5)"/>
-          <circle cx="180" cy="28" r="3" fill="rgba(201,168,76,0.5)"/>
-          <circle cx="200" cy="28" r="3" fill="rgba(201,168,76,0.5)"/>
-          <circle cx="220" cy="28" r="3" fill="rgba(201,168,76,0.5)"/>
-          <line x1="30" y1="270" x2="370" y2="270" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
-          <line x1="30" y1="265" x2="30" y2="275" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
-          <line x1="370" y1="265" x2="370" y2="275" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
-          <text x="200" y="286" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="10" font-family="monospace">DN 110 — DN 500</text>
-        </svg>
+<!-- PROCESS / STEPS -->
+<div id="process">
+  <div class="section">
+    <div class="sec-tag reveal">Как мы работаем</div>
+    <div class="process-grid">
+      <div class="pstep reveal">
+        <div class="pstep-num">01</div>
+        <div class="pstep-title">Консультация</div>
+        <div class="pstep-text">Наши инженеры помогают подобрать фитинги под ваш проект и ТЗ.</div>
       </div>
-      <div class="about-badge">
-        <span class="big">10+</span>
-        <span class="sm">Лет опыта</span>
+      <div class="pstep reveal" style="transition-delay:.1s">
+        <div class="pstep-num">02</div>
+        <div class="pstep-title">Расчёт и КП</div>
+        <div class="pstep-text">Подготовка коммерческого предложения с учётом логистики за 2 часа.</div>
       </div>
-    </div>
-    <div class="about-features">
-      <div>
-        <div class="section-label">Почему выбирают нас</div>
-        <h2 class="section-title">Прямые поставки <br>без посредников</h2>
-        <p class="section-desc">Мы являемся единственным официальным дистрибьютором завода Dökerler в Казахстане, что гарантирует лучшую цену и оригинальное качество.</p>
+      <div class="pstep reveal" style="transition-delay:.2s">
+        <div class="pstep-num">03</div>
+        <div class="pstep-title">Производство и контроль</div>
+        <div class="pstep-text">Производство на европейском заводе под нашим техническим контролем.</div>
       </div>
-      <div class="feature-row">
-        <div class="feature-icon">✓</div>
-        <div>
-          <div class="feature-title">Официальный дистрибьютор Dökerler</div>
-          <div class="feature-desc">Полная заводская поддержка и эксклюзивные условия поставок на территорию РК.</div>
-        </div>
-      </div>
-      <div class="feature-row">
-        <div class="feature-icon">🛡️</div>
-        <div>
-          <div class="feature-title">Более 10 лет на рынке</div>
-          <div class="feature-desc">Проверенная временем надежность и сотни успешно реализованных проектов.</div>
-        </div>
-      </div>
-      <div class="feature-row">
-        <div class="feature-icon">📍</div>
-        <div>
-          <div class="feature-title">Склад в Астане</div>
-          <div class="feature-desc">Большинство позиций всегда в наличии на нашем складе для быстрой отгрузки.</div>
-        </div>
+      <div class="pstep reveal" style="transition-delay:.3s">
+        <div class="pstep-num">04</div>
+        <div class="pstep-title">Доставка и поддержка</div>
+        <div class="pstep-text">Доставка на объект, полный пакет документов и техподдержка.</div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- Products -->
-<div class="products-bg section-full" id="products">
-  <section>
-    <div class="section-label">Каталог</div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px">
-      <h2 class="section-title reveal">Линейка продукции</h2>
-      <p class="section-desc reveal">Полный ассортимент электросварных фитингов для газо- и водоснабжения.</p>
-    </div>
-    <div class="products-grid">
-      <div class="product-card">
-        <span class="product-num">01</span>
-        <span class="product-icon">◉</span>
-        <div class="product-name">Электросварные муфты</div>
-        <div class="product-desc">Соединительные муфты из ПЭ 100 для прямых участков трубопровода.</div>
-        <div class="product-specs">
-          <span class="spec-tag">DN 20–630</span>
-          <span class="spec-tag">PE 100</span>
-          <span class="spec-tag">PN 16</span>
-        </div>
-        <a href="#" class="product-link">Подробнее →</a>
-      </div>
-      <div class="product-card">
-        <span class="product-num">02</span>
-        <span class="product-icon">⌀</span>
-        <div class="product-name">Отводы 45° и 90°</div>
-        <div class="product-desc">Угловые фитинги для изменения направления трубопровода.</div>
-        <div class="product-specs">
-          <span class="spec-tag">DN 63–500</span>
-          <span class="spec-tag">45° / 90°</span>
-        </div>
-        <a href="#" class="product-link">Подробнее →</a>
-      </div>
-      <div class="product-card">
-        <span class="product-num">03</span>
-        <span class="product-icon">⑂</span>
-        <div class="product-name">Тройники равные</div>
-        <div class="product-desc">Разветвительные тройники для создания ответвлений.</div>
-        <div class="product-specs">
-          <span class="spec-tag">DN 32–500</span>
-          <span class="spec-tag">PE 100</span>
-        </div>
-        <a href="#" class="product-link">Подробнее →</a>
-      </div>
-      <div class="product-card">
-        <span class="product-num">04</span>
-        <span class="product-icon">⧉</span>
-        <div class="product-name">Редукции ПЭ 100</div>
-        <div class="product-desc">Переходы для соединения труб различных диаметров.</div>
-        <div class="product-specs">
-          <span class="spec-tag">DN 40–630</span>
-          <span class="spec-tag">SDR 11</span>
-        </div>
-        <a href="#" class="product-link">Подробнее →</a>
-      </div>
-    </div>
-  </section>
 </div>
+{% endblock %}
 
-<!-- Process -->
-<section id="process">
-  <div class="section-label">Как мы работаем</div>
-  <h2 class="section-title reveal">Процесс поставки</h2>
-  <div class="process-row">
-    <div class="process-step">
-      <div class="step-num">01</div>
-      <div class="step-title">Консультация</div>
-      <div class="step-desc">Подбор фитингов и расчет спецификации.</div>
-    </div>
-    <div class="process-step">
-      <div class="step-num">02</div>
-      <div class="step-title">Предложение</div>
-      <div class="step-desc">Формирование детального КП за 1 день.</div>
-    </div>
-    <div class="process-step">
-      <div class="step-num">03</div>
-      <div class="step-title">Контроль</div>
-      <div class="step-desc">Производство и входная приемка по нормам.</div>
-    </div>
-    <div class="process-step">
-      <div class="step-num">04</div>
-      <div class="step-title">Доставка</div>
-      <div class="step-desc">Оперативная поставка в любой регион РК.</div>
-    </div>
-  </div>
-</section>
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    
+    const container = document.getElementById('container3d');
+    const updateSize = () => {
+        if(!container) return;
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    };
+    
+    if(container) {
+        container.appendChild(renderer.domElement);
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enablePan = false;
+        controls.enableDamping = true;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 2.0;
+        
+        // Materials
+        const hdpeMaterial = new THREE.MeshStandardMaterial({ color: 0x2a2a2a, roughness: 0.3, metalness: 0.2, side: THREE.DoubleSide });
+        const terminalMaterial = new THREE.MeshStandardMaterial({ color: 0x444444, roughness: 0.1, metalness: 0.9 });
 
-<!-- Why Europe -->
-<section id="quality" style="padding-top:0">
-  <div style="border-top: 1px solid rgba(139,155,180,0.1); padding-top:80px">
-    <div class="europe-grid">
-      <div>
-        <div class="section-label">Стандарты качества</div>
-        <h2 class="section-title reveal">Европейское превосходство</h2>
-        <p class="section-desc reveal">Фитинги производятся по жёстким нормам DIN, EN и ISO.</p>
-        <div class="europe-cards" style="margin-top:40px">
-          <div class="europe-card">
-            <div class="europe-card-icon">🔬</div>
-            <div class="europe-card-title">Материал PE 100</div>
-          </div>
-          <div class="europe-card">
-            <div class="europe-card-icon">🌡️</div>
-            <div class="europe-card-title">Стойкость</div>
-          </div>
-        </div>
-      </div>
-      <div class="europe-img reveal">
-        <svg viewBox="0 0 380 460" style="width:90%;height:90%">
-          <g opacity="0.3" stroke="#C9A84C" stroke-width="0.7" fill="none">
-            <path d="M140,60 L155,55 L170,62 L185,58 L195,65 L200,75 L195,85 L205,90 L200,100 L210,108 L215,115 L220,125 L215,135 L225,145 L230,155 L225,165 L235,175 L240,185 L235,195 L245,205 L250,215 L245,230 L255,240 L250,250 L240,258 L245,268 L240,278 L230,285 L220,278 L210,282 L200,290 L190,285 L180,290 L170,285 L165,295 L155,290 L145,295 L135,290 L125,295 L115,285 L110,275 L120,270 L115,260 L120,250 L110,245 L105,235 L115,228 L110,220 L115,210 L105,205 L100,195 L110,190 L105,180 L115,175 L110,165 L120,160 L115,150 L125,145 L130,135 L125,125 L135,120 L130,110 L140,105 L135,95 L145,90 L140,80 L145,70 Z"/>
-          </g>
-          <circle cx="185" cy="130" r="18" fill="rgba(201,168,76,0.12)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
-          <circle cx="310" cy="350" r="20" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.6)" stroke-width="1.5"/>
-          <circle cx="310" cy="350" r="6" fill="rgba(201,168,76,0.8)"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-</section>
+        const fitting = new THREE.Group();
+        const bodyGeo = new THREE.CylinderGeometry(50, 50, 140, 64);
+        const body = new THREE.Mesh(bodyGeo, hdpeMaterial);
+        body.rotation.z = Math.PI / 2;
+        fitting.add(body);
 
-<!-- CTA Banner -->
-<div class="cta-banner reveal">
-    <h2 class="cta-title">Готовы обсудить ваш проект?</h2>
-    <p class="cta-desc">Получите расчет стоимости и техническую консультацию в течение часа.</p>
-    <div class="cta-actions">
-        <button class="btn-primary" onclick="openModal('order-modal')"><span>Получить КП</span></button>
-    </div>
-</div>
+        const rimGeo = new THREE.CylinderGeometry(55, 55, 22, 64);
+        const rimL = new THREE.Mesh(rimGeo, hdpeMaterial);
+        rimL.position.x = -60;
+        rimL.rotation.z = Math.PI / 2;
+        fitting.add(rimL);
+
+        const rimR = new THREE.Mesh(rimGeo, hdpeMaterial);
+        rimR.position.x = 60;
+        rimR.rotation.z = Math.PI / 2;
+        fitting.add(rimR);
+
+        const makeTerminal = (xPos) => {
+            const group = new THREE.Group();
+            group.add(new THREE.Mesh(new THREE.CylinderGeometry(9, 9, 14, 32), hdpeMaterial));
+            const pin = new THREE.Mesh(new THREE.CylinderGeometry(4, 4, 10, 16), terminalMaterial);
+            pin.position.y = 9;
+            group.add(pin);
+            group.position.set(xPos, 48, 0);
+            return group;
+        };
+
+        fitting.add(makeTerminal(-35));
+        fitting.add(makeTerminal(35));
+        scene.add(fitting);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+        dirLight.position.set(10, 20, 10);
+        scene.add(dirLight);
+
+        camera.position.z = 400;
+        camera.position.y = 0;
+        updateSize();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+        window.addEventListener('resize', updateSize);
+    }
+</script>
 {% endblock %}

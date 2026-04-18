@@ -66,3 +66,32 @@ if(revealEls.length > 0) {
   },{threshold:.12});
   revealEls.forEach(el=>ro.observe(el));
 }
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('sidebar-overlay');
+  
+  if(burger && menu) {
+    burger.classList.toggle('active');
+    menu.classList.toggle('active');
+    if(overlay) overlay.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+  }
+}
+
+// Ensure menu closes on resize
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 1024) {
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('sidebar-overlay');
+    if(menu && menu.classList.contains('active')) {
+      burger.classList.remove('active');
+      menu.classList.remove('active');
+      if(overlay) overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+});

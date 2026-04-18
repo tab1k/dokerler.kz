@@ -4,7 +4,7 @@ from django.views import View
 
 class BaseIndexView(View):
     def get(self, request):
-        return render(request, 'main.html')
+        return render(request, 'index.html')
 
 
 class CatalogView(View):

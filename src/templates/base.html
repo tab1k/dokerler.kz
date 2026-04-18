@@ -2,106 +2,127 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Dökerler — Электросварные фитинги в Казахстане{% endblock %}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
-    {% block extra_css %}{% endblock %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% block extra_css %}{% endblock %}
 </head>
 <body>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="cur-ring"></div>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
-
-<!-- Nav -->
-<nav id="navbar">
-    <a href="#" class="logo">Döker<span>ler</span></a>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo" id="main-logo">
+      <img style="width: 100px;" src="{% static 'img/logo.png' %}" alt="EuroFit Logo">
+    </a>
+    
     <ul class="nav-links">
-        <li><a href="#products">Продукция</a></li>
-        <li><a href="#about">О компании</a></li>
-        <li><a href="#process">Процесс</a></li>
-        <li><a href="#address-modal" onclick="openModal('address-modal')">Адрес</a></li>
+      <li><a href="/#products">Продукция</a></li>
+      <li><a href="/#about">О компании</a></li>
+      <li><a href="/#process">Поставки</a></li>
+      <li><a href="/#quality">Качество</a></li>
     </ul>
-    <button class="nav-cta" onclick="openModal('order-modal')">Заказать</button>
+
+    <div class="nav-right">
+      <a href="/catalog/"><button class="btn-ghost">Каталог</button></a>
+      <button class="btn-nav-primary">Получить КП</button>
+    </div>
+
+    <button class="burger" id="burger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mmenu-close" onclick="toggleMobileMenu()">&times;</button>
+  <div class="mmenu-inner">
+    <div class="mmenu-links">
+      <a href="/#products" onclick="toggleMobileMenu()">Продукция</a>
+      <a href="/#about" onclick="toggleMobileMenu()">О компании</a>
+      <a href="/#process" onclick="toggleMobileMenu()">Поставки</a>
+      <a href="/#quality" onclick="toggleMobileMenu()">Качество</a>
+      <a href="/catalog/" onclick="toggleMobileMenu()">Каталог</a>
+    </div>
+    <div class="mmenu-footer">
+      <button class="btn-nav-primary" style="width:100%">Получить КП</button>
+      <div class="mmenu-contact">
+        <a href="tel:+77172000000">+7 (717) 200-00-00</a>
+        <a href="mailto:info@eurofit.kz">info@eurofit.kz</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% block content %}{% endblock %}
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>
-    <div>
-        <div class="footer-logo">Döker<span>ler</span></div>
-        <p class="footer-tagline">Прямые поставки высококачественных электросварных фитингов от ведущих европейских заводов.</p>
-        <p style="margin-top: 12px; font-size: 11px; color: var(--gold); border: 1px solid rgba(201,168,76,0.2); padding: 8px 12px; display: inline-block;">
-            ОФИЦИАЛЬНЫЙ ДИСТРИБЬЮТОР
-        </p>
-    </div>
-    <div>
-        <div class="footer-col-title">Навигация</div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Euro<em>Fit</em></div>
+        <p class="footer-tagline">Официальный дистрибьютор европейских электросварных фитингов в Республике Казахстан с 2009 года.</p>
+      </div>
+      <div>
+        <div class="footer-col-head">Продукция</div>
         <ul class="footer-links">
-            <li><a href="#hero">Главная</a></li>
-            <li><a href="#products">Продукция</a></li>
-            <li><a href="#about">О компании</a></li>
-            <li><a href="#quality">Качество</a></li>
+          <li><a href="/catalog/">Все фитинги</a></li>
+          <li><a href="/catalog/">Муфты</a></li>
+          <li><a href="/catalog/">Отводы</a></li>
+          <li><a href="/catalog/">Тройники</a></li>
+          <li><a href="/catalog/">Редукции</a></li>
+          <li><a href="/catalog/">Седёлки</a></li>
         </ul>
-    </div>
-    <div>
-        <div class="footer-col-title">Контакты</div>
+      </div>
+      <div>
+        <div class="footer-col-head">Компания</div>
         <ul class="footer-links">
-            <li><a href="tel:+77013366450">+7 701 336 64 50</a></li>
-            <li><a href="mailto:info@dokerler.kz">info@dokerler.kz</a></li>
-            <li><a href="#address-modal" onclick="openModal('address-modal')">г. Астана, ул. Кенесары 4</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Сертификаты</a></li>
+          <li><a href="#">Производители</a></li>
+          <li><a href="#">Проекты</a></li>
+          <li><a href="#">Новости</a></li>
         </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Контакты</div>
+        <ul class="footer-links">
+          <li><a href="#">+7 (717) 200-00-00</a></li>
+          <li><a href="#">info@eurofit.kz</a></li>
+          <li><a href="#">Астана, Кенесары 40</a></li>
+          <li><a href="#">Пн–Пт: 9:00–18:00</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-        <div class="footer-col-title">Реквизиты</div>
-        <p style="font-size: 11px; color: var(--steel); line-height: 1.8;">
-            ТОО «Dökerler Engineering»<br>
-            БИН: 123456789012<br>
-            Казахстан, г. Астана
-        </p>
+    <div class="footer-bottom">
+      <span>© 2025 EuroFit Kazakhstan. Все права защищены.</span>
+      <span>Электросварные фитинги из Европы</span>
     </div>
+  </div>
 </footer>
 
-<div class="footer-bottom">
-    <div>© 2024 Dökerler Engineering. Все права защищены.</div>
-    <div>Design by Advanced AI</div>
-</div>
-
-<!-- Modals -->
-<div class="modal-overlay" id="order-modal">
-    <div class="modal-card">
-        <button class="modal-close" onclick="closeModal('order-modal')">&times;</button>
-        <h3 class="modal-title">Оставить заявку</h3>
-        <form class="modal-form">
-            <input type="text" placeholder="Ваше имя" class="form-input">
-            <input type="tel" placeholder="Телефон" class="form-input">
-            <button type="submit" class="btn-primary" style="padding:14px; width:100%"><span>Отправить</span></button>
-        </form>
-    </div>
-</div>
-
-<div class="modal-overlay" id="address-modal">
-    <div class="modal-card">
-        <button class="modal-close" onclick="closeModal('address-modal')">&times;</button>
-        <h3 class="modal-title">Наш адрес</h3>
-        <p style="color:var(--steel-light); line-height:1.6; margin-bottom: 20px;">
-            РК, г. Астана, Сарыаркинский район,<br>
-            ул. Кенесары 4.
-        </p>
-        <div style="width:100%; height:200px; background: rgba(0,0,0,0.2); border: 1px solid rgba(201,168,76,0.3); display:flex; align-items:center; justify-content:center; color:var(--gold);">
-           [ КАРТА ]
-        </div>
-    </div>
-</div>
-
-<!-- WhatsApp Widget -->
-<a href="https://wa.me/77013366450" class="whatsapp-widget" target="_blank" aria-label="Связаться через WhatsApp">
-    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-</a>
-
-<script src="{% static 'js/landing.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+// Global sidebar toggle if needed across pages
+function toggleSidebar(){
+  const s=document.getElementById('sidebar'),o=document.getElementById('sidebar-overlay');
+  if(s && o){
+    s.classList.toggle('open');
+    o.classList.toggle('open');
+    document.body.style.overflow=s.classList.contains('open')?'hidden':'';
+  }
+}
+</script>
 {% block extra_js %}{% endblock %}
 </body>
 </html>
