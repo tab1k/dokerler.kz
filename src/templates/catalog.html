@@ -1,0 +1,569 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог — EuroFit Электросварные фитинги</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+</head>
+<body>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="cur-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">Euro<em>Fit</em></a>
+    <ul class="nav-links">
+      <li><a href="/#products">Продукция</a></li>
+      <li><a href="/#about">О компании</a></li>
+      <li><a href="/#process">Поставки</a></li>
+      <li><a href="/#quality">Качество</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="/catalog/" class="btn-ghost" style="border-color:var(--blue);color:var(--blue)">Каталог</a>
+      <button class="btn-nav-primary">Получить КП</button>
+    </div>
+  </div>
+</nav>
+
+<!-- CATALOG HERO -->
+<div class="cat-hero">
+  <div class="cat-hero-bg"></div>
+  <div class="cat-hero-inner">
+    <div>
+      <div class="cat-eyebrow">Полный каталог продукции</div>
+      <h1 class="cat-title">Электро<br>сварные<br><em>фитинги</em></h1>
+      <p class="cat-desc">240+ позиций от европейских заводов. Прямые поставки, сертификаты ISO, PE 100, PN 16. В наличии и под заказ.</p>
+      <div class="cat-stats">
+        <div class="cstat">
+          <div class="cstat-num">240+</div>
+          <div class="cstat-label">Позиций<br>в каталоге</div>
+        </div>
+        <div class="cstat">
+          <div class="cstat-num">6</div>
+          <div class="cstat-label">Категорий<br>продукции</div>
+        </div>
+        <div class="cstat">
+          <div class="cstat-num">800+</div>
+          <div class="cstat-label">Позиций<br>в наличии</div>
+        </div>
+      </div>
+    </div>
+    <div class="cat-hero-filters">
+      <div class="fcat-pill active" data-cat="all" onclick="filterCategory('all',this)">
+        <span class="fcat-pill-name">Все категории</span>
+        <span class="fcat-pill-count">240+</span>
+      </div>
+      <div class="fcat-pill" data-cat="mufty" onclick="filterCategory('mufty',this)">
+        <span class="fcat-pill-name">Муфты</span>
+        <span class="fcat-pill-count">480</span>
+      </div>
+      <div class="fcat-pill" data-cat="otvody" onclick="filterCategory('otvody',this)">
+        <span class="fcat-pill-name">Отводы 45° и 90°</span>
+        <span class="fcat-pill-count">340</span>
+      </div>
+      <div class="fcat-pill" data-cat="troyniki" onclick="filterCategory('troyniki',this)">
+        <span class="fcat-pill-name">Тройники</span>
+        <span class="fcat-pill-count">380</span>
+      </div>
+      <div class="fcat-pill" data-cat="redukcii" onclick="filterCategory('redukcii',this)">
+        <span class="fcat-pill-name">Редукции и переходы</span>
+        <span class="fcat-pill-count">290</span>
+      </div>
+      <div class="fcat-pill" data-cat="sedelki" onclick="filterCategory('sedelki',this)">
+        <span class="fcat-pill-name">Седёлки</span>
+        <span class="fcat-pill-count">180</span>
+      </div>
+      <div class="fcat-pill" data-cat="zagluski" onclick="filterCategory('zagluski',this)">
+        <span class="fcat-pill-name">Заглушки</span>
+        <span class="fcat-pill-count">130</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CATALOG MAIN -->
+<div class="cat-main">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <span class="sidebar-close" onclick="toggleSidebar()">✕</span>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Категория</div>
+      <div class="filter-group" id="cat-filters">
+        <div class="filter-opt checked" data-cat="all" onclick="toggleFilter(this,'cat')">
+          <div class="filter-cb"></div><span class="filter-label">Все категории</span><span class="filter-cnt">240</span>
+        </div>
+        <div class="filter-opt" data-cat="mufty" onclick="toggleFilter(this,'cat')">
+          <div class="filter-cb"></div><span class="filter-label">Муфты</span><span class="filter-cnt">480</span>
+        </div>
+        <div class="filter-opt" data-cat="otvody" onclick="toggleFilter(this,'cat')">
+          <div class="filter-cb"></div><span class="filter-label">Отводы</span><span class="filter-cnt">340</span>
+        </div>
+        <div class="filter-opt" data-cat="troyniki" onclick="toggleFilter(this,'cat')">
+          <div class="filter-cb"></div><span class="filter-label">Тройники</span><span class="filter-cnt">380</span>
+        </div>
+        <div class="filter-opt" data-cat="redukcii" onclick="toggleFilter(this,'cat')">
+          <div class="filter-cb"></div><span class="filter-label">Редукции</span><span class="filter-cnt">290</span>
+        </div>
+        <div class="filter-opt" data-cat="sedelki" onclick="toggleFilter(this,'cat')">
+          <div class="filter-cb"></div><span class="filter-label">Седёлки</span><span class="filter-cnt">180</span>
+        </div>
+        <div class="filter-opt" data-cat="zagluski" onclick="toggleFilter(this,'cat')">
+          <div class="filter-cb"></div><span class="filter-label">Заглушки</span><span class="filter-cnt">130</span>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Диаметр DN</div>
+      <div class="filter-group">
+        <div class="filter-opt" onclick="toggleFilter(this,'dn')"><div class="filter-cb"></div><span class="filter-label">DN 20 – 63</span><span class="filter-cnt">420</span></div>
+        <div class="filter-opt" onclick="toggleFilter(this,'dn')"><div class="filter-cb"></div><span class="filter-label">DN 75 – 160</span><span class="filter-cnt">680</span></div>
+        <div class="filter-opt checked" onclick="toggleFilter(this,'dn')"><div class="filter-cb"></div><span class="filter-label">DN 200 – 315</span><span class="filter-cnt">540</span></div>
+        <div class="filter-opt" onclick="toggleFilter(this,'dn')"><div class="filter-cb"></div><span class="filter-label">DN 355 – 500</span><span class="filter-cnt">380</span></div>
+        <div class="filter-opt" onclick="toggleFilter(this,'dn')"><div class="filter-cb"></div><span class="filter-label">DN 560 – 630</span><span class="filter-cnt">180</span></div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Страна производителя</div>
+      <div class="filter-group">
+        <div class="filter-opt checked" onclick="toggleFilter(this,'country')"><div class="filter-cb"></div><span class="filter-label">🇩🇪 Германия</span><span class="filter-cnt">980</span></div>
+        <div class="filter-opt checked" onclick="toggleFilter(this,'country')"><div class="filter-cb"></div><span class="filter-label">🇦🇹 Австрия</span><span class="filter-cnt">540</span></div>
+        <div class="filter-opt" onclick="toggleFilter(this,'country')"><div class="filter-cb"></div><span class="filter-label">🇮🇹 Италия</span><span class="filter-cnt">420</span></div>
+        <div class="filter-opt" onclick="toggleFilter(this,'country')"><div class="filter-cb"></div><span class="filter-label">🇧🇪 Бельгия</span><span class="filter-cnt">260</span></div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Давление PN</div>
+      <div class="filter-group">
+        <div class="filter-opt" onclick="toggleFilter(this,'pn')"><div class="filter-cb"></div><span class="filter-label">PN 6</span><span class="filter-cnt">180</span></div>
+        <div class="filter-opt" onclick="toggleFilter(this,'pn')"><div class="filter-cb"></div><span class="filter-label">PN 10</span><span class="filter-cnt">560</span></div>
+        <div class="filter-opt checked" onclick="toggleFilter(this,'pn')"><div class="filter-cb"></div><span class="filter-label">PN 16</span><span class="filter-cnt">1480</span></div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Наличие</div>
+      <div class="filter-group">
+        <div class="filter-opt checked" onclick="toggleFilter(this,'stock')"><div class="filter-cb"></div><span class="filter-label">В наличии</span><span class="filter-cnt">820</span></div>
+        <div class="filter-opt" onclick="toggleFilter(this,'stock')"><div class="filter-cb"></div><span class="filter-label">Под заказ</span><span class="filter-cnt">1580</span></div>
+      </div>
+    </div>
+    <button class="sidebar-reset" onclick="resetFilters()">✕ Сбросить все фильтры</button>
+  </aside>
+
+  <!-- PRODUCTS AREA -->
+  <div class="cat-content">
+    <div class="cat-toolbar">
+      <div class="cat-search-wrap">
+        <input type="text" class="cat-search" id="search-input" placeholder="Поиск по каталогу..." oninput="handleSearch(this.value)">
+        <span class="cat-search-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><line x1="11" y1="11" x2="15" y2="15"/></svg>
+        </span>
+      </div>
+      <button class="mobile-filter-btn" onclick="toggleSidebar()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+        Фильтры
+      </button>
+      <div class="cat-sort">
+        <span class="cat-count" id="count-label">Показано 12 из 24</span>
+        <select class="sort-select" onchange="handleSort(this.value)">
+          <option value="default">По умолчанию</option>
+          <option value="name">По названию</option>
+          <option value="dn">По диаметру DN</option>
+          <option value="stock">Сначала в наличии</option>
+        </select>
+        <div class="view-toggles">
+          <button class="view-btn active" id="grid-btn" onclick="setView('grid')" title="Сетка">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0" width="6" height="6"/><rect x="8" y="0" width="6" height="6"/><rect x="0" y="8" width="6" height="6"/><rect x="8" y="8" width="6" height="6"/></svg>
+          </button>
+          <button class="view-btn" id="list-btn" onclick="setView('list')" title="Список">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="0" y1="3" x2="14" y2="3"/><line x1="0" y1="7" x2="14" y2="7"/><line x1="0" y1="11" x2="14" y2="11"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="active-filters" id="active-chips">
+      <div class="af-chip">DN 200–315 <span class="x" onclick="removeChip(this)">×</span></div>
+      <div class="af-chip">Германия <span class="x" onclick="removeChip(this)">×</span></div>
+      <div class="af-chip">Австрия <span class="x" onclick="removeChip(this)">×</span></div>
+      <div class="af-chip">PN 16 <span class="x" onclick="removeChip(this)">×</span></div>
+      <div class="af-chip">В наличии <span class="x" onclick="removeChip(this)">×</span></div>
+    </div>
+
+    <!-- PRODUCT CARDS GRID -->
+    <div class="prod-grid" id="prod-grid">
+
+      <!-- Card 1 -->
+      <div class="pcard" data-cat="mufty" onclick="openModal(0)">
+        <div class="pcard-img">
+          <span class="pcard-badge badge-green">В наличии</span>
+          <svg viewBox="0 0 220 160" fill="none" stroke="#0B38D4" stroke-width="1.3">
+            <rect x="20" y="52" width="180" height="56" fill="rgba(11,56,212,.05)"/>
+            <rect x="20" y="63" width="180" height="34" fill="rgba(11,56,212,.04)"/>
+            <rect x="8" y="40" width="18" height="80" fill="rgba(11,56,212,.1)"/>
+            <rect x="194" y="40" width="18" height="80" fill="rgba(11,56,212,.1)"/>
+            <rect x="74" y="52" width="72" height="56" fill="rgba(11,56,212,.12)"/>
+            <circle cx="110" cy="80" r="22"/><circle cx="110" cy="80" r="14" fill="rgba(11,56,212,.08)"/>
+            <circle cx="110" cy="80" r="5" fill="rgba(11,56,212,.35)" stroke="none"/>
+            <line x1="82" y1="57" x2="82" y2="103" stroke-dasharray="2 3" opacity=".5"/>
+            <line x1="94" y1="54" x2="94" y2="106" stroke-dasharray="2 3" opacity=".5"/>
+            <line x1="126" y1="54" x2="126" y2="106" stroke-dasharray="2 3" opacity=".5"/>
+            <line x1="138" y1="57" x2="138" y2="103" stroke-dasharray="2 3" opacity=".5"/>
+            <text x="110" y="145" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 250 · PN 16</text>
+          </svg>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Муфты</div>
+          <div class="pcard-name">Муфта электросварная DN 250</div>
+          <div class="pcard-desc">Стыковая соединительная муфта PE 100. Встроенный нагревательный элемент. Немецкое производство.</div>
+          <div class="pcard-specs">
+            <span class="spec">DN 250</span><span class="spec">PE 100</span><span class="spec">PN 16</span><span class="spec">L=360mm</span><span class="spec">DVGW</span>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-price">По запросу <span>/ шт.</span></div>
+            <button class="pcard-btn">Подробнее</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="pcard" data-cat="otvody" onclick="openModal(1)">
+        <div class="pcard-img">
+          <span class="pcard-badge badge-green">В наличии</span>
+          <svg viewBox="0 0 220 160" fill="none" stroke="#0B38D4" stroke-width="1.3">
+            <path d="M15,78 L100,78" /><path d="M15,100 L110,100 Q136,100 136,74 L136,18" />
+            <path d="M15,78 L100,78 Q128,78 128,50 L128,18" fill="rgba(11,56,212,.05)"/>
+            <rect x="5" y="65" width="16" height="48" fill="rgba(11,56,212,.1)"/>
+            <rect x="116" y="7" width="48" height="16" fill="rgba(11,56,212,.1)"/>
+            <circle cx="105" cy="84" r="10" fill="rgba(11,56,212,.15)" stroke-width=".8"/>
+            <path d="M100,70 Q112,70 112,58 L112,18" stroke-dasharray="3 3" opacity=".3"/>
+            <text x="100" y="140" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 200 · 90° · PN 16</text>
+          </svg>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Отводы</div>
+          <div class="pcard-name">Отвод 90° DN 200</div>
+          <div class="pcard-desc">Угловой отвод для изменения направления ПЭ-трубопровода. Оптимизированная гидравлика, минимальные потери.</div>
+          <div class="pcard-specs">
+            <span class="spec">DN 200</span><span class="spec">90°</span><span class="spec">PE 100</span><span class="spec">EN 12201</span>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-price">По запросу <span>/ шт.</span></div>
+            <button class="pcard-btn">Подробнее</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="pcard" data-cat="troyniki" onclick="openModal(2)">
+        <div class="pcard-img">
+          <span class="pcard-badge badge-amber">Под заказ</span>
+          <svg viewBox="0 0 220 160" fill="none" stroke="#0B38D4" stroke-width="1.3">
+            <rect x="10" y="58" width="200" height="44" fill="rgba(11,56,212,.05)"/>
+            <rect x="90" y="18" width="40" height="58" fill="rgba(11,56,212,.05)"/>
+            <rect x="85" y="10" width="50" height="14" fill="rgba(11,56,212,.1)"/>
+            <rect x="6" y="50" width="14" height="60" fill="rgba(11,56,212,.1)"/>
+            <rect x="200" y="50" width="14" height="60" fill="rgba(11,56,212,.1)"/>
+            <rect x="82" y="50" width="56" height="60" fill="rgba(11,56,212,.12)"/>
+            <circle cx="110" cy="80" r="20" stroke-width="1.5"/>
+            <circle cx="110" cy="80" r="12" fill="rgba(11,56,212,.1)"/>
+            <circle cx="110" cy="80" r="5" fill="rgba(11,56,212,.4)" stroke="none"/>
+            <line x1="90" y1="58" x2="90" y2="102" stroke-dasharray="2 3" opacity=".4"/>
+            <line x1="100" y1="54" x2="100" y2="106" stroke-dasharray="2 3" opacity=".4"/>
+            <line x1="120" y1="54" x2="120" y2="106" stroke-dasharray="2 3" opacity=".4"/>
+            <line x1="130" y1="58" x2="130" y2="102" stroke-dasharray="2 3" opacity=".4"/>
+            <text x="110" y="145" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 315 · T-образный</text>
+          </svg>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Тройники</div>
+          <div class="pcard-name">Тройник T DN 315</div>
+          <div class="pcard-desc">Равнопроходной тройник для разветвления ПЭ-трубопровода. Симметричная конструкция, равномерное распределение потоков.</div>
+          <div class="pcard-specs">
+            <span class="spec">DN 315</span><span class="spec">PE 100</span><span class="spec">PN 16</span><span class="spec">ISO 8085</span>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-price">По запросу <span>/ шт.</span></div>
+            <button class="pcard-btn">Подробнее</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="pcard" data-cat="redukcii" onclick="openModal(3)">
+        <div class="pcard-img">
+          <span class="pcard-badge badge-green">В наличии</span>
+          <svg viewBox="0 0 220 160" fill="none" stroke="#0B38D4" stroke-width="1.3">
+            <!-- Reducer shape -->
+            <path d="M10,45 L10,115 L80,100 L80,60 Z" fill="rgba(11,56,212,.06)" stroke-width="1.3"/>
+            <path d="M10,60 L10,100 L80,88 L80,72 Z" fill="rgba(11,56,212,.04)"/>
+            <rect x="6" y="35" width="14" height="90" fill="rgba(11,56,212,.1)"/>
+            <path d="M80,60 L180,68 L180,92 L80,100 Z" fill="rgba(11,56,212,.06)"/>
+            <path d="M80,70 L180,75 L180,85 L80,90 Z" fill="rgba(11,56,212,.04)"/>
+            <rect x="180" y="60" width="14" height="40" fill="rgba(11,56,212,.1)"/>
+            <line x1="10" y1="128" x2="194" y2="128" stroke-width=".7"/>
+            <line x1="10" y1="122" x2="10" y2="134" stroke-width=".7"/>
+            <line x1="80" y1="122" x2="80" y2="134" stroke-width=".7"/>
+            <line x1="194" y1="122" x2="194" y2="134" stroke-width=".7"/>
+            <text x="44" y="142" text-anchor="middle" font-size="7" font-family="monospace" fill="#0B38D4" opacity=".7">DN 250</text>
+            <text x="137" y="142" text-anchor="middle" font-size="7" font-family="monospace" fill="#0B38D4" opacity=".7">DN 160</text>
+          </svg>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Редукции</div>
+          <div class="pcard-name">Редукция DN 250/160</div>
+          <div class="pcard-desc">Переходной концентрический ниппель для соединения труб разных диаметров. Плавное сужение без турбулентности.</div>
+          <div class="pcard-specs">
+            <span class="spec">DN 250→160</span><span class="spec">PE 100</span><span class="spec">PN 16</span>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-price">По запросу <span>/ шт.</span></div>
+            <button class="pcard-btn">Подробнее</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="pcard" data-cat="sedelki" onclick="openModal(4)">
+        <div class="pcard-img">
+          <span class="pcard-badge badge-blue">Под заказ</span>
+          <svg viewBox="0 0 220 160" fill="none" stroke="#0B38D4" stroke-width="1.3">
+            <!-- Saddle fitting on pipe -->
+            <rect x="10" y="70" width="200" height="50" fill="rgba(11,56,212,.05)"/>
+            <rect x="10" y="80" width="200" height="30" fill="rgba(11,56,212,.04)"/>
+            <!-- Saddle body -->
+            <path d="M85,70 Q110,54 135,70" stroke-width="1.5" fill="rgba(11,56,212,.1)"/>
+            <rect x="95" y="20" width="30" height="52" fill="rgba(11,56,212,.08)"/>
+            <rect x="88" y="14" width="44" height="12" fill="rgba(11,56,212,.12)"/>
+            <circle cx="110" cy="70" r="14" fill="rgba(11,56,212,.15)"/>
+            <circle cx="110" cy="70" r="8" fill="rgba(11,56,212,.08)" stroke-width=".8"/>
+            <line x1="85" y1="70" x2="135" y2="70" stroke-dasharray="3 3" opacity=".3"/>
+            <text x="110" y="148" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 250 × 110 · Седёлка</text>
+          </svg>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Седёлки</div>
+          <div class="pcard-name">Седёлка DN 250 × 110</div>
+          <div class="pcard-desc">Электросварная седёлка для врезки ответвления в действующий трубопровод без остановки и стравливания давления.</div>
+          <div class="pcard-specs">
+            <span class="spec">DN 250×110</span><span class="spec">PE 100</span><span class="spec">DVGW</span>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-price">По запросу <span>/ шт.</span></div>
+            <button class="pcard-btn">Подробнее</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="pcard" data-cat="zagluski" onclick="openModal(5)">
+        <div class="pcard-img">
+          <span class="pcard-badge badge-green">В наличии</span>
+          <svg viewBox="0 0 220 160" fill="none" stroke="#0B38D4" stroke-width="1.3">
+            <!-- End cap -->
+            <rect x="30" y="58" width="120" height="44" fill="rgba(11,56,212,.05)"/>
+            <rect x="30" y="68" width="120" height="24" fill="rgba(11,56,212,.04)"/>
+            <!-- Cap end -->
+            <path d="M150,58 L150,102 Q185,102 185,80 Q185,58 150,58 Z" fill="rgba(11,56,212,.1)"/>
+            <path d="M150,68 L150,92 Q175,92 175,80 Q175,68 150,68 Z" fill="rgba(11,56,212,.06)"/>
+            <rect x="18" y="46" width="18" height="68" fill="rgba(11,56,212,.1)"/>
+            <!-- Fusion coil end -->
+            <rect x="148" y="58" width="12" height="44" fill="rgba(11,56,212,.15)"/>
+            <line x1="150" y1="62" x2="158" y2="62" stroke-width=".8" opacity=".6"/>
+            <line x1="150" y1="69" x2="158" y2="69" stroke-width=".8" opacity=".6"/>
+            <line x1="150" y1="76" x2="158" y2="76" stroke-width=".8" opacity=".6"/>
+            <line x1="150" y1="83" x2="158" y2="83" stroke-width=".8" opacity=".6"/>
+            <line x1="150" y1="90" x2="158" y2="90" stroke-width=".8" opacity=".6"/>
+            <line x1="150" y1="97" x2="158" y2="97" stroke-width=".8" opacity=".6"/>
+            <text x="100" y="140" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 250 · Заглушка</text>
+          </svg>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Заглушки</div>
+          <div class="pcard-name">Заглушка торцевая DN 250</div>
+          <div class="pcard-desc">Электросварная торцевая заглушка для постоянного или временного перекрытия конца ПЭ-трубопровода.</div>
+          <div class="pcard-specs">
+            <span class="spec">DN 250</span><span class="spec">PE 100</span><span class="spec">PN 16</span><span class="spec">EN 12201</span>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-price">По запросу <span>/ шт.</span></div>
+            <button class="pcard-btn">Подробнее</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="pcard" data-cat="mufty" onclick="openModal(0)">
+        <div class="pcard-img">
+          <span class="pcard-badge badge-green">В наличии</span>
+          <svg viewBox="0 0 220 160" fill="none" stroke="#0B38D4" stroke-width="1.3">
+            <rect x="20" y="57" width="180" height="46" fill="rgba(11,56,212,.05)"/>
+            <rect x="20" y="67" width="180" height="26" fill="rgba(11,56,212,.04)"/>
+            <rect x="8" y="44" width="18" height="72" fill="rgba(11,56,212,.1)"/>
+            <rect x="194" y="44" width="18" height="72" fill="rgba(11,56,212,.1)"/>
+            <rect x="76" y="57" width="68" height="46" fill="rgba(11,56,212,.12)"/>
+            <circle cx="110" cy="80" r="19"/>
+            <circle cx="110" cy="80" r="11" fill="rgba(11,56,212,.08)"/>
+            <circle cx="110" cy="80" r="4" fill="rgba(11,56,212,.35)" stroke="none"/>
+            <text x="110" y="145" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 160 · PN 16</text>
+          </svg>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Муфты</div>
+          <div class="pcard-name">Муфта электросварная DN 160</div>
+          <div class="pcard-desc">Соединительная муфта для труб ПЭ 100. Двойной нагревательный элемент для надёжного соединения.</div>
+          <div class="pcard-specs">
+            <span class="spec">DN 160</span><span class="spec">PE 100</span><span class="spec">PN 16</span><span class="spec">L=240mm</span>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-price">По запросу <span>/ шт.</span></div>
+            <button class="pcard-btn">Подробнее</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="pcard" data-cat="otvody" onclick="openModal(1)">
+        <div class="pcard-img">
+          <span class="pcard-badge badge-amber">Под заказ</span>
+          <svg viewBox="0 0 220 160" fill="none" stroke="#0B38D4" stroke-width="1.3">
+            <path d="M15,75 L95,75 Q125,75 125,45 L125,15" fill="rgba(11,56,212,.05)"/>
+            <path d="M15,75 L95,75" />
+            <path d="M15,95 L108,95 Q145,95 145,55 L145,15" />
+            <rect x="5" y="62" width="16" height="46" fill="rgba(11,56,212,.1)"/>
+            <rect x="113" y="5" width="46" height="16" fill="rgba(11,56,212,.1)"/>
+            <circle cx="102" cy="80" r="9" fill="rgba(11,56,212,.15)" stroke-width=".8"/>
+            <text x="100" y="140" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 315 · 45° · PN 16</text>
+          </svg>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Отводы</div>
+          <div class="pcard-name">Отвод 45° DN 315</div>
+          <div class="pcard-desc">Плавный угловой переход для изменения направления трубопровода на 45°. Минимальные гидравлические потери.</div>
+          <div class="pcard-specs">
+            <span class="spec">DN 315</span><span class="spec">45°</span><span class="spec">PE 100</span><span class="spec">PN 16</span>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-price">По запросу <span>/ шт.</span></div>
+            <button class="pcard-btn">Подробнее</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="pcard" data-cat="troyniki" onclick="openModal(2)">
+        <div class="pcard-img">
+          <span class="pcard-badge badge-green">В наличии</span>
+          <svg viewBox="0 0 220 160" fill="none" stroke="#0B38D4" stroke-width="1.3">
+            <rect x="10" y="62" width="200" height="38" fill="rgba(11,56,212,.05)"/>
+            <rect x="94" y="20" width="32" height="58" fill="rgba(11,56,212,.05)"/>
+            <rect x="88" y="12" width="44" height="14" fill="rgba(11,56,212,.1)"/>
+            <rect x="6" y="52" width="14" height="58" fill="rgba(11,56,212,.1)"/>
+            <rect x="200" y="52" width="14" height="58" fill="rgba(11,56,212,.1)"/>
+            <rect x="84" y="54" width="52" height="54" fill="rgba(11,56,212,.12)"/>
+            <circle cx="110" cy="81" r="17" stroke-width="1.5"/>
+            <circle cx="110" cy="81" r="9" fill="rgba(11,56,212,.1)"/>
+            <circle cx="110" cy="81" r="3.5" fill="rgba(11,56,212,.5)" stroke="none"/>
+            <text x="110" y="145" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 200 · T-тройник</text>
+          </svg>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">Тройники</div>
+          <div class="pcard-name">Тройник T DN 200</div>
+          <div class="pcard-desc">Тройник равнопроходной для разветвления магистрали. Австрийское производство, сертификат DVGW.</div>
+          <div class="pcard-specs">
+            <span class="spec">DN 200</span><span class="spec">PE 100</span><span class="spec">DVGW</span><span class="spec">PN 16</span>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-price">По запросу <span>/ шт.</span></div>
+            <button class="pcard-btn">Подробнее</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /prod-grid -->
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <button class="page-btn arrow">←</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn" style="border:none;color:var(--ink3);pointer-events:none">…</button>
+      <button class="page-btn">12</button>
+      <button class="page-btn arrow">→</button>
+    </div>
+
+    <!-- CTA block at bottom -->
+    <div style="margin-top:56px;padding:48px;background:var(--ink);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center">
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#7B9DFF;margin-bottom:12px">Не нашли нужную позицию?</div>
+        <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:white;letter-spacing:-.8px;line-height:1.1">Мы поставляем любые<br>европейские фитинги под заказ</div>
+        <div style="font-size:14px;color:#666360;margin-top:12px;font-weight:300">Срок изготовления 3–6 недель. Полная документация. Любые диаметры и давления.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;min-width:200px">
+        <button class="btn-primary" style="justify-content:center">Отправить запрос</button>
+        <button style="padding:12px;background:none;border:1.5px solid #2A2A28;color:#9E9B96;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:border-color .2s,color .2s" onmouseover="this.style.borderColor='#666';this.style.color='white'" onmouseout="this.style.borderColor='#2A2A28';this.style.color='#9E9B96'">Скачать прайс-лист</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-grid">
+    <div class="modal-img" id="modal-img"></div>
+    <div class="modal-body">
+      <div class="modal-cat" id="modal-cat">Муфты</div>
+      <div class="modal-title" id="modal-title">Муфта электросварная DN 250</div>
+      <div class="modal-desc" id="modal-desc">Стыковая соединительная муфта из полиэтилена PE 100 со встроенным нагревательным элементом для создания диффузионного сварного соединения. Немецкое производство. Полный пакет сертификатов.</div>
+      <table class="modal-table">
+        <tr><td>Диаметр DN</td><td id="mt-dn">250 мм</td></tr>
+        <tr><td>Давление PN</td><td>16 бар</td></tr>
+        <tr><td>Длина L</td><td id="mt-l">360 мм</td></tr>
+        <tr><td>Материал</td><td>PE 100 / MRS 10.0</td></tr>
+        <tr><td>Производитель</td><td>Georg Fischer AG (DE)</td></tr>
+        <tr><td>Температура</td><td>−40°C … +60°C</td></tr>
+        <tr><td>Срок службы</td><td>50+ лет</td></tr>
+        <tr><td>Наличие</td><td style="color:var(--green);font-weight:600" id="mt-stock">В наличии</td></tr>
+      </table>
+      <div class="modal-ctas">
+        <button class="modal-cta-main">Запросить цену</button>
+        <button class="modal-cta-sec">Скачать DataSheet</button>
+      </div>
+      <div class="modal-cert-row">
+        <span class="modal-cert">ISO 9001</span>
+        <span class="modal-cert">EN 12201</span>
+        <span class="modal-cert">ISO 8085</span>
+        <span class="modal-cert">DVGW</span>
+        <span class="modal-cert">CE Mark</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARE BAR -->
+<div class="compare-bar" id="compare-bar">
+  <div style="display:flex;align-items:center;gap:20px">
+    <span style="font-size:12px;color:#666360;font-weight:500;letter-spacing:1px;text-transform:uppercase">Сравнение</span>
+    <div class="compare-items" id="compare-items">
+      <div class="compare-item" id="ci1" style="font-size:10px;color:#444">+ добавить</div>
+      <div class="compare-item" id="ci2" style="font-size:10px;color:#444">+ добавить</div>
+      <div class="compare-item" id="ci3" style="font-size:10px;color:#444">+ добавить</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button class="compare-btn">Сравнить</button>
+    <button class="compare-clear" onclick="document.getElementById('compare-bar').classList.remove('shown')">Очистить</button>
+  </div>
+</div>
+
+<script src="{% static 'js/catalog.js' %}"></script>
+</body>
+</html>

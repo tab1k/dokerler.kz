@@ -53,7 +53,7 @@ const observer = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting && !countersStarted.done) {
     countersStarted.done = true;
     setTimeout(() => {
-      animateCounter(document.getElementById('count1'), 2400, '+');
+      animateCounter(document.getElementById('count1'), 240, '+');
       animateCounter(document.getElementById('count2'), 12, '+');
       animateCounter(document.getElementById('count3'), 350, '+');
     }, 800);

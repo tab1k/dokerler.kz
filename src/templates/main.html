@@ -1,0 +1,695 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EuroFit — Электросварные фитинги из Европы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body class="">
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="cur-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo"><img style="width: 50px;" src="{% static 'img/logo.png' %}" alt=""></a>
+    <ul class="nav-links">
+      <li><a href="#products">Продукция</a></li>
+      <li><a href="#about">О компании</a></li>
+      <li><a href="#process">Поставки</a></li>
+      <li><a href="#quality">Качество</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="/catalog/"><button class="btn-ghost">Каталог</button></a>
+      <button class="btn-nav-primary">Получить КП</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blueprint">
+    <svg viewBox="0 0 800 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Technical drawing of a pipe fitting -->
+      <g stroke="#0B38D4" stroke-width="1">
+        <!-- Main horizontal pipe -->
+        <rect x="100" y="290" width="600" height="120" rx="0"/>
+        <!-- Pipe wall inner -->
+        <rect x="100" y="310" width="600" height="80" rx="0"/>
+        <!-- Left flange -->
+        <rect x="80" y="270" width="28" height="160" rx="0"/>
+        <rect x="88" y="280" width="12" height="140" rx="0"/>
+        <!-- Right flange -->
+        <rect x="692" y="270" width="28" height="160" rx="0"/>
+        <rect x="700" y="280" width="12" height="140" rx="0"/>
+        <!-- Electrofusion ring indicator -->
+        <rect x="340" y="290" width="120" height="120" rx="0"/>
+        <circle cx="400" cy="350" r="40"/>
+        <circle cx="400" cy="350" r="28"/>
+        <circle cx="400" cy="350" r="10"/>
+        <!-- Wire coil lines inside fitting -->
+        <line x1="360" y1="305" x2="360" y2="395"/>
+        <line x1="375" y1="305" x2="375" y2="395"/>
+        <line x1="390" y1="305" x2="390" y2="395"/>
+        <line x1="405" y1="305" x2="405" y2="395"/>
+        <line x1="420" y1="305" x2="420" y2="395"/>
+        <line x1="435" y1="305" x2="435" y2="395"/>
+        <!-- Dimension lines -->
+        <line x1="100" y1="250" x2="700" y2="250"/>
+        <line x1="100" y1="244" x2="100" y2="256"/>
+        <line x1="700" y1="244" x2="700" y2="256"/>
+        <line x1="80" y1="460" x2="720" y2="460"/>
+        <line x1="80" y1="454" x2="80" y2="466"/>
+        <line x1="720" y1="454" x2="720" y2="466"/>
+        <!-- Section lines -->
+        <line x1="50" y1="290" x2="80" y2="290" stroke-dasharray="4 4"/>
+        <line x1="50" y1="410" x2="80" y2="410" stroke-dasharray="4 4"/>
+        <line x1="720" y1="290" x2="750" y2="290" stroke-dasharray="4 4"/>
+        <line x1="720" y1="410" x2="750" y2="410" stroke-dasharray="4 4"/>
+        <!-- Radius markers -->
+        <circle cx="400" cy="350" r="60" stroke-dasharray="6 6" opacity=".4"/>
+        <circle cx="400" cy="350" r="80" stroke-dasharray="6 6" opacity=".3"/>
+        <circle cx="400" cy="350" r="100" stroke-dasharray="6 6" opacity=".2"/>
+        <!-- Grid -->
+        <line x1="0" y1="350" x2="800" y2="350" opacity=".15"/>
+        <line x1="400" y1="0" x2="400" y2="700" opacity=".15"/>
+        <!-- Corner marks -->
+        <path d="M120 270 L120 290 L100 290" opacity=".5"/>
+        <path d="M680 270 L680 290 L700 290" opacity=".5"/>
+        <path d="M120 430 L120 410 L100 410" opacity=".5"/>
+        <path d="M680 430 L680 410 L700 410" opacity=".5"/>
+      </g>
+      <!-- Labels -->
+      <text x="400" y="242" text-anchor="middle" fill="#0B38D4" font-size="11" font-family="monospace" opacity=".6">DN 110 — 630 mm</text>
+      <text x="400" y="476" text-anchor="middle" fill="#0B38D4" font-size="11" font-family="monospace" opacity=".6">L = 220 — 860 mm</text>
+      <text x="250" y="230" fill="#0B38D4" font-size="9" font-family="monospace" opacity=".5">PE 100 / PN 16</text>
+      <text x="500" y="230" fill="#0B38D4" font-size="9" font-family="monospace" opacity=".5">EN 12201 / ISO 8085</text>
+    </svg>
+  </div>
+  <div class="hero-accent-line"></div>
+
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Официальный дистрибьютор в РК</div>
+      <h1 class="hero-title">
+        Фитинги<br>
+        <span class="accent">от завода</span>
+        <span class="outlined">Dökerler</span>
+      </h1>
+      <p class="hero-body">Официальный дистрибьютор в Казахстане. Наличие на складе в Астане, быстрые отгрузки и помощь в подборе под ваш объект. </p>
+      <div class="hero-ctas">
+        <a href="/catalog/" class="btn-primary">
+          Смотреть каталог
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#process" class="btn-outline">Как мы работаем</a>
+      </div>
+      <div class="hero-kpis">
+        <div class="kpi">
+          <div class="kpi-num"><span id="k1">0</span>+</div>
+          <div class="kpi-label">Позиций<br>в каталоге</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num"><span id="k2">0</span></div>
+          <div class="kpi-label">Стран-<br>производителей</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num"><span id="k3">0</span>+</div>
+          <div class="kpi-label">Клиентов<br>доверяют нам</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num"><span id="k4">0</span></div>
+          <div class="kpi-label">Лет<br>на рынке</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-vis-card">
+        <div id="container3d"></div>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    
+    const container = document.getElementById('container3d');
+    const updateSize = () => {
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    };
+    
+    container.appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enablePan = false;
+    controls.enableDamping = true;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 2.0;
+    controls.minDistance = 200;
+    controls.maxDistance = 600;
+
+    // Lights
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    dirLight.position.set(10, 20, 10);
+    scene.add(dirLight);
+
+    const pointLight = new THREE.PointLight(0x7B9DFF, 1.2, 500);
+    pointLight.position.set(-20, 10, 20);
+    scene.add(pointLight);
+
+    // Composite Fitting Object
+    const fitting = new THREE.Group();
+
+    // Materials - Changed to a more visible Charcoal/Steel Gray
+    const hdpeMaterial = new THREE.MeshStandardMaterial({ 
+        color: 0x2a2a2a, 
+        roughness: 0.3, 
+        metalness: 0.2,
+        side: THREE.DoubleSide
+    });
+    const terminalMaterial = new THREE.MeshStandardMaterial({ 
+        color: 0x444444, 
+        roughness: 0.1, 
+        metalness: 0.9 
+    });
+
+    // 1. Main Body
+    const bodyGeo = new THREE.CylinderGeometry(50, 50, 140, 64);
+    const body = new THREE.Mesh(bodyGeo, hdpeMaterial);
+    body.rotation.z = Math.PI / 2;
+    fitting.add(body);
+
+    // 2. Rims
+    const rimGeo = new THREE.CylinderGeometry(55, 55, 22, 64);
+    const rimL = new THREE.Mesh(rimGeo, hdpeMaterial);
+    rimL.position.x = -60;
+    rimL.rotation.z = Math.PI / 2;
+    fitting.add(rimL);
+
+    const rimR = new THREE.Mesh(rimGeo, hdpeMaterial);
+    rimR.position.x = 60;
+    rimR.rotation.z = Math.PI / 2;
+    fitting.add(rimR);
+
+    // 3. Electrical Terminals
+    const termBaseGeo = new THREE.CylinderGeometry(9, 9, 14, 32);
+    const termPinGeo = new THREE.CylinderGeometry(4, 4, 10, 16);
+
+    const makeTerminal = (xPos) => {
+        const group = new THREE.Group();
+        const base = new THREE.Mesh(termBaseGeo, hdpeMaterial);
+        const pin = new THREE.Mesh(termPinGeo, terminalMaterial);
+        pin.position.y = 9;
+        group.add(base, pin);
+        group.position.set(xPos, 48, 0);
+        return group;
+    };
+
+    fitting.add(makeTerminal(-35));
+    fitting.add(makeTerminal(35));
+
+    scene.add(fitting);
+
+    // Centered viewpoint
+    camera.position.z = 400;
+    camera.position.y = 0; // Centered vertically
+
+    updateSize();
+
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', updateSize);
+</script>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tick-inner">
+    <span class="ticker-item">80+ лет опыта производства</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ISO 9001 / EN 12201</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Прямые поставки с завода</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Наличие в Астане</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Диаметры 20–630 мм</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Быстрая доставка по Казахстану</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Помощь в подборе</span><span class="ticker-sep">·</span>
+    <!-- Repeat for seamless loop -->
+    <span class="ticker-item">80+ лет опыта производства</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ISO 9001 / EN 12201</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Прямые поставки с завода</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Наличие в Астане</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Диаметры 20–630 мм</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Быстрая доставка по Казахстану</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Помощь в подборе</span><span class="ticker-sep">·</span>
+  </div>
+</div>
+
+
+<!-- PRODUCTS PREVIEW -->
+<div id="products">
+  <div class="section">
+    <div class="sec-tag reveal">Продукция</div>
+    <div class="products-header" style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+      <h2 class="sec-title reveal" style="margin:0">Линейка<br>фитингов</h2>
+      <a href="/catalog/" class="btn-primary reveal" style="display:inline-flex; white-space: nowrap;">Полный каталог <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:8px"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </div>
+    <p class="sec-desc reveal" style="margin-top: 24px; max-width: 520px;">Полный ассортимент электросварных фитингов для газо- и водоснабжения, промышленных трубопроводов ПЭ.</p>
+    <div class="products-grid">
+      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.0s">
+        <div class="prod-num">01 / МУФТЫ</div>
+        <div class="prod-img">
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <rect x="20" y="45" width="160" height="50" fill="rgba(11,56,212,.05)"/>
+            <rect x="20" y="55" width="160" height="30" fill="rgba(11,56,212,.04)"/>
+            <rect x="10" y="35" width="16" height="70" fill="rgba(11,56,212,.08)"/>
+            <rect x="174" y="35" width="16" height="70" fill="rgba(11,56,212,.08)"/>
+            <rect x="72" y="45" width="56" height="50" fill="rgba(11,56,212,.1)"/>
+            <circle cx="100" cy="70" r="20"/>
+            <circle cx="100" cy="70" r="12" fill="rgba(11,56,212,.08)"/>
+            <circle cx="100" cy="70" r="5" fill="rgba(11,56,212,.3)" stroke="none"/>
+            <line x1="80" y1="50" x2="80" y2="90" stroke-dasharray="2 2" opacity=".4"/>
+            <line x1="90" y1="48" x2="90" y2="92" stroke-dasharray="2 2" opacity=".4"/>
+            <line x1="110" y1="48" x2="110" y2="92" stroke-dasharray="2 2" opacity=".4"/>
+            <line x1="120" y1="50" x2="120" y2="90" stroke-dasharray="2 2" opacity=".4"/>
+            <line x1="20" y1="108" x2="180" y2="108" stroke-width=".7"/>
+            <line x1="20" y1="104" x2="20" y2="112" stroke-width=".7"/>
+            <line x1="180" y1="104" x2="180" y2="112" stroke-width=".7"/>
+            <text x="100" y="120" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 32 — 500</text>
+          </svg>
+        </div>
+        <div class="prod-name">Электросварные муфты</div>
+        <div class="prod-desc">Соединительные муфты для прямых участков ПЭ-трубопровода со встроенным нагревательным элементом.</div>
+        <div class="prod-tags">
+          <span class="tag">DN 32–500</span>
+          <span class="tag">PE 100</span>
+          <span class="tag">PN 16</span>
+        </div>
+        <div class="prod-arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#111" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+      </a>
+      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.1s">
+        <div class="prod-num">02 / ОТВОДЫ</div>
+        <div class="prod-img">
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <!-- 90 degree elbow -->
+            <path d="M20,70 L90,70" stroke-width="1.2"/>
+            <path d="M20,90 L100,90 Q120,90 120,70 L120,20" stroke-width="1.2"/>
+            <path d="M20,70 L90,70 Q115,70 115,45 L115,20" stroke-width="1.2" fill="rgba(11,56,212,.05)"/>
+            <path d="M10,60 L10,100 L30,100 L100,100 Q130,100 130,70 L130,10 L110,10 L110,44 Q110,80 82,80 L10,80 Z" fill="rgba(11,56,212,.04)" stroke-width=".5" opacity=".5"/>
+            <rect x="8" y="56" width="18" height="52" fill="rgba(11,56,212,.08)"/>
+            <rect x="108" y="8" width="52" height="18" fill="rgba(11,56,212,.08)"/>
+            <circle cx="95" cy="75" r="8" fill="rgba(11,56,212,.15)" stroke-width=".8"/>
+            <text x="100" y="125" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">45° / 90° · DN 63–400</text>
+          </svg>
+        </div>
+        <div class="prod-name">Отводы 45° и 90°</div>
+        <div class="prod-desc">Угловые фитинги для изменения направления трубопровода. Оптимизированная гидравлика.</div>
+        <div class="prod-tags">
+          <span class="tag">DN 63–400</span>
+          <span class="tag">45° / 90°</span>
+          <span class="tag red">В наличии</span>
+        </div>
+        <div class="prod-arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#111" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+      </a>
+      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.2s">
+        <div class="prod-num">03 / ТРОЙНИКИ</div>
+        <div class="prod-img">
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <!-- T-fitting -->
+            <rect x="10" y="52" width="180" height="36" fill="rgba(11,56,212,.05)"/>
+            <rect x="82" y="20" width="36" height="52" fill="rgba(11,56,212,.05)"/>
+            <rect x="78" y="16" width="44" height="18" fill="rgba(11,56,212,.08)"/>
+            <rect x="8" y="44" width="18" height="52" fill="rgba(11,56,212,.08)"/>
+            <rect x="174" y="44" width="18" height="52" fill="rgba(11,56,212,.08)"/>
+            <rect x="74" y="44" width="52" height="52" fill="rgba(11,56,212,.1)"/>
+            <circle cx="100" cy="70" r="18" stroke-width="1.5"/>
+            <circle cx="100" cy="70" r="10" fill="rgba(11,56,212,.1)" stroke-width=".8"/>
+            <circle cx="100" cy="70" r="4" fill="rgba(11,56,212,.4)" stroke="none"/>
+            <line x1="82" y1="52" x2="82" y2="88" stroke-dasharray="2 2" opacity=".4"/>
+            <line x1="90" y1="48" x2="90" y2="92" stroke-dasharray="2 2" opacity=".4"/>
+            <line x1="110" y1="48" x2="110" y2="92" stroke-dasharray="2 2" opacity=".4"/>
+            <line x1="118" y1="52" x2="118" y2="88" stroke-dasharray="2 2" opacity=".4"/>
+            <text x="100" y="125" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 32 — 500 · EN 12201</text>
+          </svg>
+        </div>
+        <div class="prod-name">Тройники равнопроходные</div>
+        <div class="prod-desc">Разветвительные тройники для создания ответвлений трубопровода. Равный и переходной диаметры.</div>
+        <div class="prod-tags">
+          <span class="tag">DN 32–500</span>
+          <span class="tag">Равнопроходной</span>
+          <span class="tag">EN 12201</span>
+        </div>
+        <div class="prod-arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#111" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+      </a>
+      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.3s">
+        <div class="prod-num">04 / РЕДУКЦИИ</div>
+        <div class="prod-img">
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <!-- Reducer shape -->
+            <path d="M30,50 L30,110 L100,98 L100,62 Z" fill="rgba(11,56,212,.06)" stroke-width="1.2"/>
+            <path d="M100,62 L180,68 L180,92 L100,98 Z" fill="rgba(11,56,212,.06)"/>
+            <rect x="25" y="42" width="12" height="76" fill="rgba(11,56,212,.08)"/>
+            <rect x="175" y="60" width="12" height="40" fill="rgba(11,56,212,.08)"/>
+            <text x="100" y="125" text-anchor="middle" font-size="8" font-family="monospace" fill="#0B38D4" opacity=".7">DN 40 — 630 · ПЕРЕХОДЫ</text>
+          </svg>
+        </div>
+        <div class="prod-name">Редукции и переходы</div>
+        <div class="prod-desc">Концентрические переходы для соединения труб различных диаметров. Минимизация турбулентности.</div>
+        <div class="prod-tags">
+          <span class="tag">DN 40–630</span>
+          <span class="tag">PE 100</span>
+          <span class="tag">SDR 11/17</span>
+        </div>
+        <div class="prod-arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#111" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features-bg" id="about">
+  <div class="section">
+    <div class="sec-tag reveal">Наши преимущества</div>
+    <div class="sec-header-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end">
+      <h2 class="sec-title reveal">Надёжность в каждом соединении</h2>
+      <p class="sec-desc reveal" style="margin:0">Прямые поставки от европейских производителей, полная техническая документация и профессиональная поддержка на всех этапах.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-cell reveal" style="transition-delay:.0s">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="feat-title">Прямые поставки из Европы</div>
+        <div class="feat-text">Работаем напрямую с заводами Германии, Австрии, Италии и Бельгии. Никаких посредников — оригинальная продукция по конкурентным ценам.</div>
+      </div>
+      <div class="feat-cell reveal" style="transition-delay:.1s">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div class="feat-title">Полная сертификация</div>
+        <div class="feat-text">Каждая партия сопровождается сертификатами ISO, EN, DVGW и паспортами качества. Полный пакет документов для проектных организаций.</div>
+      </div>
+      <div class="feat-cell reveal" style="transition-delay:.2s">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 3v4M8 3v4M12 14v3M12 17h3"/></svg>
+        </div>
+        <div class="feat-title">Склад в Астане и Алматы</div>
+        <div class="feat-text">Более 800 стандартных позиций в постоянном наличии. Отгрузка в день заказа. Спецпозиции — от 3 недель с европейского завода.</div>
+      </div>
+      <div class="feat-cell reveal" style="transition-delay:.3s">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="feat-title">Техническая экспертиза</div>
+        <div class="feat-text">Инженеры с опытом 10+ лет помогут подобрать оптимальные решения для вашего трубопровода. Бесплатная консультация и расчёт.</div>
+      </div>
+      <div class="feat-cell reveal" style="transition-delay:.4s">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+        </div>
+        <div class="feat-title">Контроль на производстве</div>
+        <div class="feat-text">Выездные инспекции на заводах-партнёрах. Независимые испытательные лаборатории. Нулевая толерантность к браку.</div>
+      </div>
+      <div class="feat-cell reveal" style="transition-delay:.5s">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="feat-title">Постпродажная поддержка</div>
+        <div class="feat-text">Техническая поддержка при монтаже. Инструкции по сварке. Быстрое решение любых вопросов после поставки.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- WHY EUROPE -->
+<div class="europe-bg" id="quality">
+  <div class="europe-inner">
+    <div>
+      <div class="sec-tag reveal">Почему Европа</div>
+      <h2 class="sec-title reveal">Стандарты,<br>которым<br>доверяют</h2>
+      <p class="sec-desc reveal">Европейские нормы производства фитингов — самые строгие в мире. DIN, EN, ISO — это не просто буквы, это гарантия 50 лет безотказной работы.</p>
+      <div class="europe-facts">
+        <div class="efact reveal" style="transition-delay:.0s">
+          <div class="efact-num">50+</div>
+          <div class="efact-label">Лет гарантированного<br>срока службы</div>
+        </div>
+        <div class="efact reveal" style="transition-delay:.1s">
+          <div class="efact-num">PN16</div>
+          <div class="efact-label">Максимальное рабочее<br>давление в барах</div>
+        </div>
+        <div class="efact reveal" style="transition-delay:.2s">
+          <div class="efact-num">−40°</div>
+          <div class="efact-label">Минимальная рабочая<br>температура</div>
+        </div>
+        <div class="efact reveal" style="transition-delay:.3s">
+          <div class="efact-num">100%</div>
+          <div class="efact-label">Тест давлением<br>каждой партии</div>
+        </div>
+      </div>
+    </div>
+    <div class="europe-map-wrap reveal-right">
+      <svg viewBox="0 0 500 440" fill="none">
+        <!-- Stylized Europe to Kazakhstan supply map -->
+        <g stroke="#2A4AFF" stroke-width=".6" fill="none" opacity=".25">
+          <!-- Grid -->
+          <line x1="0" y1="80" x2="500" y2="80"/>
+          <line x1="0" y1="160" x2="500" y2="160"/>
+          <line x1="0" y1="240" x2="500" y2="240"/>
+          <line x1="0" y1="320" x2="500" y2="320"/>
+          <line x1="0" y1="400" x2="500" y2="400"/>
+          <line x1="80" y1="0" x2="80" y2="440"/>
+          <line x1="160" y1="0" x2="160" y2="440"/>
+          <line x1="240" y1="0" x2="240" y2="440"/>
+          <line x1="320" y1="0" x2="320" y2="440"/>
+          <line x1="400" y1="0" x2="400" y2="440"/>
+        </g>
+        <!-- Europe landmass simplified -->
+        <path d="M60,60 L90,50 L120,55 L150,48 L175,55 L185,68 L195,62 L210,70 L215,85 L225,90 L218,105 L230,115 L225,130 L235,140 L230,155 L240,165 L235,180 L245,192 L238,208 L250,218 L244,234 L238,245 L228,252 L232,264 L220,272 L210,268 L200,275 L192,268 L182,274 L172,268 L168,278 L155,272 L148,280 L135,272 L128,280 L115,268 L108,255 L116,248 L110,238 L116,228 L105,220 L100,208 L110,200 L104,188 L112,180 L105,168 L115,162 L110,150 L120,143 L114,130 L125,123 L118,110 L128,104 L122,92 L134,86 L130,73 L60,60Z" fill="rgba(43,74,255,.08)" stroke="rgba(43,74,255,.35)" stroke-width="1"/>
+        <!-- Country markers Europe -->
+        <g>
+          <!-- Germany -->
+          <circle cx="148" cy="120" r="22" fill="rgba(43,74,255,.15)" stroke="rgba(43,74,255,.5)" stroke-width="1.5"/>
+          <circle cx="148" cy="120" r="5" fill="#7B9DFF" stroke="none"/>
+          <text x="148" y="115" text-anchor="middle" fill="#7B9DFF" font-size="9" font-family="'Syne',sans-serif" font-weight="700">DE</text>
+          <text x="148" y="127" text-anchor="middle" fill="rgba(123,157,255,.7)" font-size="7" font-family="monospace">Германия</text>
+          <!-- Austria -->
+          <circle cx="182" cy="142" r="16" fill="rgba(43,74,255,.12)" stroke="rgba(43,74,255,.4)" stroke-width="1"/>
+          <circle cx="182" cy="142" r="4" fill="#7B9DFF" stroke="none"/>
+          <text x="182" y="138" text-anchor="middle" fill="#7B9DFF" font-size="8" font-family="'Syne',sans-serif" font-weight="700">AT</text>
+          <text x="182" y="148" text-anchor="middle" fill="rgba(123,157,255,.6)" font-size="6" font-family="monospace">Австрия</text>
+          <!-- Italy -->
+          <circle cx="165" cy="185" r="16" fill="rgba(43,74,255,.12)" stroke="rgba(43,74,255,.4)" stroke-width="1"/>
+          <circle cx="165" cy="185" r="4" fill="#7B9DFF" stroke="none"/>
+          <text x="165" y="181" text-anchor="middle" fill="#7B9DFF" font-size="8" font-family="'Syne',sans-serif" font-weight="700">IT</text>
+          <text x="165" y="191" text-anchor="middle" fill="rgba(123,157,255,.6)" font-size="6" font-family="monospace">Италия</text>
+          <!-- Belgium -->
+          <circle cx="128" cy="110" r="13" fill="rgba(43,74,255,.1)" stroke="rgba(43,74,255,.35)" stroke-width="1"/>
+          <circle cx="128" cy="110" r="3" fill="#7B9DFF" stroke="none"/>
+          <text x="128" y="107" text-anchor="middle" fill="#7B9DFF" font-size="7" font-family="'Syne',sans-serif" font-weight="700">BE</text>
+        </g>
+        <!-- Kazakhstan marker -->
+        <circle cx="390" cy="290" r="28" fill="rgba(43,74,255,.2)" stroke="#7B9DFF" stroke-width="2"/>
+        <circle cx="390" cy="290" r="10" fill="#7B9DFF" stroke="none"/>
+        <circle cx="390" cy="290" r="18" fill="none" stroke="#7B9DFF" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="390" y="285" text-anchor="middle" fill="white" font-size="10" font-family="'Syne',sans-serif" font-weight="800">KZ</text>
+        <text x="390" y="297" text-anchor="middle" fill="rgba(123,157,255,.8)" font-size="8" font-family="monospace">Казахстан</text>
+        <!-- Supply route lines -->
+        <path d="M148,120 C220,80 310,180 390,290" stroke="#7B9DFF" stroke-width="1.5" stroke-dasharray="6 4" opacity=".5"/>
+        <path d="M182,142 C250,100 320,200 390,290" stroke="#7B9DFF" stroke-width="1" stroke-dasharray="4 4" opacity=".3"/>
+        <path d="M165,185 C240,160 320,220 390,290" stroke="#7B9DFF" stroke-width="1" stroke-dasharray="4 4" opacity=".3"/>
+        <!-- Moving dots on routes (decorative) -->
+        <circle cx="248" cy="148" r="3" fill="#7B9DFF" opacity=".6"/>
+        <circle cx="310" cy="210" r="3" fill="#7B9DFF" opacity=".6"/>
+        <circle cx="350" cy="258" r="3" fill="#7B9DFF" opacity=".6"/>
+        <!-- Compass rose -->
+        <g transform="translate(450,50)" fill="none" stroke="rgba(123,157,255,.3)" stroke-width=".8">
+          <line x1="0" y1="-18" x2="0" y2="18"/>
+          <line x1="-18" y1="0" x2="18" y2="0"/>
+          <line x1="-13" y1="-13" x2="13" y2="13"/>
+          <line x1="13" y1="-13" x2="-13" y2="13"/>
+          <circle r="5" fill="rgba(123,157,255,.15)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- CERTS -->
+<div>
+  <div class="section" style="padding-bottom:48px">
+    <div class="sec-tag reveal">Сертификаты и стандарты</div>
+    <h2 class="sec-title reveal">Документально<br>подтверждённое качество</h2>
+    <div class="certs-row">
+      <div class="cert-box reveal">
+        <div class="cert-icon">🏆</div>
+        <div class="cert-name">ISO 9001</div>
+        <div class="cert-sub">Система менеджмента качества — версия 2015</div>
+      </div>
+      <div class="cert-box reveal" style="transition-delay:.1s">
+        <div class="cert-icon">💧</div>
+        <div class="cert-name">EN 12201</div>
+        <div class="cert-sub">Системы трубопроводов для водоснабжения</div>
+      </div>
+      <div class="cert-box reveal" style="transition-delay:.2s">
+        <div class="cert-icon">🔥</div>
+        <div class="cert-name">ISO 8085</div>
+        <div class="cert-sub">Полиэтиленовые фитинги для систем газоснабжения</div>
+      </div>
+      <div class="cert-box reveal" style="transition-delay:.3s">
+        <div class="cert-icon">🇩🇪</div>
+        <div class="cert-name">DVGW</div>
+        <div class="cert-sub">Немецкий стандарт газо- и водоснабжения</div>
+      </div>
+      <div class="cert-box reveal" style="transition-delay:.4s">
+        <div class="cert-icon">🇪🇺</div>
+        <div class="cert-name">CE Mark</div>
+        <div class="cert-sub">Соответствие всем директивам Евросоюза</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div class="process-bg" id="process">
+  <div class="section">
+    <div class="sec-tag reveal">Как мы работаем</div>
+    <div class="sec-header-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end">
+      <h2 class="sec-title reveal">Процесс поставки</h2>
+      <p class="sec-desc reveal" style="margin:0">От первого запроса до отгрузки на объект — прозрачно, быстро и с полным документальным сопровождением.</p>
+    </div>
+    <div class="process-steps">
+      <div class="pstep reveal" style="transition-delay:.0s">
+        <div class="pstep-num">01</div>
+        <div class="pstep-title">Запрос и консультация</div>
+        <div class="pstep-text">Получаем техническое задание. Консультируем по подбору фитингов. Рассчитываем оптимальную конфигурацию.</div>
+      </div>
+      <div class="pstep reveal" style="transition-delay:.1s">
+        <div class="pstep-num">02</div>
+        <div class="pstep-title">Коммерческое предложение</div>
+        <div class="pstep-text">Детальное КП с ценами, сроками и документацией в течение 24 часов. Без скрытых условий.</div>
+      </div>
+      <div class="pstep reveal" style="transition-delay:.2s">
+        <div class="pstep-num">03</div>
+        <div class="pstep-title">Производство и контроль</div>
+        <div class="pstep-text">Производство на европейском заводе под нашим техническим контролем. Входная приёмка и испытания.</div>
+      </div>
+      <div class="pstep reveal" style="transition-delay:.3s">
+        <div class="pstep-num">04</div>
+        <div class="pstep-title">Доставка и поддержка</div>
+        <div class="pstep-text">Доставка на объект, полный пакет документов и техническая поддержка при монтаже.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-wrap">
+  <div class="test-text reveal" style="color:white">"EuroFit — это единственный поставщик, который предоставил нам фитинги с полным пакетом европейской документации точно в срок для пуска газопровода. Сотрудничаем уже 8 лет."</div>
+  <div class="test-author">Азамат К. — Главный инженер, АО «КазТрансГаз Аймак»</div>
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <div class="cta-inner reveal">
+    <div>
+      <h2 class="cta-title">Готовы сделать заказ?<br>Получите КП за 24 часа.</h2>
+      <p class="cta-sub">Отправьте техническое задание — наш инженер подберёт оптимальные фитинги и подготовит детальное коммерческое предложение.</p>
+      <div class="contact-info">
+        <div class="contact-line">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke-width="1.5"/></svg>
+          +7 (717) 200-00-00
+        </div>
+        <div class="contact-line">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke-width="1.5"/></svg>
+          info@eurofit.kz
+        </div>
+        <div class="contact-line">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke-width="1.5"/></svg>
+          Астана, просп. Кенесары, 40
+        </div>
+      </div>
+    </div>
+    <div class="cta-btns">
+      <button class="btn-primary" style="justify-content:center">Отправить запрос</button>
+      <a href="/catalog/" class="btn-outline" style="justify-content:center;text-align:center">Открыть каталог</a>
+      <a href="#" class="btn-outline" style="justify-content:center;text-align:center">Скачать прайс-лист</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Euro<em>Fit</em></div>
+        <p class="footer-tagline">Официальный дистрибьютор европейских электросварных фитингов в Республике Казахстан с 2009 года.</p>
+      </div>
+      <div>
+        <div class="footer-col-head">Продукция</div>
+        <ul class="footer-links">
+          <li><a href="catalog.html">Все фитинги</a></li>
+          <li><a href="catalog.html">Муфты</a></li>
+          <li><a href="catalog.html">Отводы</a></li>
+          <li><a href="catalog.html">Тройники</a></li>
+          <li><a href="catalog.html">Редукции</a></li>
+          <li><a href="catalog.html">Седёлки</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Компания</div>
+        <ul class="footer-links">
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Сертификаты</a></li>
+          <li><a href="#">Производители</a></li>
+          <li><a href="#">Проекты</a></li>
+          <li><a href="#">Новости</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Контакты</div>
+        <ul class="footer-links">
+          <li><a href="#">+7 (717) 200-00-00</a></li>
+          <li><a href="#">info@eurofit.kz</a></li>
+          <li><a href="#">Астана, Кенесары 40</a></li>
+          <li><a href="#">Пн–Пт: 9:00–18:00</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 EuroFit Kazakhstan. Все права защищены.</span>
+      <span>Электросварные фитинги из Европы</span>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

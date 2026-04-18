@@ -33,18 +33,12 @@
     </div>
   </div>
 
-  <!-- SVG pipe decoration -->
-  <svg style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:520px;height:520px;opacity:0.12;pointer-events:none" viewBox="0 0 520 520">
-    <circle cx="260" cy="260" r="200" fill="none" stroke="#C9A84C" stroke-width="1" stroke-dasharray="4 8"/>
-    <circle cx="260" cy="260" r="150" fill="none" stroke="#C9A84C" stroke-width="0.5"/>
-    <circle cx="260" cy="260" r="80" fill="#C9A84C" opacity="0.06"/>
-    <line x1="60" y1="260" x2="460" y2="260" stroke="#C9A84C" stroke-width="0.5"/>
-    <line x1="260" y1="60" x2="260" y2="460" stroke="#C9A84C" stroke-width="0.5"/>
-    <rect x="200" y="200" width="120" height="120" fill="none" stroke="#C9A84C" stroke-width="1" transform="rotate(45,260,260)"/>
-    <!-- Pipe cross section -->
-    <circle cx="260" cy="260" r="50" fill="none" stroke="#C9A84C" stroke-width="3"/>
-    <circle cx="260" cy="260" r="35" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
-  </svg>
+  <div class="hero-visual">
+    <div class="hero-visual-glow"></div>
+    <div class="hero-image-wrapper">
+      <img src="{% static 'img/hero-image.png' %}" alt="Dökerler Fittings" class="hero-image">
+    </div>
+  </div>
 
   <div class="hero-stats">
     <div class="stat-item">
@@ -185,6 +179,17 @@
         <div class="product-specs">
           <span class="spec-tag">DN 32–500</span>
           <span class="spec-tag">PE 100</span>
+        </div>
+        <a href="#" class="product-link">Подробнее →</a>
+      </div>
+      <div class="product-card">
+        <span class="product-num">04</span>
+        <span class="product-icon">⧉</span>
+        <div class="product-name">Редукции ПЭ 100</div>
+        <div class="product-desc">Переходы для соединения труб различных диаметров.</div>
+        <div class="product-specs">
+          <span class="spec-tag">DN 40–630</span>
+          <span class="spec-tag">SDR 11</span>
         </div>
         <a href="#" class="product-link">Подробнее →</a>
       </div>
