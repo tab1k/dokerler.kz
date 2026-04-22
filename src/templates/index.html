@@ -238,26 +238,72 @@
 <div id="process">
   <div class="section">
     <div class="sec-tag reveal">Как мы работаем</div>
-    <div class="process-grid">
-      <div class="pstep reveal">
-        <div class="pstep-num">01</div>
-        <div class="pstep-title">Консультация</div>
-        <div class="pstep-text">Наши инженеры помогают подобрать фитинги под ваш проект и ТЗ.</div>
+    <div class="process-head">
+      <h2 class="sec-title reveal">План поставки<br>по шагам</h2>
+      <p class="sec-desc reveal" style="margin:0">Показываем прозрачный маршрут проекта: от заявки до отгрузки на объект с контролем каждого этапа.</p>
+    </div>
+
+    <div class="process-layout">
+      <div class="process-map reveal-left" aria-hidden="true">
+        <svg class="process-map-svg" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="30" width="580" height="360" stroke="currentColor" stroke-opacity=".22"/>
+          <path d="M95 100H230L300 170H430L500 240H545" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M95 320H250L315 250H430L505 170H545" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="9 9"/>
+          <circle cx="95" cy="100" r="14" fill="currentColor"/>
+          <circle cx="300" cy="170" r="14" fill="currentColor"/>
+          <circle cx="500" cy="240" r="14" fill="currentColor"/>
+          <circle cx="545" cy="170" r="14" fill="currentColor"/>
+          <circle cx="95" cy="320" r="10" stroke="currentColor" stroke-width="2.5"/>
+          <circle cx="315" cy="250" r="10" stroke="currentColor" stroke-width="2.5"/>
+          <circle cx="505" cy="170" r="10" stroke="currentColor" stroke-width="2.5"/>
+          <text x="95" y="104" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Syne, sans-serif">01</text>
+          <text x="300" y="174" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Syne, sans-serif">02</text>
+          <text x="500" y="244" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Syne, sans-serif">03</text>
+          <text x="545" y="174" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Syne, sans-serif">04</text>
+          <text x="96" y="78" text-anchor="middle" fill="currentColor" font-size="11" font-family="DM Sans, sans-serif">Бриф</text>
+          <text x="301" y="148" text-anchor="middle" fill="currentColor" font-size="11" font-family="DM Sans, sans-serif">КП</text>
+          <text x="499" y="218" text-anchor="middle" fill="currentColor" font-size="11" font-family="DM Sans, sans-serif">Контроль</text>
+          <text x="545" y="148" text-anchor="middle" fill="currentColor" font-size="11" font-family="DM Sans, sans-serif">Отгрузка</text>
+        </svg>
+        <div class="process-map-note">Маршрут проекта</div>
       </div>
-      <div class="pstep reveal" style="transition-delay:.1s">
-        <div class="pstep-num">02</div>
-        <div class="pstep-title">Расчёт и КП</div>
-        <div class="pstep-text">Подготовка коммерческого предложения с учётом логистики за 2 часа.</div>
-      </div>
-      <div class="pstep reveal" style="transition-delay:.2s">
-        <div class="pstep-num">03</div>
-        <div class="pstep-title">Производство и контроль</div>
-        <div class="pstep-text">Производство на европейском заводе под нашим техническим контролем.</div>
-      </div>
-      <div class="pstep reveal" style="transition-delay:.3s">
-        <div class="pstep-num">04</div>
-        <div class="pstep-title">Доставка и поддержка</div>
-        <div class="pstep-text">Доставка на объект, полный пакет документов и техподдержка.</div>
+
+      <div class="process-plan">
+        <div class="pstep reveal">
+          <div class="pstep-top">
+            <div class="pstep-num">01</div>
+            <div class="pstep-meta">до 30 минут</div>
+          </div>
+          <div class="pstep-title">Консультация и бриф</div>
+          <div class="pstep-text">Инженер уточняет задачу объекта, диаметры и условия монтажа, после чего формируем точный список фитингов.</div>
+        </div>
+
+        <div class="pstep reveal" style="transition-delay:.1s">
+          <div class="pstep-top">
+            <div class="pstep-num">02</div>
+            <div class="pstep-meta">до 2 часов</div>
+          </div>
+          <div class="pstep-title">Расчёт и коммерческое предложение</div>
+          <div class="pstep-text">Готовим КП с ценой, сроками и логистикой. При необходимости сразу предлагаем эквиваленты по бюджету.</div>
+        </div>
+
+        <div class="pstep reveal" style="transition-delay:.2s">
+          <div class="pstep-top">
+            <div class="pstep-num">03</div>
+            <div class="pstep-meta">перед отгрузкой</div>
+          </div>
+          <div class="pstep-title">Комплектация и контроль качества</div>
+          <div class="pstep-text">Проверяем спецификацию, сертификаты и маркировку каждой позиции, чтобы исключить ошибки на объекте.</div>
+        </div>
+
+        <div class="pstep reveal" style="transition-delay:.3s">
+          <div class="pstep-top">
+            <div class="pstep-num">04</div>
+            <div class="pstep-meta">доставка по РК</div>
+          </div>
+          <div class="pstep-title">Доставка и сопровождение</div>
+          <div class="pstep-text">Организуем отгрузку на объект или склад, передаём документы и остаёмся на связи по техническим вопросам.</div>
+        </div>
       </div>
     </div>
   </div>

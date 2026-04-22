@@ -16,30 +16,43 @@
 <!-- TOOLBAR -->
 <div class="cat-toolbar-wrap">
   <div class="cat-toolbar-inner">
-    <div class="cat-toolbar-left">
-      <button class="cat-filter-btn" id="filter-btn" onclick="toggleSidebar()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
-        <span>Фильтры</span>
-        <span class="cat-filter-badge" id="filter-badge" style="display:none">0</span>
-      </button>
-      <div class="cat-search-wrap">
-        <svg class="cat-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        <input class="cat-search" type="text" placeholder="Поиск по артикулу, диаметру..." id="global-search">
+    <div class="cat-toolbar-head">
+      <div class="cat-toolbar-meta">
+        <span class="cat-toolbar-kicker">Подбор фитингов</span>
+        <span class="cat-toolbar-count" id="count-label">Показано 8 позиций</span>
+      </div>
+      <div class="cat-toolbar-right">
+        <button class="cat-filter-btn" id="filter-btn" type="button" onclick="toggleSidebar()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+          <span>Фильтры</span>
+          <span class="cat-filter-badge" id="filter-badge" style="display:none">0</span>
+        </button>
+        <select class="cat-sort-select" id="sort-select" aria-label="Сортировка">
+          <option value="default">По умолчанию</option>
+          <option value="popular">Сначала популярные</option>
+          <option value="dn-asc">По диаметру ↑</option>
+          <option value="dn-desc">По диаметру ↓</option>
+        </select>
       </div>
     </div>
-    <div class="cat-toolbar-right">
-      <select class="cat-sort-select">
-        <option>По умолчанию</option>
-        <option>Сначала популярные</option>
-        <option>По диаметру ↑</option>
-        <option>По диаметру ↓</option>
-      </select>
+    <div class="cat-toolbar-controls">
+      <div class="cat-search-wrap">
+        <svg class="cat-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input class="cat-search" type="text" placeholder="Поиск по артикулу, диаметру, категории..." id="global-search">
+      </div>
+      <div class="cat-quick-filters" id="quick-filters" aria-label="Быстрые категории">
+        <button class="cat-chip active" type="button" data-cat="all">Все</button>
+        <button class="cat-chip" type="button" data-cat="mufty">Муфты</button>
+        <button class="cat-chip" type="button" data-cat="otvody">Отводы</button>
+        <button class="cat-chip" type="button" data-cat="troyniki">Тройники</button>
+        <button class="cat-chip" type="button" data-cat="redukcii">Редукции</button>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- SIDEBAR OVERLAY -->
-<div class="cat-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+<div class="cat-overlay" id="cat-sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <!-- CATALOG LAYOUT -->
 <div class="cat-layout">
@@ -111,14 +124,20 @@
       </div>
     </div>
 
-    <button class="btn-reset-filters" onclick="clearFilters()">Сбросить фильтры</button>
+    <button class="btn-reset-filters btn-reset-filters-desktop" id="filters-reset-desktop" type="button">Сбросить фильтры</button>
+    <div class="sidebar-actions">
+      <button class="btn-reset-filters" id="filters-reset-mobile" type="button">Сбросить</button>
+      <button class="btn-apply-filters" id="filters-apply-mobile" type="button">Применить</button>
+    </div>
   </aside>
 
   <!-- PRODUCT GRID -->
   <main class="cat-products">
-    <div class="products-grid" id="catalog-grid">
+    <div class="products-grid" id="prod-grid">
       {% for i in "12345678" %}
-      <div class="pcard" data-cat="mufty">
+      {% cycle 'mufty' 'otvody' 'troyniki' 'redukcii' as cat_code silent %}
+      {% cycle '110' '160' '225' '315' as dn_value silent %}
+      <div class="pcard" data-cat="{{ cat_code }}" data-dn="{{ dn_value }}">
         <div class="pcard-tag">SDR 11</div>
         <div class="pcard-img">
           <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
@@ -129,15 +148,30 @@
           </svg>
         </div>
         <div class="pcard-info">
-          <div class="pcard-cat">Муфты электросварные</div>
-          <div class="pcard-title">Муфта Ø 110 мм PE 100 SDR 11</div>
+          <div class="pcard-cat">
+            {% if cat_code == 'mufty' %}Муфты электросварные{% endif %}
+            {% if cat_code == 'otvody' %}Отводы электросварные{% endif %}
+            {% if cat_code == 'troyniki' %}Тройники электросварные{% endif %}
+            {% if cat_code == 'redukcii' %}Редукции электросварные{% endif %}
+          </div>
+          <div class="pcard-title pcard-name">
+            {% if cat_code == 'mufty' %}Муфта Ø {{ dn_value }} мм PE 100 SDR 11{% endif %}
+            {% if cat_code == 'otvody' %}Отвод 90° Ø {{ dn_value }} мм PE 100 SDR 11{% endif %}
+            {% if cat_code == 'troyniki' %}Тройник T Ø {{ dn_value }} мм PE 100 SDR 11{% endif %}
+            {% if cat_code == 'redukcii' %}Редукция Ø {{ dn_value }}/110 мм PE 100 SDR 11{% endif %}
+          </div>
           <div class="pcard-row">
             <span class="pcard-label">Диаметр:</span>
-            <span class="pcard-val">110 мм</span>
+            <span class="pcard-val">{{ dn_value }} мм</span>
           </div>
           <div class="pcard-row">
             <span class="pcard-label">Артикул:</span>
-            <span class="pcard-val">EF-M110-11</span>
+            <span class="pcard-val pcard-sku">
+              {% if cat_code == 'mufty' %}EF-M{{ dn_value }}-11{% endif %}
+              {% if cat_code == 'otvody' %}EF-O{{ dn_value }}-90{% endif %}
+              {% if cat_code == 'troyniki' %}EF-T{{ dn_value }}-11{% endif %}
+              {% if cat_code == 'redukcii' %}EF-R{{ dn_value }}-110{% endif %}
+            </span>
           </div>
           <div class="pcard-footer">
             <div class="pcard-price">6 450 ₸</div>
@@ -148,6 +182,15 @@
         </div>
       </div>
       {% endfor %}
+    </div>
+    <div class="cat-pagination" id="cat-pagination" aria-label="Пагинация каталога">
+      <button class="cat-page-nav" id="cat-page-prev" type="button" aria-label="Предыдущая страница">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="cat-page-list" id="cat-page-list"></div>
+      <button class="cat-page-nav" id="cat-page-next" type="button" aria-label="Следующая страница">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
     </div>
   </main>
 </div>

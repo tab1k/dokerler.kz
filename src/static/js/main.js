@@ -95,3 +95,94 @@ window.addEventListener('resize', () => {
     }
   }
 });
+
+// KP Modal
+const kpModalOverlay=document.getElementById('kp-modal-overlay');
+const kpForm=document.getElementById('kp-form');
+
+function openKpModal(fromMobileMenu=false){
+  if(!kpModalOverlay) return;
+  const menu=document.getElementById('mobile-menu');
+  const burger=document.getElementById('burger');
+  const overlay=document.getElementById('sidebar-overlay');
+  const menuIsOpen=menu && menu.classList.contains('active');
+  if(fromMobileMenu||menuIsOpen){
+    if(menuIsOpen){
+      menu.classList.remove('active');
+      if(burger) burger.classList.remove('active');
+      if(overlay) overlay.classList.remove('open');
+    }
+    setTimeout(()=>{
+      kpModalOverlay.classList.add('open');
+      kpModalOverlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    },180);
+    return;
+  }
+  kpModalOverlay.classList.add('open');
+  kpModalOverlay.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+
+function closeKpModal(){
+  if(!kpModalOverlay) return;
+  kpModalOverlay.classList.remove('open');
+  kpModalOverlay.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+
+document.querySelectorAll('[data-open-kp]').forEach(btn=>{
+  btn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    const menu=document.getElementById('mobile-menu');
+    const menuIsOpen=menu && menu.classList.contains('active');
+    if(menuIsOpen){
+      openKpModal(true);
+      return;
+    }
+    openKpModal();
+  });
+});
+
+document.querySelectorAll('[data-close-kp]').forEach(btn=>{
+  btn.addEventListener('click',closeKpModal);
+});
+
+if(kpModalOverlay){
+  kpModalOverlay.addEventListener('click',e=>{
+    if(e.target===kpModalOverlay) closeKpModal();
+  });
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape' && kpModalOverlay && kpModalOverlay.classList.contains('open')){
+    closeKpModal();
+  }
+});
+
+if(kpForm){
+  kpForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    const fd=new FormData(kpForm);
+    const name=(fd.get('name')||'').toString().trim();
+    const phone=(fd.get('phone')||'').toString().trim();
+    const company=(fd.get('company')||'').toString().trim();
+    const email=(fd.get('email')||'').toString().trim();
+    const comment=(fd.get('comment')||'').toString().trim();
+    const lines=[
+      'Здравствуйте! Хочу получить коммерческое предложение.',
+      `Имя: ${name||'-'}`,
+      `Телефон: ${phone||'-'}`,
+      `Компания: ${company||'-'}`,
+      `Email: ${email||'-'}`,
+      `Комментарий: ${comment||'-'}`
+    ];
+    const url=`https://wa.me/77025544196?text=${encodeURIComponent(lines.join('\n'))}`;
+    window.open(url,'_blank','noopener,noreferrer');
+    kpForm.reset();
+    closeKpModal();
+  });
+}
+
+window.openKpModal=openKpModal;
+window.closeKpModal=closeKpModal;
