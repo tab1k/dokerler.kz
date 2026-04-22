@@ -31,7 +31,7 @@
 
     <div class="nav-right">
       <a href="/catalog/"><button class="btn-ghost">Каталог</button></a>
-      <a class="btn-nav-primary" href="#kp-modal-overlay" data-open-kp>Получить КП</a>
+      <a class="btn-nav-primary" href="#kp-modal-overlay" data-open-kp>Сделать заказ</a>
     </div>
 
     <button class="burger" id="burger" onclick="toggleMobileMenu()" aria-label="Menu">
@@ -54,7 +54,7 @@
       <a href="/catalog/" onclick="toggleMobileMenu()">Каталог</a>
     </div>
     <div class="mmenu-footer">
-      <a class="btn-nav-primary" style="width:100%;text-align:center;text-decoration:none" href="#kp-modal-overlay" data-open-kp>Получить КП</a>
+      <a class="btn-nav-primary" style="width:100%;text-align:center;text-decoration:none" href="#kp-modal-overlay" data-open-kp>Сделать заказ</a>
       <div class="mmenu-contact">
         <a href="tel:+77025544196">+7 702 554 4196</a>
         <a href="mailto:info@eurofit.kz">info@eurofit.kz</a>
@@ -63,7 +63,6 @@
   </div>
 </div>
 
-<!-- KP MODAL -->
 <div class="kp-modal-overlay" id="kp-modal-overlay" aria-hidden="true" onclick="if(event.target===this)closeKpModal()">
   <div class="kp-modal" id="kp-modal" role="dialog" aria-modal="true" aria-labelledby="kp-modal-title">
     <a class="kp-modal-close" href="#" data-close-kp onclick="closeKpModal()" aria-label="Закрыть">
@@ -72,33 +71,31 @@
       </svg>
     </a>
     <div class="kp-modal-head">
-      <div class="kp-modal-kicker">Получить коммерческое предложение</div>
-      <h3 class="kp-modal-title" id="kp-modal-title">Оставьте заявку, и мы подготовим КП под ваш объект</h3>
-      <p class="kp-modal-sub">Ответим быстро и отправим расчёт в удобный для вас канал.</p>
+      <div class="kp-modal-kicker">Сделать заказ</div>
+      <h3 class="kp-modal-title" id="kp-modal-title">Доставка по всему Казахстану</h3>
+      <p class="kp-modal-sub">Склад в Астане — можно забрать самовывозом. Для оптовых и монтажных компаний есть специальные условия доставки, которые обговариваются индивидуально.</p>
     </div>
-    <form class="kp-form" id="kp-form">
+    <form class="kp-form" id="kp-form" action="" method="post">
+      {% csrf_token %}
       <label class="kp-field">
         <span>Имя</span>
         <input type="text" name="name" placeholder="Ваше имя" required>
       </label>
       <label class="kp-field">
-        <span>Телефон</span>
+        <span>Номер телефона</span>
         <input type="tel" name="phone" placeholder="+7 7XX XXX XX XX" required>
       </label>
       <label class="kp-field">
-        <span>Компания</span>
-        <input type="text" name="company" placeholder="Название компании">
-      </label>
-      <label class="kp-field">
-        <span>Email</span>
-        <input type="email" name="email" placeholder="name@company.kz">
+        <span>Город</span>
+        <input type="text" name="city" placeholder="Ваш город">
       </label>
       <label class="kp-field kp-field-wide">
         <span>Комментарий</span>
         <textarea name="comment" rows="4" placeholder="Диаметры, объём, сроки поставки..."></textarea>
       </label>
+      <div class="kp-total">Итоговая сумма: ---</div>
       <div class="kp-actions">
-        <button class="btn-nav-primary kp-submit" type="submit">Отправить заявку</button>
+        <button class="btn-nav-primary kp-submit" type="submit">Сделать заказ</button>
         <a class="kp-alt-link" href="tel:+77025544196">Или позвонить: +7 702 554 4196</a>
       </div>
     </form>
@@ -131,26 +128,52 @@
       <div>
         <div class="footer-col-head">Компания</div>
         <ul class="footer-links">
-          <li><a href="#">О нас</a></li>
-          <li><a href="#">Сертификаты</a></li>
-          <li><a href="#">Производители</a></li>
-          <li><a href="#">Проекты</a></li>
-          <li><a href="#">Новости</a></li>
+          <li><a href="/#about">О компании</a></li>
+          <li><a href="/#process">Поставки</a></li>
+          <li><a href="/#quality">Качество</a></li>
+          <li><a href="/catalog/">Каталог</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-head">Контакты</div>
         <ul class="footer-links">
           <li><a href="tel:+77025544196">+7 702 554 4196</a></li>
-          <li><a href="#">info@eurofit.kz</a></li>
-          <li><a href="#">Астана, Кенесары 40</a></li>
-          <li><a href="#">Пн–Пт: 9:00–18:00</a></li>
+          <li><a href="mailto:info@eurofit.kz">info@eurofit.kz</a></li>
+          <li><a href="https://wa.me/77025544196?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8E%20%D0%BF%D0%BE%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D1%81%D0%B2%D0%B0%D1%80%D0%BD%D1%8B%D0%BC%20%D1%84%D0%B8%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%D0%BC">WhatsApp</a></li>
+          <li>Астана, ул. Орлыколь, 10/1, 2 этаж, кабинет 209</li>
+          <li>Premium Tech Service</li>
+          <li>Работаем по всему Казахстану</li>
         </ul>
       </div>
     </div>
+    <div class="footer-requisites">
+      <div class="footer-col-head">Реквизиты</div>
+      <dl class="footer-req-list">
+        <div>
+          <dt>Компания</dt>
+          <dd>Premium Tech Service</dd>
+        </div>
+        <div>
+          <dt>БИН</dt>
+          <dd>Уточняется</dd>
+        </div>
+        <div>
+          <dt>Банк</dt>
+          <dd>Уточняется</dd>
+        </div>
+        <div>
+          <dt>ИИК</dt>
+          <dd>Уточняется</dd>
+        </div>
+      </dl>
+    </div>
     <div class="footer-bottom">
-      <span>© 2025 EuroFit Kazakhstan. Все права защищены.</span>
+      <span>© 2026 EuroFit Kazakhstan. Все права защищены.</span>
       <span>Электросварные фитинги из Европы</span>
+      <div class="footer-links">
+        <a href="https://wa.me/77025544196?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8E%20%D0%BF%D0%BE%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D1%81%D0%B2%D0%B0%D1%80%D0%BD%D1%8B%D0%BC%20%D1%84%D0%B8%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%D0%BC" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://satu.kz/c853696-hydro-line-group.html" target="_blank" rel="noopener noreferrer">Satu</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -211,6 +234,12 @@ function closeKpModal(){
 
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeKpModal();
+});
+
+// Event listeners for modals
+document.addEventListener('click', function(e){
+  if(e.target.matches('[data-open-kp]')) openKpModal();
+  if(e.target.matches('[data-close-kp]')) closeKpModal();
 });
 </script>
 {% block extra_js %}{% endblock %}
