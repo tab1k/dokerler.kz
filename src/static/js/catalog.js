@@ -1,4 +1,5 @@
-// Cursor
+// Cursor - Desktop only
+if(!window.matchMedia('(max-width:1024px)').matches){
 const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
 document.addEventListener('mousemove',e=>{
   if(cur && ring) {
@@ -24,6 +25,7 @@ document.querySelectorAll('a,button,.pcard,.fcat-pill,.filter-opt').forEach(el=>
     }
   });
 });
+}
 
 // Show cards with stagger
 const cards=[...document.querySelectorAll('.pcard')];
@@ -382,56 +384,28 @@ function applyInitialCategoryFromUrl(){
 applyInitialCategoryFromUrl();
 filterCards({resetPage:true});
 
-// Modal data
-const modalData=[
-  {cat:'Муфты',title:'Муфта электросварная DN 250',desc:'Стыковая соединительная муфта из полиэтилена PE 100 со встроенным нагревательным элементом для создания диффузионного сварного соединения. Немецкое производство Georg Fischer AG. Полный пакет сертификатов ISO, EN, DVGW.',dn:'250 мм',l:'360 мм',stock:'В наличии',stockColor:'var(--green)'},
-  {cat:'Отводы',title:'Отвод 90° DN 200',desc:'Угловой отвод из PE 100 для изменения направления трубопровода на 90°. Оптимизированная внутренняя геометрия минимизирует гидравлические потери давления. Австрийское производство.',dn:'200 мм',l:'R=200 мм',stock:'В наличии',stockColor:'var(--green)'},
-  {cat:'Тройники',title:'Тройник T DN 315',desc:'Равнопроходной тройник для создания ответвлений в напорных трубопроводах из ПЭ труб. Симметричная конструкция обеспечивает равномерное распределение потоков. Германия.',dn:'315 мм',l:'600 мм',stock:'Под заказ (3 нед.)',stockColor:'var(--amber)'},
-  {cat:'Редукции',title:'Редукция DN 250/160',desc:'Концентрическая переходная редукция для соединения труб разных диаметров. Плавное сужение без образования зон турбулентности. Производство Италия.',dn:'250→160 мм',l:'240 мм',stock:'В наличии',stockColor:'var(--green)'},
-  {cat:'Седёлки',title:'Седёлка DN 250 × 110',desc:'Электросварная седёлка для врезки ответвления в действующий ПЭ-трубопровод без его остановки и снятия давления. Интегрированный нагревательный элемент.',dn:'DN 250 × DN 110',l:'—',stock:'Под заказ (4 нед.)',stockColor:'var(--amber)'},
-  {cat:'Заглушки',title:'Заглушка торцевая DN 250',desc:'Электросварная торцевая заглушка из PE 100 для постоянного или временного перекрытия концов ПЭ-трубопровода. Применяется при консервации и ремонте систем.',dn:'250 мм',l:'80 мм',stock:'В наличии',stockColor:'var(--green)'},
-];
-function openModal(i){
-  const d=modalData[i];
-  if(!d) return;
-  const o=document.getElementById('modal-overlay'),m=document.getElementById('modal');
-  if(!o || !m) return;
-  
-  const mcat = document.getElementById('modal-cat');
-  const mtitle = document.getElementById('modal-title');
-  const mdesc = document.getElementById('modal-desc');
-  const mdn = document.getElementById('mt-dn');
-  const ml = document.getElementById('mt-l');
-  const mstock = document.getElementById('mt-stock');
-  
-  if(mcat) mcat.textContent=d.cat;
-  if(mtitle) mtitle.textContent=d.title;
-  if(mdesc) mdesc.textContent=d.desc;
-  if(mdn) mdn.textContent=d.dn;
-  if(ml) ml.textContent=d.l;
-  if(mstock) {
-    mstock.textContent=d.stock;
-    mstock.style.color=d.stockColor;
-  }
-  
-  // Copy the card's SVG into modal image
-  const card=document.querySelectorAll('.pcard')[i];
-  if(card){
-    const svg=card.querySelector('svg');
-    const mimg = document.getElementById('modal-img');
-    if(mimg) mimg.innerHTML=svg?svg.outerHTML:'';
-  }
-  o.classList.add('open');m.classList.add('open');
-  document.body.style.overflow='hidden';
+// Quick Filters Carousel Drag
+const qf = document.getElementById('quick-filters');
+if (qf) {
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  qf.addEventListener('mousedown', (e) => {
+    isDown = true;
+    qf.classList.add('active');
+    startX = e.pageX - qf.offsetLeft;
+    scrollLeft = qf.scrollLeft;
+  });
+  qf.addEventListener('mouseleave', () => { isDown = false; });
+  qf.addEventListener('mouseup', () => { isDown = false; });
+  qf.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - qf.offsetLeft;
+    const walk = (x - startX) * 2;
+    qf.scrollLeft = scrollLeft - walk;
+  });
 }
-function closeModal(){
-  const o = document.getElementById('modal-overlay');
-  const m = document.getElementById('modal');
-  if(o) o.classList.remove('open');
-  if(m) m.classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 // Reveal on scroll
 const revEls=document.querySelectorAll('.reveal');

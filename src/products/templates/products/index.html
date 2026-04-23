@@ -37,11 +37,7 @@
         <span class="cat-toolbar-count" id="count-label">Показано {{ total_products }} позиций</span>
       </div>
       <div class="cat-toolbar-right">
-        <button class="cat-filter-btn" id="filter-btn" type="button" onclick="toggleSidebar()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
-          <span>Фильтры</span>
-          <span class="cat-filter-badge" id="filter-badge" style="display:none">0</span>
-        </button>
+        
         <select class="cat-sort-select" id="sort-select" aria-label="Сортировка">
           <option value="default">По умолчанию</option>
           <option value="popular">Сначала популярные</option>
@@ -62,6 +58,11 @@
         {% endfor %}
       </div>
     </div>
+    <button class="cat-filter-btn" style="background-color: var(--blue); color: white; border: 1px solid var(--blue);" id="filter-btn" type="button" onclick="toggleSidebar()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+          <span>Фильтры</span>
+          <span class="cat-filter-badge" id="filter-badge" style="display:none">0</span>
+        </button>
   </div>
 </div>
 
@@ -99,29 +100,27 @@
     <div class="filter-section">
       <div class="filter-section-title">Диаметр (DN)</div>
       <div class="filter-group">
-        <label class="filter-opt" data-dn="20-32"><span class="filter-cb"></span><span class="filter-label">20 — 32 мм</span></label>
-        <label class="filter-opt" data-dn="40-63"><span class="filter-cb"></span><span class="filter-label">40 — 63 мм</span></label>
-        <label class="filter-opt" data-dn="75-110"><span class="filter-cb"></span><span class="filter-label">75 — 110 мм</span></label>
-        <label class="filter-opt" data-dn="125-225"><span class="filter-cb"></span><span class="filter-label">125 — 225 мм</span></label>
-        <label class="filter-opt" data-dn="250-400"><span class="filter-cb"></span><span class="filter-label">250 — 400 мм</span></label>
-        <label class="filter-opt" data-dn="450-630"><span class="filter-cb"></span><span class="filter-label">450 — 630 мм</span></label>
+        {% for range in filter_options.dn_ranges %}
+        <label class="filter-opt" data-dn="{{ range.value }}"><span class="filter-cb"></span><span class="filter-label">{{ range.label }}</span></label>
+        {% endfor %}
       </div>
     </div>
 
     <div class="filter-section">
       <div class="filter-section-title">SDR / Давление</div>
       <div class="filter-group">
-        <label class="filter-opt" data-sdr="SDR 11"><span class="filter-cb"></span><span class="filter-label">SDR 11 (PN 16)</span></label>
-        <label class="filter-opt" data-sdr="SDR 17"><span class="filter-cb"></span><span class="filter-label">SDR 17 (PN 10)</span></label>
-        <label class="filter-opt" data-sdr="SDR 9"><span class="filter-cb"></span><span class="filter-label">SDR 9 (PN 20)</span></label>
+        {% for sdr in filter_options.sdrs %}
+        <label class="filter-opt" data-sdr="{{ sdr }}"><span class="filter-cb"></span><span class="filter-label">{{ sdr }}</span></label>
+        {% endfor %}
       </div>
     </div>
 
     <div class="filter-section">
       <div class="filter-section-title">Наличие</div>
       <div class="filter-group">
-        <label class="filter-opt" data-stock="in_stock"><span class="filter-cb"></span><span class="filter-label">На складе в Астане</span></label>
-        <label class="filter-opt" data-stock="preorder"><span class="filter-cb"></span><span class="filter-label">Под заказ</span></label>
+        {% for val, label in filter_options.stock_choices %}
+        <label class="filter-opt" data-stock="{{ val }}"><span class="filter-cb"></span><span class="filter-label">{{ label }}</span></label>
+        {% endfor %}
       </div>
     </div>
 
@@ -136,7 +135,8 @@
   <main class="cat-products">
     <div class="products-grid" id="prod-grid">
       {% for product in products %}
-      <div
+      <a
+        href="{% url 'products:product_detail' slug=product.slug %}"
         class="pcard"
         data-cat="{{ product.category.slug }}"
         data-dn="{{ product.diameter_mm }}"
@@ -214,7 +214,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </a>
       {% empty %}
       <div class="cat-empty">
         <h2>Каталог наполняется</h2>
