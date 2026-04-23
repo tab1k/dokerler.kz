@@ -10,7 +10,22 @@
 {% block content %}
 <!-- CATALOG HEADER -->
 <div class="cat-page-header">
-
+  <div class="cat-page-header-inner">
+    <div>
+      <div class="cat-eyebrow">Каталог</div>
+      <h1 class="cat-page-title">Электросварные фитинги Dökerler</h1>
+    </div>
+    <div class="cat-page-stats">
+      <div class="cstat-sm">
+        <span class="cstat-sm-num">{{ total_products }}</span>
+        <span class="cstat-sm-label">товаров</span>
+      </div>
+      <div class="cstat-sm">
+        <span class="cstat-sm-num">{{ categories|length }}</span>
+        <span class="cstat-sm-label">категорий</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- TOOLBAR -->
@@ -19,7 +34,7 @@
     <div class="cat-toolbar-head">
       <div class="cat-toolbar-meta">
         <span class="cat-toolbar-kicker">Подбор фитингов</span>
-        <span class="cat-toolbar-count" id="count-label">Показано 8 позиций</span>
+        <span class="cat-toolbar-count" id="count-label">Показано {{ total_products }} позиций</span>
       </div>
       <div class="cat-toolbar-right">
         <button class="cat-filter-btn" id="filter-btn" type="button" onclick="toggleSidebar()">
@@ -42,10 +57,9 @@
       </div>
       <div class="cat-quick-filters" id="quick-filters" aria-label="Быстрые категории">
         <button class="cat-chip active" type="button" data-cat="all">Все</button>
-        <button class="cat-chip" type="button" data-cat="mufty">Муфты</button>
-        <button class="cat-chip" type="button" data-cat="otvody">Отводы</button>
-        <button class="cat-chip" type="button" data-cat="troyniki">Тройники</button>
-        <button class="cat-chip" type="button" data-cat="redukcii">Редукции</button>
+        {% for category in categories %}
+        <button class="cat-chip" type="button" data-cat="{{ category.slug }}">{{ category.name }}</button>
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -70,28 +84,15 @@
         <label class="filter-opt checked" data-cat="all">
           <span class="filter-cb"></span>
           <span class="filter-label">Все категории</span>
-          <span class="filter-cnt">240</span>
+          <span class="filter-cnt">{{ total_products }}</span>
         </label>
-        <label class="filter-opt" data-cat="mufty">
+        {% for category in categories %}
+        <label class="filter-opt" data-cat="{{ category.slug }}">
           <span class="filter-cb"></span>
-          <span class="filter-label">Муфты</span>
-          <span class="filter-cnt">48</span>
+          <span class="filter-label">{{ category.name }}</span>
+          <span class="filter-cnt">{{ category.product_count }}</span>
         </label>
-        <label class="filter-opt" data-cat="otvody">
-          <span class="filter-cb"></span>
-          <span class="filter-label">Отводы</span>
-          <span class="filter-cnt">72</span>
-        </label>
-        <label class="filter-opt" data-cat="troyniki">
-          <span class="filter-cb"></span>
-          <span class="filter-label">Тройники</span>
-          <span class="filter-cnt">36</span>
-        </label>
-        <label class="filter-opt" data-cat="redukcii">
-          <span class="filter-cb"></span>
-          <span class="filter-label">Редукции</span>
-          <span class="filter-cnt">24</span>
-        </label>
+        {% endfor %}
       </div>
     </div>
 
@@ -100,7 +101,7 @@
       <div class="filter-group">
         <label class="filter-opt" data-dn="20-32"><span class="filter-cb"></span><span class="filter-label">20 — 32 мм</span></label>
         <label class="filter-opt" data-dn="40-63"><span class="filter-cb"></span><span class="filter-label">40 — 63 мм</span></label>
-        <label class="filter-opt checked" data-dn="75-110"><span class="filter-cb"></span><span class="filter-label">75 — 110 мм</span></label>
+        <label class="filter-opt" data-dn="75-110"><span class="filter-cb"></span><span class="filter-label">75 — 110 мм</span></label>
         <label class="filter-opt" data-dn="125-225"><span class="filter-cb"></span><span class="filter-label">125 — 225 мм</span></label>
         <label class="filter-opt" data-dn="250-400"><span class="filter-cb"></span><span class="filter-label">250 — 400 мм</span></label>
         <label class="filter-opt" data-dn="450-630"><span class="filter-cb"></span><span class="filter-label">450 — 630 мм</span></label>
@@ -110,17 +111,17 @@
     <div class="filter-section">
       <div class="filter-section-title">SDR / Давление</div>
       <div class="filter-group">
-        <label class="filter-opt checked"><span class="filter-cb"></span><span class="filter-label">SDR 11 (PN 16)</span></label>
-        <label class="filter-opt"><span class="filter-cb"></span><span class="filter-label">SDR 17 (PN 10)</span></label>
-        <label class="filter-opt"><span class="filter-cb"></span><span class="filter-label">SDR 9 (PN 20)</span></label>
+        <label class="filter-opt" data-sdr="SDR 11"><span class="filter-cb"></span><span class="filter-label">SDR 11 (PN 16)</span></label>
+        <label class="filter-opt" data-sdr="SDR 17"><span class="filter-cb"></span><span class="filter-label">SDR 17 (PN 10)</span></label>
+        <label class="filter-opt" data-sdr="SDR 9"><span class="filter-cb"></span><span class="filter-label">SDR 9 (PN 20)</span></label>
       </div>
     </div>
 
     <div class="filter-section">
       <div class="filter-section-title">Наличие</div>
       <div class="filter-group">
-        <label class="filter-opt checked"><span class="filter-cb"></span><span class="filter-label">На складе в Астане</span></label>
-        <label class="filter-opt"><span class="filter-cb"></span><span class="filter-label">Под заказ (7–14 дней)</span></label>
+        <label class="filter-opt" data-stock="in_stock"><span class="filter-cb"></span><span class="filter-label">На складе в Астане</span></label>
+        <label class="filter-opt" data-stock="preorder"><span class="filter-cb"></span><span class="filter-label">Под заказ</span></label>
       </div>
     </div>
 
@@ -134,52 +135,90 @@
   <!-- PRODUCT GRID -->
   <main class="cat-products">
     <div class="products-grid" id="prod-grid">
-      {% for i in "12345678" %}
-      {% cycle 'mufty' 'otvody' 'troyniki' 'redukcii' as cat_code silent %}
-      {% cycle '110' '160' '225' '315' as dn_value silent %}
-      <div class="pcard" data-cat="{{ cat_code }}" data-dn="{{ dn_value }}">
-        <div class="pcard-tag">SDR 11</div>
+      {% for product in products %}
+      <div
+        class="pcard"
+        data-cat="{{ product.category.slug }}"
+        data-dn="{{ product.diameter_mm }}"
+        data-sdr="{{ product.sdr }}"
+        data-stock="{{ product.stock_status }}"
+        data-popular="{% if product.is_popular %}1{% else %}0{% endif %}"
+        data-search="{{ product.diameter_display }} {{ product.angle_display }} {{ product.material }} {{ product.pressure_rating }} {{ product.standard }}"
+      >
+        <div class="pcard-tag">{{ product.sdr }}</div>
         <div class="pcard-img">
+          {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          {% elif product.category.slug == 'otvody' %}
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <path d="M40 100 Q 40 40 100 40" stroke-width="16" fill="none" opacity=".1"/>
+            <path d="M40 100 Q 40 40 100 40"/>
+            <rect x="30" y="90" width="20" height="30"/>
+            <rect x="90" y="30" width="30" height="20"/>
+          </svg>
+          {% elif product.category.slug == 'troyniki' %}
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <rect x="40" y="60" width="120" height="20"/>
+            <rect x="90" y="20" width="20" height="40"/>
+            <rect x="30" y="55" width="15" height="30"/>
+            <rect x="155" y="55" width="15" height="30"/>
+            <rect x="85" y="10" width="30" height="15"/>
+          </svg>
+          {% elif product.category.slug == 'redukcii' %}
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <path d="M40 40 L160 55 L160 85 L40 100 Z" fill="rgba(11,56,212,.05)"/>
+            <path d="M40 40 L160 55 L160 85 L40 100 Z"/>
+            <rect x="30" y="35" width="15" height="70"/>
+            <rect x="155" y="50" width="15" height="40"/>
+          </svg>
+          {% elif product.category.slug == 'sedelki' %}
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <rect x="35" y="66" width="130" height="22" fill="rgba(11,56,212,.04)"/>
+            <path d="M90 66 V32 H122 V66"/>
+            <rect x="82" y="26" width="48" height="14" fill="rgba(11,56,212,.08)"/>
+            <rect x="28" y="58" width="16" height="38"/>
+            <rect x="156" y="58" width="16" height="38"/>
+          </svg>
+          {% else %}
           <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
             <rect x="40" y="45" width="120" height="50" fill="rgba(11,56,212,.03)"/>
             <rect x="30" y="35" width="10" height="70" fill="rgba(11,56,212,.08)"/>
             <rect x="160" y="35" width="10" height="70" fill="rgba(11,56,212,.08)"/>
             <circle cx="100" cy="70" r="15"/>
           </svg>
+          {% endif %}
         </div>
         <div class="pcard-info">
-          <div class="pcard-cat">
-            {% if cat_code == 'mufty' %}Муфты электросварные{% endif %}
-            {% if cat_code == 'otvody' %}Отводы электросварные{% endif %}
-            {% if cat_code == 'troyniki' %}Тройники электросварные{% endif %}
-            {% if cat_code == 'redukcii' %}Редукции электросварные{% endif %}
-          </div>
-          <div class="pcard-title pcard-name">
-            {% if cat_code == 'mufty' %}Муфта Ø {{ dn_value }} мм PE 100 SDR 11{% endif %}
-            {% if cat_code == 'otvody' %}Отвод 90° Ø {{ dn_value }} мм PE 100 SDR 11{% endif %}
-            {% if cat_code == 'troyniki' %}Тройник T Ø {{ dn_value }} мм PE 100 SDR 11{% endif %}
-            {% if cat_code == 'redukcii' %}Редукция Ø {{ dn_value }}/110 мм PE 100 SDR 11{% endif %}
-          </div>
+          <div class="pcard-cat">{{ product.category.name }}</div>
+          <div class="pcard-title pcard-name">{{ product.name }}</div>
           <div class="pcard-row">
             <span class="pcard-label">Диаметр:</span>
-            <span class="pcard-val">{{ dn_value }} мм</span>
+            <span class="pcard-val">{{ product.diameter_display }}</span>
+          </div>
+          <div class="pcard-row">
+            <span class="pcard-label">Характеристики:</span>
+            <span class="pcard-val">{{ product.spec_line }}</span>
           </div>
           <div class="pcard-row">
             <span class="pcard-label">Артикул:</span>
-            <span class="pcard-val pcard-sku">
-              {% if cat_code == 'mufty' %}EF-M{{ dn_value }}-11{% endif %}
-              {% if cat_code == 'otvody' %}EF-O{{ dn_value }}-90{% endif %}
-              {% if cat_code == 'troyniki' %}EF-T{{ dn_value }}-11{% endif %}
-              {% if cat_code == 'redukcii' %}EF-R{{ dn_value }}-110{% endif %}
-            </span>
+            <span class="pcard-val pcard-sku">{{ product.sku }}</span>
+          </div>
+          <div class="pcard-row">
+            <span class="pcard-label">Наличие:</span>
+            <span class="pcard-val">{{ product.stock_label }}</span>
           </div>
           <div class="pcard-footer">
-            <div class="pcard-price">6 450 ₸</div>
-            <button class="pcard-btn">
+            <div class="pcard-price">{{ product.price_display }}</div>
+            <button class="pcard-btn" type="button" data-open-kp aria-label="Заказать {{ product.name }}">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
             </button>
           </div>
         </div>
+      </div>
+      {% empty %}
+      <div class="cat-empty">
+        <h2>Каталог наполняется</h2>
+        <p>Свяжитесь с нами, и мы подберем нужные электросварные фитинги под ваш объект.</p>
       </div>
       {% endfor %}
     </div>

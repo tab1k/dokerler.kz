@@ -43,6 +43,9 @@ const mobileApplyBtn=document.getElementById('filters-apply-mobile');
 const quickChips=[...document.querySelectorAll('.cat-chip')];
 const allFilterOptions=[...document.querySelectorAll('.filter-opt')];
 const catFilterOptions=[...document.querySelectorAll('#cat-filters .filter-opt[data-cat]')];
+const dnFilterOptions=[...document.querySelectorAll('.filter-opt[data-dn]')];
+const sdrFilterOptions=[...document.querySelectorAll('.filter-opt[data-sdr]')];
+const stockFilterOptions=[...document.querySelectorAll('.filter-opt[data-stock]')];
 const defaultCheckedFilters=new Set(allFilterOptions.filter(opt=>opt.classList.contains('checked')));
 const cardOrder=new Map(cards.map((card,index)=>[card,index]));
 let searchTerm='';
@@ -93,9 +96,33 @@ function getCardDiameter(card){
   return match?Number.parseInt(match[1],10):0;
 }
 
+function getSelectedValues(options,key){
+  return options
+    .filter(opt=>opt.classList.contains('checked'))
+    .map(opt=>opt.dataset[key])
+    .filter(Boolean);
+}
+
+function getSelectedDnRanges(){
+  return getSelectedValues(dnFilterOptions,'dn')
+    .map(range=>{
+      const [min,max]=(range||'').split('-').map(value=>Number.parseInt(value,10));
+      return {min,max};
+    })
+    .filter(range=>Number.isFinite(range.min)&&Number.isFinite(range.max));
+}
+
+function matchesDiameterRange(diameter,ranges){
+  if(!ranges.length) return true;
+  return ranges.some(range=>diameter>=range.min&&diameter<=range.max);
+}
+
 function updateFilterBadge(){
   if(!filterBadge) return;
-  const activeCount=catFilterOptions.filter(opt=>opt.dataset.cat!=='all'&&opt.classList.contains('checked')).length;
+  const activeCount=allFilterOptions.filter(opt=>{
+    if(opt.dataset.cat==='all') return false;
+    return opt.classList.contains('checked');
+  }).length;
   filterBadge.textContent=String(activeCount);
   filterBadge.style.display=activeCount>0?'':'none';
 }
@@ -142,9 +169,17 @@ function renderPagination(){
 }
 
 function filterCards(options={}){
-  if(!cards.length) return;
+  if(!cards.length){
+    if(countLabel) countLabel.textContent='Показано 0 позиций';
+    if(paginationWrap) paginationWrap.classList.add('hidden');
+    updateFilterBadge();
+    return;
+  }
   if(options.resetPage) currentPage=1;
   const {selectedNoAll,showAll}=getSelectedCategories();
+  const selectedDnRanges=getSelectedDnRanges();
+  const selectedSdrs=getSelectedValues(sdrFilterOptions,'sdr');
+  const selectedStocks=getSelectedValues(stockFilterOptions,'stock');
   syncQuickChips(selectedNoAll,showAll);
 
   const visibleCards=cards.filter(card=>{
@@ -152,17 +187,27 @@ function filterCards(options={}){
     const categoryMatch=showAll||selectedNoAll.includes(category);
     if(!categoryMatch) return false;
 
+    if(!matchesDiameterRange(getCardDiameter(card),selectedDnRanges)) return false;
+    if(selectedSdrs.length&&!selectedSdrs.includes(card.dataset.sdr||'')) return false;
+    if(selectedStocks.length&&!selectedStocks.includes(card.dataset.stock||'')) return false;
+
     if(!searchTerm) return true;
     const name=(card.querySelector('.pcard-name,.pcard-title')?.textContent||'').toLowerCase();
     const cat=(card.querySelector('.pcard-cat')?.textContent||'').toLowerCase();
     const sku=(card.querySelector('.pcard-sku')?.textContent||'').toLowerCase();
-    return name.includes(searchTerm)||cat.includes(searchTerm)||sku.includes(searchTerm);
+    const searchData=(card.dataset.search||'').toLowerCase();
+    return name.includes(searchTerm)||cat.includes(searchTerm)||sku.includes(searchTerm)||searchData.includes(searchTerm);
   });
 
   const sortedCards=[...cards];
   if(sortMode==='dn-asc'||sortMode==='dn-desc'){
     const dir=sortMode==='dn-asc'?1:-1;
     sortedCards.sort((a,b)=>(getCardDiameter(a)-getCardDiameter(b))*dir);
+  }else if(sortMode==='popular'){
+    sortedCards.sort((a,b)=>{
+      const popularDiff=Number.parseInt(b.dataset.popular||'0',10)-Number.parseInt(a.dataset.popular||'0',10);
+      return popularDiff||cardOrder.get(a)-cardOrder.get(b);
+    });
   }else{
     sortedCards.sort((a,b)=>cardOrder.get(a)-cardOrder.get(b));
   }
@@ -181,7 +226,7 @@ function filterCards(options={}){
     if(grid) grid.appendChild(card);
   });
 
-  const hasFilters=!showAll||searchTerm.length>0;
+  const hasFilters=!showAll||searchTerm.length>0||selectedDnRanges.length>0||selectedSdrs.length>0||selectedStocks.length>0;
   if(countLabel) countLabel.textContent=`${hasFilters?'Найдено':'Показано'} ${sortedVisibleCards.length} позиций`;
   if(paginationWrap) paginationWrap.classList.toggle('hidden',sortedVisibleCards.length<=itemsPerPage);
   renderPagination();
@@ -282,6 +327,7 @@ allFilterOptions.forEach(opt=>{
   opt.addEventListener('click',e=>{
     e.preventDefault();
     opt.classList.toggle('checked');
+    filterCards({resetPage:true});
   });
 });
 
@@ -322,6 +368,18 @@ window.addEventListener('resize',()=>{
   },120);
 });
 
+function applyInitialCategoryFromUrl(){
+  const params=new URLSearchParams(window.location.search);
+  const initialCategory=params.get('category');
+  if(!initialCategory) return;
+  const hasCategory=catFilterOptions.some(opt=>opt.dataset.cat===initialCategory);
+  if(!hasCategory) return;
+  catFilterOptions.forEach(opt=>{
+    opt.classList.toggle('checked',opt.dataset.cat===initialCategory);
+  });
+}
+
+applyInitialCategoryFromUrl();
 filterCards({resetPage:true});
 
 // Modal data

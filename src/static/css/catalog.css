@@ -222,6 +222,7 @@
   display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;
 }
 .pcard-img svg{width:100%;height:100%;transition:transform .4s}
+.pcard-img img{width:100%;height:100%;object-fit:contain;display:block}
 .pcard:hover .pcard-img svg{transform:scale(1.06)}
 .pcard-info{padding:20px;flex:1;display:flex;flex-direction:column}
 .pcard-cat{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
@@ -240,6 +241,20 @@
   transition:background .2s,color .2s;
 }
 .pcard:hover .pcard-btn{background:var(--blue);color:white}
+.cat-empty{
+  grid-column:1/-1;
+  border:1px solid var(--border);
+  background:var(--surface);
+  padding:36px;
+}
+.cat-empty h2{
+  font-family:'Syne',sans-serif;
+  font-size:24px;
+  line-height:1.15;
+  letter-spacing:-.5px;
+  margin-bottom:8px;
+}
+.cat-empty p{font-size:14px;line-height:1.6;color:var(--ink2)}
 
 /* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(17,17,16,.6);z-index:800;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}

@@ -64,7 +64,7 @@
       </h1>
       <p class="hero-body">Официальный дистрибьютор в Казахстане. Наличие на складе в Астане, быстрые отгрузки и помощь в подборе под ваш объект.</p>
       <div class="hero-ctas">
-        <a href="#kp-modal-overlay" data-open-kp class="btn-primary">
+        <a href="#products" class="btn-primary">
           Оставить заказ
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
@@ -129,9 +129,33 @@
     <p class="sec-desc reveal" style="margin-top: 24px; max-width: 520px;">Полный ассортимент электросварных фитингов PE100 в наличии и под заказ от официального дистрибьютора Dökerler</p>
     
     <div class="products-grid">
-      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.0s">
-        <div class="prod-num">01 / МУФТЫ</div>
+      {% for category in product_categories %}
+      <a href="/catalog/?category={{ category.slug }}" class="prod-card reveal">
+        <div class="prod-num">0{{ forloop.counter }} / {{ category.name|upper }}</div>
         <div class="prod-img">
+          {% if category.slug == 'otvody' %}
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <path d="M40 100 Q 40 40 100 40" stroke-width="16" fill="none" opacity=".1"/>
+            <path d="M40 100 Q 40 40 100 40"/>
+            <rect x="30" y="90" width="20" height="30"/>
+            <rect x="90" y="30" width="30" height="20"/>
+          </svg>
+          {% elif category.slug == 'troyniki' %}
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <rect x="40" y="60" width="120" height="20"/>
+            <rect x="90" y="20" width="20" height="40"/>
+            <rect x="30" y="55" width="15" height="30"/>
+            <rect x="155" y="55" width="15" height="30"/>
+            <rect x="85" y="10" width="30" height="15"/>
+          </svg>
+          {% elif category.slug == 'redukcii' %}
+          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
+            <path d="M40 40 L160 55 L160 85 L40 100 Z" fill="rgba(11,56,212,.05)"/>
+            <path d="M40 40 L160 55 L160 85 L40 100 Z"/>
+            <rect x="30" y="35" width="15" height="70"/>
+            <rect x="155" y="50" width="15" height="40"/>
+          </svg>
+          {% else %}
           <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
             <rect x="20" y="45" width="160" height="50" fill="rgba(11,56,212,.05)"/>
             <rect x="20" y="55" width="160" height="30" fill="rgba(11,56,212,.04)"/>
@@ -140,61 +164,30 @@
             <rect x="72" y="45" width="56" height="50" fill="rgba(11,56,212,.1)"/>
             <circle cx="100" cy="70" r="20"/>
           </svg>
+          {% endif %}
         </div>
         <div class="prod-info">
-          <div class="prod-name">Муфты электросварные</div>
-          <div class="prod-specs">SDR 11 / SDR 17 · PN 16</div>
+          <div class="prod-name">{{ category.name }}</div>
+          <div class="prod-specs">{{ category.product_count }} позиций в каталоге</div>
         </div>
       </a>
-      
-      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.1s">
-        <div class="prod-num">02 / ОТВОДЫ</div>
+      {% empty %}
+      <a href="/catalog/" class="prod-card reveal">
+        <div class="prod-num">01 / КАТАЛОГ</div>
         <div class="prod-img">
           <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
-            <path d="M40 100 Q 40 40 100 40" stroke-width="16" fill="none" opacity=".1"/>
-            <path d="M40 100 Q 40 40 100 40" />
-            <rect x="30" y="90" width="20" height="30" />
-            <rect x="90" y="30" width="30" height="20" />
+            <rect x="20" y="45" width="160" height="50" fill="rgba(11,56,212,.05)"/>
+            <rect x="10" y="35" width="16" height="70" fill="rgba(11,56,212,.08)"/>
+            <rect x="174" y="35" width="16" height="70" fill="rgba(11,56,212,.08)"/>
+            <circle cx="100" cy="70" r="20"/>
           </svg>
         </div>
         <div class="prod-info">
-          <div class="prod-name">Отводы 90° и 45°</div>
-          <div class="prod-specs">DN 32 — 630 mm</div>
+          <div class="prod-name">Электросварные фитинги</div>
+          <div class="prod-specs">PE 100 · SDR 11 / SDR 17</div>
         </div>
       </a>
-      
-      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.2s">
-        <div class="prod-num">03 / ТРОЙНИКИ</div>
-        <div class="prod-img">
-          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
-            <rect x="40" y="60" width="120" height="20" />
-            <rect x="90" y="20" width="20" height="40" />
-            <rect x="30" y="55" width="15" height="30" />
-            <rect x="155" y="55" width="15" height="30" />
-            <rect x="85" y="10" width="30" height="15" />
-          </svg>
-        </div>
-        <div class="prod-info">
-          <div class="prod-name">Тройники равнопроходные</div>
-          <div class="prod-specs">SDR 11 · PE 100</div>
-        </div>
-      </a>
-
-      <a href="/catalog/" class="prod-card reveal" style="transition-delay:.3s">
-        <div class="prod-num">04 / ПЕРЕХОДЫ</div>
-        <div class="prod-img">
-          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
-            <path d="M40 40 L160 55 L160 85 L40 100 Z" fill="rgba(11,56,212,.05)"/>
-            <path d="M40 40 L160 55 L160 85 L40 100 Z" />
-            <rect x="30" y="35" width="15" height="70" />
-            <rect x="155" y="50" width="15" height="40" />
-          </svg>
-        </div>
-        <div class="prod-info">
-          <div class="prod-name">Редукции и переходы</div>
-          <div class="prod-specs">Разные диаметры</div>
-        </div>
-      </a>
+      {% endfor %}
     </div>
   </div>
 </div>
