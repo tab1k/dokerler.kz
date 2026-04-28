@@ -20,3 +20,28 @@
   </div>
 </div>
 {% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('wa') === '1') {
+    const name = params.get('name') || '-';
+    const phone = params.get('phone') || '-';
+    const city = params.get('city') || '-';
+    const comment = params.get('comment') || '-';
+    
+    const lines = [
+      'Здравствуйте! Хочу получить коммерческое предложение.',
+      `Имя: ${name}`,
+      `Телефон: ${phone}`,
+      `Город: ${city}`,
+      `Комментарий: ${comment}`
+    ];
+    
+    const url = `https://wa.me/77025544196?text=${encodeURIComponent(lines.join('\n'))}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+});
+</script>
+{% endblock %}

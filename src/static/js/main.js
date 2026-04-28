@@ -160,29 +160,9 @@ document.addEventListener('keydown',e=>{
   }
 });
 
-if(kpForm){
-  kpForm.addEventListener('submit',e=>{
-    e.preventDefault();
-    const fd=new FormData(kpForm);
-    const name=(fd.get('name')||'').toString().trim();
-    const phone=(fd.get('phone')||'').toString().trim();
-    const company=(fd.get('company')||'').toString().trim();
-    const email=(fd.get('email')||'').toString().trim();
-    const comment=(fd.get('comment')||'').toString().trim();
-    const lines=[
-      'Здравствуйте! Хочу получить коммерческое предложение.',
-      `Имя: ${name||'-'}`,
-      `Телефон: ${phone||'-'}`,
-      `Компания: ${company||'-'}`,
-      `Email: ${email||'-'}`,
-      `Комментарий: ${comment||'-'}`
-    ];
-    const url=`https://wa.me/77025544196?text=${encodeURIComponent(lines.join('\n'))}`;
-    window.open(url,'_blank','noopener,noreferrer');
-    kpForm.reset();
-    closeKpModal();
-  });
-}
+// Form submission is handled by the server (Django)
+// to ensure leads are captured in the database.
+// The "Thanks" page handles the WhatsApp redirect if needed.
 
 window.openKpModal=openKpModal;
 window.closeKpModal=closeKpModal;
