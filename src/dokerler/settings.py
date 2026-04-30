@@ -31,6 +31,16 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() in ("1", "true", "yes")
 
 ALLOWED_HOSTS = [host.strip() for host in os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",") if host.strip()] or ["*"]
 
+# CSRF settings for production domain
+CSRF_TRUSTED_ORIGINS = [
+    "https://dokerler.kz",
+    "https://www.dokerler.kz",
+]
+
+# Ensure Django knows it's behind an HTTPS proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
 
 # Application definition
 
