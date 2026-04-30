@@ -187,13 +187,6 @@
 
 /* ─── SIDEBAR ─── */
 .sidebar {
-  position: sticky;
-  top: 94px;
-  height: calc(100vh - 120px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
   padding-right: 12px;
   display: flex;
   flex-direction: column;

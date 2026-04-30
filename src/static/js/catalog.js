@@ -152,6 +152,7 @@ function goToPage(page){
   if(safePage===currentPage) return;
   currentPage=safePage;
   filterCards();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function renderPagination(){
