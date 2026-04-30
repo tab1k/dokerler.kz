@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.db.models import Count, Q
 from django.views import View
+from django.utils.http import urlencode
+from django.utils.translation import gettext as _
 
 from products.models import Category, Product
 from .models import Order
@@ -37,8 +39,6 @@ class OrderSubmitView(View):
                 city=city,
                 comment=comment
             )
-            # Redirect to thanks with data for WhatsApp redirect
-            from django.utils.http import urlencode
             params = urlencode({
                 'wa': 1,
                 'name': name,

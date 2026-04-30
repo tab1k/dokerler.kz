@@ -1,6 +1,6 @@
 {% load static i18n %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,19 +18,19 @@
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="/" class="logo" id="main-logo">
+    <a href="{% url 'base:index' %}" class="logo" id="main-logo">
       <img style="width: 100px;" src="{% static 'img/logo.png' %}" alt="Dökerler Logo">
     </a>
     
     <ul class="nav-links">
-      <li><a href="/">{% trans "Главная" %}</a></li>
-      <li><a href="/#products">{% trans "Продукция" %}</a></li>
-      <li><a href="/#about">{% trans "О компании" %}</a></li>
-      <li><a href="/#process">{% trans "Поставки" %}</a></li>
+      <li><a href="{% url 'base:index' %}">{% trans "Главная" %}</a></li>
+      <li><a href="{% url 'base:index' %}#products">{% trans "Продукция" %}</a></li>
+      <li><a href="{% url 'base:index' %}#about">{% trans "О компании" %}</a></li>
+      <li><a href="{% url 'base:index' %}#process">{% trans "Поставки" %}</a></li>
     </ul>
 
     <div class="nav-right">
-      <a href="/catalog/"><button class="btn-ghost">{% trans "Каталог" %}</button></a>
+      <a href="{% url 'products:catalog' %}"><button class="btn-ghost">{% trans "Каталог" %}</button></a>
       
       <div class="lang-switcher">
         <button class="lang-btn" id="lang-btn" aria-label="Switch Language">
@@ -44,7 +44,11 @@
             {% for lang_code, lang_name in AVAILABLE_LANGS %}
               <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
-                <input name="next" type="hidden" value="{{ request.path }}">
+                <input
+                  name="next"
+                  type="hidden"
+                  value="{% if request.LANGUAGE_CODE == 'ru' %}{{ request.path_info }}{% elif request.path_info|length > 4 %}{{ request.path_info|slice:'3:' }}{% else %}/{% endif %}"
+                >
                 <input name="language" type="hidden" value="{{ lang_code }}">
                 <button type="submit" class="lang-item {% if lang_code == CURRENT_LANG %}active{% endif %}">
                   {{ lang_name }}
@@ -56,7 +60,7 @@
       </div>
     </div>
 
-    <button class="burger" id="burger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <button class="burger" id="burger" onclick="toggleMobileMenu()" aria-label="{% trans 'Меню' %}">
       <span></span>
       <span></span>
       <span></span>
@@ -69,18 +73,22 @@
   <button class="mmenu-close" onclick="toggleMobileMenu()">&times;</button>
   <div class="mmenu-inner">
     <div class="mmenu-links">
-      <a href="/" onclick="toggleMobileMenu()">Главная</a>
-      <a href="/#products" onclick="toggleMobileMenu()">Продукция</a>
-      <a href="/#about" onclick="toggleMobileMenu()">О компании</a>
-      <a href="/#process" onclick="toggleMobileMenu()">Поставки</a>
-      <a href="/catalog/" onclick="toggleMobileMenu()">Каталог</a>
+      <a href="{% url 'base:index' %}" onclick="toggleMobileMenu()">{% trans "Главная" %}</a>
+      <a href="{% url 'base:index' %}#products" onclick="toggleMobileMenu()">{% trans "Продукция" %}</a>
+      <a href="{% url 'base:index' %}#about" onclick="toggleMobileMenu()">{% trans "О компании" %}</a>
+      <a href="{% url 'base:index' %}#process" onclick="toggleMobileMenu()">{% trans "Поставки" %}</a>
+      <a href="{% url 'products:catalog' %}" onclick="toggleMobileMenu()">{% trans "Каталог" %}</a>
     </div>
     <div class="mmenu-footer">
       <div class="mmenu-lang">
         {% for lang_code, lang_name in AVAILABLE_LANGS %}
           <form action="{% url 'set_language' %}" method="post">
             {% csrf_token %}
-            <input name="next" type="hidden" value="{{ request.path }}">
+            <input
+              name="next"
+              type="hidden"
+              value="{% if request.LANGUAGE_CODE == 'ru' %}{{ request.path_info }}{% elif request.path_info|length > 4 %}{{ request.path_info|slice:'3:' }}{% else %}/{% endif %}"
+            >
             <input name="language" type="hidden" value="{{ lang_code }}">
             <button type="submit" class="mmenu-lang-btn {% if lang_code == CURRENT_LANG %}active{% endif %}">
               {{ lang_code|upper }}
@@ -141,7 +149,7 @@
   <div class="cart-body" id="cart-items">
     <div class="cart-empty-state">
       <p>{% trans "Ваша корзина пуста" %}</p>
-      <a href="/catalog/" class="btn-ghost">{% trans "Перейти в каталог" %}</a>
+      <a href="{% url 'products:catalog' %}" class="btn-ghost">{% trans "Перейти в каталог" %}</a>
     </div>
   </div>
   <div class="cart-footer">
@@ -160,66 +168,66 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <a href="/" class="footer-logo" aria-label="Dökerler">
+        <a href="{% url 'base:index' %}" class="footer-logo" aria-label="Dökerler">
           <img src="{% static 'img/logo.png' %}" alt="Dökerler Logo">
         </a>
         <p class="footer-tagline">{% trans "Официальный дистрибьютор электросварных фитингов Dökerler в Республике Казахстан." %}</p>
       </div>
       <div>
-        <div class="footer-col-head">Продукция</div>
+        <div class="footer-col-head">{% trans "Продукция" %}</div>
         <ul class="footer-links">
-          <li><a href="/catalog/">Все фитинги</a></li>
-          <li><a href="/catalog/">Муфты</a></li>
-          <li><a href="/catalog/">Отводы</a></li>
-          <li><a href="/catalog/">Тройники</a></li>
-          <li><a href="/catalog/">Редукции</a></li>
-          <li><a href="/catalog/">Седёлки</a></li>
+          <li><a href="{% url 'products:catalog' %}">{% trans "Все фитинги" %}</a></li>
+          <li><a href="{% url 'products:catalog' %}">{% trans "Муфты" %}</a></li>
+          <li><a href="{% url 'products:catalog' %}">{% trans "Отводы" %}</a></li>
+          <li><a href="{% url 'products:catalog' %}">{% trans "Тройники" %}</a></li>
+          <li><a href="{% url 'products:catalog' %}">{% trans "Редукции" %}</a></li>
+          <li><a href="{% url 'products:catalog' %}">{% trans "Седёлки" %}</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-col-head">Компания</div>
+        <div class="footer-col-head">{% trans "Компания" %}</div>
         <ul class="footer-links">
-          <li><a href="/#about">О компании</a></li>
-          <li><a href="/#process">Поставки</a></li>
-          <li><a href="/catalog/">Каталог</a></li>
+          <li><a href="{% url 'base:index' %}#about">{% trans "О компании" %}</a></li>
+          <li><a href="{% url 'base:index' %}#process">{% trans "Поставки" %}</a></li>
+          <li><a href="{% url 'products:catalog' %}">{% trans "Каталог" %}</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-col-head">Контакты</div>
+        <div class="footer-col-head">{% trans "Контакты" %}</div>
         <ul class="footer-links">
           <li><a href="tel:+77025544196">+7 702 554 4196</a></li>
           <li><a href="mailto:info@dokerler.kz">info@dokerler.kz</a></li>
           <li><a href="https://wa.me/77025544196?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8E%20%D0%BF%D0%BE%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D1%81%D0%B2%D0%B0%D1%80%D0%BD%D1%8B%D0%BC%20%D1%84%D0%B8%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%D0%BC">WhatsApp</a></li>
           <li>Астана, ул. Орлыколь, 10/1, 2 этаж, кабинет 209</li>
           <li>Premium Tech Service</li>
-          <li>Работаем по всему Казахстану</li>
+          <li>{% trans "Работаем по всему Казахстану" %}</li>
         </ul>
       </div>
     </div>
     <div class="footer-requisites">
-      <div class="footer-col-head">Реквизиты</div>
+      <div class="footer-col-head">{% trans "Реквизиты" %}</div>
       <dl class="footer-req-list">
         <div>
-          <dt>Компания</dt>
+          <dt>{% trans "Компания" %}</dt>
           <dd>Premium Tech Service</dd>
         </div>
         <div>
           <dt>БИН</dt>
-          <dd>Уточняется</dd>
+          <dd>{% trans "Уточняется" %}</dd>
         </div>
         <div>
-          <dt>Банк</dt>
-          <dd>Уточняется</dd>
+          <dt>{% trans "Банк" %}</dt>
+          <dd>{% trans "Уточняется" %}</dd>
         </div>
         <div>
           <dt>ИИК</dt>
-          <dd>Уточняется</dd>
+          <dd>{% trans "Уточняется" %}</dd>
         </div>
       </dl>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Dökerler Kazakhstan. Все права защищены.</span>
-      <span>Электросварные фитинги из Европы</span>
+      <span>{% trans "© 2026 Dökerler Kazakhstan. Все права защищены." %}</span>
+      <span>{% trans "Электросварные фитинги из Европы" %}</span>
       <div class="footer-links">
         <a href="https://wa.me/77025544196?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%82%D0%B5%D0%BB%20%D0%B1%D1%8B%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8E%20%D0%BF%D0%BE%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D1%81%D0%B2%D0%B0%D1%80%D0%BD%D1%8B%D0%BC%20%D1%84%D0%B8%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%D0%BC" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <a href="https://satu.kz/c853696-hydro-line-group.html" target="_blank" rel="noopener noreferrer">Satu</a>

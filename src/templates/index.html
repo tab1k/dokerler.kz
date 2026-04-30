@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 
-{% block title %}Главная{% endblock %}
+{% block title %}{% trans "Главная" %}{% endblock %}
 
 {% block content %}
 <!-- HERO -->
@@ -56,36 +56,36 @@
 
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow">Официальный дистрибьютор в РК</div>
+      <div class="hero-eyebrow">{% trans "Официальный дистрибьютор в РК" %}</div>
       <h1 class="hero-title">
-        Прямые поставки<br>
-        электросварных фитингов<br>
-        <span class="accent">от завода Dökerler</span>
+        {% trans "Прямые поставки" %}<br>
+        {% trans "электросварных фитингов" %}<br>
+        <span class="accent">{% trans "от завода Dökerler" %}</span>
       </h1>
-      <p class="hero-body">Официальный и единственный дистрибьютор в Казахстане. Прямые поставки без посредников. Складская программа в Астане — отгрузка в день заказа.</p>
+      <p class="hero-body">{% trans "Официальный и единственный дистрибьютор в Казахстане. Прямые поставки без посредников. Складская программа в Астане — отгрузка в день заказа." %}</p>
       <div class="hero-ctas">
-        <a href="#products" class="btn-primary">
-          Оставить заказ
+        <a href="#products" class="btn-primary" data-open-kp>
+          {% trans "Оставить заказ" %}
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
-        <a href="tel:+77025544196" class="btn-outline">Позвонить</a>
+        <a href="tel:+77025544196" class="btn-outline">{% trans "Позвонить" %}</a>
       </div>
       <div class="hero-kpis">
         <div class="kpi">
           <div class="kpi-num"><span id="k1">0</span>+</div>
-          <div class="kpi-label">Позиций<br>в каталоге</div>
+          <div class="kpi-label">{% trans "Позиций" %}<br>{% trans "в каталоге" %}</div>
         </div>
         <div class="kpi">
           <div class="kpi-num"><span id="k2">0</span></div>
-          <div class="kpi-label">Стран-<br>производителей</div>
+          <div class="kpi-label">{% trans "Стран-" %}<br>{% trans "производителей" %}</div>
         </div>
         <div class="kpi">
           <div class="kpi-num"><span id="k3">0</span>+</div>
-          <div class="kpi-label">Клиентов<br>доверяют нам</div>
+          <div class="kpi-label">{% trans "Клиентов" %}<br>{% trans "доверяют нам" %}</div>
         </div>
         <div class="kpi">
           <div class="kpi-num"><span id="k4">0</span></div>
-          <div class="kpi-label">Лет<br>на рынке</div>
+          <div class="kpi-label">{% trans "Лет" %}<br>{% trans "на рынке" %}</div>
         </div>
       </div>
     </div>
@@ -100,37 +100,37 @@
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-track" id="tick-inner">
-    <span class="ticker-item">80+ лет опыта производства</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "80+ лет опыта производства" %}</span><span class="ticker-sep">·</span>
     <span class="ticker-item">ISO 9001 / EN 12201</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">Прямые поставки с завода</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">Наличие в Астане</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">Диаметры 20–630 мм</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">Быстрая доставка по Казахстану</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">Помощь в подборе</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "Прямые поставки с завода" %}</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "Наличие в Астане" %}</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "Диаметры 20–630 мм" %}</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "Быстрая доставка по Казахстану" %}</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "Помощь в подборе" %}</span><span class="ticker-sep">·</span>
     <!-- Repeat for seamless loop -->
-    <span class="ticker-item">80+ лет опыта производства</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "80+ лет опыта производства" %}</span><span class="ticker-sep">·</span>
     <span class="ticker-item">ISO 9001 / EN 12201</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">Прямые поставки с завода</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">Наличие в Астане</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">Диаметры 20–630 мм</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">Быстрая доставка по Казахстану</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">Помощь в подборе</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "Прямые поставки с завода" %}</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "Наличие в Астане" %}</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "Диаметры 20–630 мм" %}</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "Быстрая доставка по Казахстану" %}</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">{% trans "Помощь в подборе" %}</span><span class="ticker-sep">·</span>
   </div>
 </div>
 
 <!-- PRODUCTS PREVIEW -->
 <div id="products">
   <div class="section">
-    <div class="sec-tag reveal">Продукция</div>
+    <div class="sec-tag reveal">{% trans "Продукция" %}</div>
     <div class="products-header" style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
-      <h2 class="sec-title reveal" style="margin:0">Подберите фитинги под ваш объект</h2>
-      <a href="/catalog/" class="btn-primary reveal" style="display:inline-flex; white-space: nowrap;">Полный каталог <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:8px"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <h2 class="sec-title reveal" style="margin:0">{% trans "Подберите фитинги под ваш объект" %}</h2>
+      <a href="{% url 'products:catalog' %}" class="btn-primary reveal" style="display:inline-flex; white-space: nowrap;">{% trans "Полный каталог" %} <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:8px"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
     </div>
     <p class="sec-desc reveal" style="margin-top: 24px; max-width: 520px;">Полный ассортимент электросварных фитингов PE100 в наличии и под заказ от официального дистрибьютора Dökerler</p>
     
     <div class="products-grid">
       {% for category in product_categories %}
-      <a href="/catalog/?category={{ category.slug }}" class="prod-card reveal">
+      <a href="{% url 'products:catalog' %}?category={{ category.slug }}" class="prod-card reveal">
         <div class="prod-num">0{{ forloop.counter }} / {{ category.name|upper }}</div>
         <div class="prod-img">
           {% if category.slug == 'otvody' %}
@@ -168,12 +168,12 @@
         </div>
         <div class="prod-info">
           <div class="prod-name">{{ category.name }}</div>
-          <div class="prod-specs">{{ category.product_count }} позиций в каталоге</div>
+          <div class="prod-specs">{{ category.product_count }} {% trans "позиций в каталоге" %}</div>
         </div>
       </a>
       {% empty %}
-      <a href="/catalog/" class="prod-card reveal">
-        <div class="prod-num">01 / КАТАЛОГ</div>
+      <a href="{% url 'products:catalog' %}" class="prod-card reveal">
+        <div class="prod-num">01 / {% trans "КАТАЛОГ" %}</div>
         <div class="prod-img">
           <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
             <rect x="20" y="45" width="160" height="50" fill="rgba(11,56,212,.05)"/>
@@ -183,7 +183,7 @@
           </svg>
         </div>
         <div class="prod-info">
-          <div class="prod-name">Электросварные фитинги</div>
+          <div class="prod-name">{% trans "Электросварные фитинги" %}</div>
           <div class="prod-specs">PE 100 · SDR 11 / SDR 17</div>
         </div>
       </a>

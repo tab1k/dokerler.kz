@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count, Q
 from django.views import View
+from django.utils.translation import gettext_lazy as _
 
 from .models import Category, Product
 
 
 class CatalogView(View):
     def get(self, request):
+        selected_category_slug = (request.GET.get('category') or '').strip()
         categories = (
             Category.objects
             .filter(is_active=True)
@@ -19,18 +21,23 @@ class CatalogView(View):
             .select_related('category')
             .order_by('category__sort_order', 'sort_order', 'name')
         )
+
+        if selected_category_slug and categories.filter(slug=selected_category_slug).exists():
+            products = products.filter(category__slug=selected_category_slug)
+        else:
+            selected_category_slug = ''
         
         # Get unique SDR values
         sdrs = products.values_list('sdr', flat=True).distinct().order_by('sdr')
         
         # DN Ranges
         dn_ranges = [
-            {'label': '20 — 32 мм', 'value': '20-32'},
-            {'label': '40 — 63 мм', 'value': '40-63'},
-            {'label': '75 — 110 мм', 'value': '75-110'},
-            {'label': '125 — 225 мм', 'value': '125-225'},
-            {'label': '250 — 400 мм', 'value': '250-400'},
-            {'label': '450 — 630 мм', 'value': '450-630'},
+            {'label': _('20 — 32 мм'), 'value': '20-32'},
+            {'label': _('40 — 63 мм'), 'value': '40-63'},
+            {'label': _('75 — 110 мм'), 'value': '75-110'},
+            {'label': _('125 — 225 мм'), 'value': '125-225'},
+            {'label': _('250 — 400 мм'), 'value': '250-400'},
+            {'label': _('450 — 630 мм'), 'value': '450-630'},
         ]
 
         return render(
@@ -41,6 +48,7 @@ class CatalogView(View):
                 'products': products,
                 'has_mufta_models': products.filter(Q(category__slug__icontains='mufta') | Q(name__icontains='муфта')).exists(),
                 'total_products': products.count(),
+                'selected_category_slug': selected_category_slug,
                 'filter_options': {
                     'sdrs': sdrs,
                     'dn_ranges': dn_ranges,
