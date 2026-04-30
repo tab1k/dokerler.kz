@@ -32,7 +32,10 @@ const cards=[...document.querySelectorAll('.pcard')];
 cards.forEach((c,i)=>{setTimeout(()=>c.classList.add('shown'),100+i*60)});
 const grid=document.getElementById('prod-grid');
 const searchInput=document.getElementById('global-search');
-const sortSelect=document.getElementById('sort-select');
+const sortDropdown = document.getElementById('sort-dropdown');
+const sortDropdownBtn = document.getElementById('sort-dropdown-btn');
+const sortCurrentLabel = document.getElementById('sort-current-label');
+const sortItems = document.querySelectorAll('.cat-sort-item');
 const countLabel=document.getElementById('count-label');
 const filterBadge=document.getElementById('filter-badge');
 const paginationWrap=document.getElementById('cat-pagination');
@@ -50,8 +53,12 @@ const sdrFilterOptions=[...document.querySelectorAll('.filter-opt[data-sdr]')];
 const stockFilterOptions=[...document.querySelectorAll('.filter-opt[data-stock]')];
 const defaultCheckedFilters=new Set(allFilterOptions.filter(opt=>opt.classList.contains('checked')));
 const cardOrder=new Map(cards.map((card,index)=>[card,index]));
-let searchTerm='';
-let sortMode=sortSelect?sortSelect.value:'default';
+let searchTerm=searchInput ? searchInput.value.trim().toLowerCase() : '';
+let sortMode = 'default';
+if (sortDropdown) {
+  const activeItem = sortDropdown.querySelector('.cat-sort-item.active');
+  if (activeItem) sortMode = activeItem.dataset.value;
+}
 let currentPage=1;
 let totalPages=1;
 
@@ -285,7 +292,13 @@ function applyFilters(){
 function resetFilters(){
   allFilterOptions.forEach(opt=>opt.classList.toggle('checked',defaultCheckedFilters.has(opt)));
   if(searchInput) searchInput.value='';
-  if(sortSelect) sortSelect.value='default';
+  if(sortDropdown) {
+    const defaultItem = [...sortItems].find(i => i.dataset.value === 'default');
+    if (defaultItem) {
+      sortItems.forEach(si => si.classList.toggle('active', si === defaultItem));
+      if (sortCurrentLabel) sortCurrentLabel.textContent = defaultItem.textContent;
+    }
+  }
   searchTerm='';
   sortMode='default';
   filterCards({resetPage:true});
@@ -337,9 +350,26 @@ if(searchInput){
   searchInput.addEventListener('input',e=>handleSearch(e.target.value));
 }
 
-if(sortSelect){
-  sortSelect.addEventListener('change',e=>handleSort(e.target.value));
+if (sortDropdownBtn) {
+  sortDropdownBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    sortDropdown.classList.toggle('active');
+  });
 }
+
+sortItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const val = item.dataset.value;
+    sortItems.forEach(si => si.classList.toggle('active', si === item));
+    if (sortCurrentLabel) sortCurrentLabel.textContent = item.textContent;
+    sortDropdown.classList.remove('active');
+    handleSort(val);
+  });
+});
+
+document.addEventListener('click', () => {
+  if (sortDropdown) sortDropdown.classList.remove('active');
+});
 
 if(prevPageBtn){
   prevPageBtn.addEventListener('click',()=>goToPage(currentPage-1));

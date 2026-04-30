@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block title %}{{ product.name }} | Dökerler{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
 <link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+{% if use_mufta_model %}
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+{% endif %}
+<script src="{% static 'js/main.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -18,7 +25,27 @@
         <div class="prod-visuals">
             <div class="prod-image-main">
                 
-                {% if product.image %}
+                 <div class="prod-gallery-main">
+                <div class="prod-main-img">
+                    {% if use_mufta_model %}
+                    <div class="prod-model-container">
+                        <model-viewer
+                            class="prod-main-model-viewer"
+                            src="{% static 'glb/mufta.glb' %}"
+                            camera-controls
+                            auto-rotate
+                            interaction-prompt="none"
+                            shadow-intensity="1"
+                            exposure="1"
+                            environment-image="neutral"
+                            camera-orbit="45deg 75deg 105%"
+                            min-camera-orbit="auto auto 5%"
+                            max-camera-orbit="auto auto 200%"
+                            loading="eager"
+                        >
+                        </model-viewer>
+                    </div>
+                    {% elif product.image %}
                 <img src="{{ product.image.url }}" alt="{{ product.name }}">
                 {% else %}
                 <!-- Dynamic SVG based on category as fallback -->
@@ -107,9 +134,16 @@
                     <span>{{ product.stock_label }}</span>
                 </div>
 
-                <button class="prod-cta-button" data-open-kp aria-label="Заказать {{ product.name }}">
+                <button class="prod-cta-button" 
+                  data-add-cart 
+                  data-id="{{ product.id }}" 
+                  data-name="{{ product.name }}" 
+                  data-price="{{ product.price }}"
+                  data-image="{% if product.image %}{{ product.image.url }}{% endif %}"
+                  data-use-model="{% if use_mufta_model %}1{% else %}0{% endif %}"
+                  aria-label="{% trans 'Добавить в корзину' %}: {{ product.name }}">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-                    Получить КП на почту
+                    {% trans "Добавить в корзину" %}
                 </button>
 
                 <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border);">

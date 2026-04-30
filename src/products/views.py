@@ -39,6 +39,7 @@ class CatalogView(View):
             {
                 'categories': categories,
                 'products': products,
+                'has_mufta_models': products.filter(Q(category__slug__icontains='mufta') | Q(name__icontains='муфта')).exists(),
                 'total_products': products.count(),
                 'filter_options': {
                     'sdrs': sdrs,
@@ -52,6 +53,8 @@ class CatalogView(View):
 class ProductDetailView(View):
     def get(self, request, slug):
         product = get_object_or_404(Product, slug=slug, is_active=True)
+        category_slug = (product.category.slug or '').lower()
+        use_mufta_model = 'mufta' in category_slug or 'муфта' in product.name.lower()
             
         # Get related products (same category)
         related_products = (
@@ -67,5 +70,6 @@ class ProductDetailView(View):
             {
                 'product': product,
                 'related_products': related_products,
+                'use_mufta_model': use_mufta_model,
             }
         )

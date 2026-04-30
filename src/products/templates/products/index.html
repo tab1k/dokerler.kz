@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block title %}Каталог{% endblock %}
 
@@ -38,12 +38,18 @@
       </div>
       <div class="cat-toolbar-right">
         
-        <select class="cat-sort-select" id="sort-select" aria-label="Сортировка">
-          <option value="default">По умолчанию</option>
-          <option value="popular">Сначала популярные</option>
-          <option value="dn-asc">По диаметру ↑</option>
-          <option value="dn-desc">По диаметру ↓</option>
-        </select>
+        <div class="cat-sort-dropdown" id="sort-dropdown">
+          <button class="cat-sort-btn" id="sort-dropdown-btn" type="button">
+            <span id="sort-current-label">По умолчанию</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="cat-sort-menu">
+            <div class="cat-sort-item active" data-value="default">По умолчанию</div>
+            <div class="cat-sort-item" data-value="popular">Сначала популярные</div>
+            <div class="cat-sort-item" data-value="dn-asc">По диаметру ↑</div>
+            <div class="cat-sort-item" data-value="dn-desc">По диаметру ↓</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="cat-toolbar-controls">
@@ -146,8 +152,31 @@
         data-search="{{ product.diameter_display }} {{ product.angle_display }} {{ product.material }} {{ product.pressure_rating }} {{ product.standard }}"
       >
         <div class="pcard-tag">{{ product.sdr }}</div>
-        <div class="pcard-img">
-          {% if product.image %}
+        <div class="pcard-img {% if 'mufta' in product.category.slug or 'mufta' in product.name|lower %}has-model{% endif %}">
+          {% if 'mufta' in product.category.slug or 'mufta' in product.name|lower %}
+          <div class="pcard-model-wrap">
+            <model-viewer
+              class="pcard-model-viewer"
+              src="{% static 'glb/mufta.glb' %}"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="0"
+              rotation-per-second="24deg"
+              interaction-prompt="none"
+              shadow-intensity="1"
+              exposure="1.02"
+              environment-image="neutral"
+              bounds="tight"
+              camera-target="auto auto 0"
+              min-camera-orbit="auto auto auto"
+              max-camera-orbit="auto auto auto"
+            >
+              <div class="pcard-model-skeleton" slot="poster" aria-hidden="true">
+                <div class="pcard-model-skeleton-ring"></div>
+              </div>
+            </model-viewer>
+          </div>
+          {% elif product.image %}
           <img src="{{ product.image.url }}" alt="{{ product.name }}">
           {% elif product.category.slug == 'otvody' %}
           <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
@@ -209,8 +238,15 @@
           </div>
           <div class="pcard-footer">
             <div class="pcard-price">{{ product.price_display }}</div>
-            <button class="pcard-btn" type="button" data-open-kp aria-label="Заказать {{ product.name }}">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            <button class="pcard-btn" type="button" 
+              data-add-cart 
+              data-id="{{ product.id }}" 
+              data-name="{{ product.name }}" 
+              data-price="{{ product.price }}"
+              data-image="{% if product.image %}{{ product.image.url }}{% endif %}"
+              data-use-model="{% if 'mufta' in product.category.slug or 'mufta' in product.name|lower %}1{% else %}0{% endif %}"
+              aria-label="{% trans 'Добавить в корзину' %}: {{ product.name }}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
             </button>
           </div>
         </div>

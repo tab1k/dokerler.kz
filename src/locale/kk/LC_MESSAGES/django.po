@@ -1,0 +1,840 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-30 12:13+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+#: products/models.py:6 products/models.py:39
+msgid "Название"
+msgstr ""
+
+#: products/models.py:7 products/models.py:40
+msgid "URL-код"
+msgstr ""
+
+#: products/models.py:8 products/models.py:42
+msgid "Описание"
+msgstr ""
+
+#: products/models.py:9 products/models.py:69
+msgid "Порядок"
+msgstr ""
+
+#: products/models.py:10
+msgid "Активна"
+msgstr ""
+
+#: products/models.py:11
+msgid "Создана"
+msgstr ""
+
+#: products/models.py:12
+msgid "Обновлена"
+msgstr ""
+
+#: products/models.py:15 products/models.py:35
+#: products/templates/products/index.html:83
+msgid "Категория"
+msgstr ""
+
+#: products/models.py:16
+msgid "Категории"
+msgstr ""
+
+#: products/models.py:28
+msgid "На складе"
+msgstr ""
+
+#: products/models.py:29
+msgid "Под заказ"
+msgstr ""
+
+#: products/models.py:30
+msgid "Нет в наличии"
+msgstr ""
+
+#: products/models.py:41
+msgid "Артикул"
+msgstr ""
+
+#: products/models.py:44 products/templates/products/detail.html:68
+msgid "Материал"
+msgstr ""
+
+#: products/models.py:45
+msgid "SDR"
+msgstr ""
+
+#: products/models.py:46
+msgid "Давление"
+msgstr ""
+
+#: products/models.py:47 products/templates/products/detail.html:72
+msgid "Стандарт"
+msgstr ""
+
+#: products/models.py:48
+msgid "Применение"
+msgstr ""
+
+#: products/models.py:50
+msgid "Основной диаметр DN, мм"
+msgstr ""
+
+#: products/models.py:51
+msgid "Диаметр отвода DN, мм"
+msgstr ""
+
+#: products/models.py:52
+msgid "Переход на DN, мм"
+msgstr ""
+
+#: products/models.py:53
+msgid "Угол, °"
+msgstr ""
+
+#: products/models.py:54
+msgid "Длина, мм"
+msgstr ""
+
+#: products/models.py:56
+msgid "Напряжение сварки, В"
+msgstr ""
+
+#: products/models.py:57
+msgid "Время сварки, сек"
+msgstr ""
+
+#: products/models.py:58
+msgid "Время охлаждения, мин"
+msgstr ""
+
+#: products/models.py:59
+msgid "Штрихкод"
+msgstr ""
+
+#: products/models.py:61
+msgid "Цена, ₸"
+msgstr ""
+
+#: products/models.py:62 products/templates/products/index.html:119
+msgid "Наличие"
+msgstr ""
+
+#: products/models.py:63
+msgid "Остаток, шт"
+msgstr ""
+
+#: products/models.py:64
+msgid "Срок поставки, дней"
+msgstr ""
+
+#: products/models.py:66
+msgid "Фото"
+msgstr ""
+
+#: products/models.py:67
+msgid "Популярный товар"
+msgstr ""
+
+#: products/models.py:68
+msgid "Активен"
+msgstr ""
+
+#: products/models.py:70
+msgid "Создан"
+msgstr ""
+
+#: products/models.py:71
+msgid "Обновлен"
+msgstr ""
+
+#: products/models.py:74
+msgid "Товар"
+msgstr ""
+
+#: products/models.py:75
+msgid "Товары"
+msgstr ""
+
+#: products/models.py:89
+#, python-format
+msgid "DN %(d1)s/%(d2)s мм"
+msgstr ""
+
+#: products/models.py:91
+#, python-format
+msgid "DN %(d1)s x DN %(d2)s мм"
+msgstr ""
+
+#: products/models.py:92
+#, python-format
+msgid "DN %(d)s мм"
+msgstr ""
+
+#: products/models.py:108
+msgid "По запросу"
+msgstr "Сұраныс бойынша"
+
+#: products/models.py:115
+#, python-format
+msgid "Под заказ (%(days)s дней)"
+msgstr "Тапсырыспен (%(days)s күн)"
+
+#: products/templates/products/detail.html:44
+msgid "Описание продукта"
+msgstr "Өнім сипаттамасы"
+
+#: products/templates/products/detail.html:50
+msgid ""
+"Высококачественный электросварной фитинг производства Dökerler. Предназначен "
+"для использования в напорных трубопроводах из полиэтилена PE 100 и PE 100-"
+"RC. Обеспечивает максимально надежное соединение благодаря технологии "
+"диффузионной сварки с контролем параметров через штрих-код."
+msgstr ""
+
+#: products/templates/products/detail.html:57
+msgid "Технические характеристики"
+msgstr "Техникалық сипаттамалар"
+
+#: products/templates/products/detail.html:60
+msgid "Диаметр"
+msgstr "Диаметр"
+
+#: products/templates/products/detail.html:64
+#: products/templates/products/index.html:110
+msgid "SDR / Давление"
+msgstr "SDR / Қысым"
+
+#: products/templates/products/detail.html:77
+msgid "Угол поворота"
+msgstr "Бұрылу бұрышы"
+
+#: products/templates/products/detail.html:83
+msgid "Напряжение сварки"
+msgstr "Дәнекерлеу кернеуі"
+
+#: products/templates/products/detail.html:97
+#: products/templates/products/index.html:203
+msgid "Артикул:"
+msgstr "Артикул:"
+
+#: products/templates/products/detail.html:101
+msgid "Цена за единицу"
+msgstr "Бірлік бағасы"
+
+#: products/templates/products/detail.html:110
+#: products/templates/products/index.html:212
+#, python-format
+msgid "Заказать %(product_name)s"
+msgstr "%(product_name)s тапсырыс беру"
+
+#: products/templates/products/detail.html:112
+msgid "Получить КП на почту"
+msgstr "Коммерциялық ұсынысты email-ге алу"
+
+#: products/templates/products/detail.html:119
+msgid "Гарантия завода 50 лет"
+msgstr "Зауыт кепілдігі 50 жыл"
+
+#: products/templates/products/detail.html:123
+msgid "В наличии на складе в Астане"
+msgstr "Астана қоймасында бар"
+
+#: products/templates/products/detail.html:127
+msgid "Сертификаты соответствия РК"
+msgstr "ҚР сәйкестік сертификаттары"
+
+#: products/templates/products/detail.html:135
+msgid "Нужна помощь в подборе?"
+msgstr "Таңдауға көмек керек пе?"
+
+#: products/templates/products/detail.html:136
+msgid "Наши инженеры помогут рассчитать спецификацию под ваш проект бесплатно."
+msgstr "Біздің инженерлер жобаңызға арналған спецификацияны тегін есептеп береді."
+
+#: products/templates/products/detail.html:148
+msgid "Вам может понадобиться"
+msgstr "Сізге қажет болуы мүмкін"
+
+#: products/templates/products/detail.html:149
+msgid "Сопутствующие товары"
+msgstr "Ілеспе тауарлар"
+
+#: products/templates/products/detail.html:152
+msgid "В каталог"
+msgstr "Каталогқа"
+
+#: products/templates/products/index.html:4
+#: products/templates/products/index.html:15 templates/base.html:34
+#: templates/base.html:78 templates/base.html:169
+msgid "Каталог"
+msgstr "Каталог"
+
+#: products/templates/products/index.html:16
+msgid "Электросварные фитинги Dökerler"
+msgstr "Dokerler электрмуфталы фитингтері"
+
+#: products/templates/products/index.html:21
+msgid "товаров"
+msgstr "тауар"
+
+#: products/templates/products/index.html:25
+msgid "категорий"
+msgstr "санат"
+
+#: products/templates/products/index.html:36
+msgid "Подбор фитингов"
+msgstr "Фитинг таңдау"
+
+#: products/templates/products/index.html:37
+msgid "Показано"
+msgstr "Көрсетілді"
+
+#: products/templates/products/index.html:37
+msgid "Найдено"
+msgstr "Табылды"
+
+#: products/templates/products/index.html:37
+msgid "позиций"
+msgstr "позиция"
+
+#: products/templates/products/index.html:41
+msgid "Сортировка"
+msgstr "Сұрыптау"
+
+#: products/templates/products/index.html:42
+msgid "По умолчанию"
+msgstr "Әдепкі бойынша"
+
+#: products/templates/products/index.html:43
+msgid "Сначала популярные"
+msgstr "Алдымен танымалдары"
+
+#: products/templates/products/index.html:44
+msgid "По диаметру ↑"
+msgstr "Диаметр бойынша ↑"
+
+#: products/templates/products/index.html:45
+msgid "По диаметру ↓"
+msgstr "Диаметр бойынша ↓"
+
+#: products/templates/products/index.html:52
+msgid "Поиск по артикулу, диаметру, категории..."
+msgstr "Артикул, диаметр, санат бойынша іздеу..."
+
+#: products/templates/products/index.html:54
+msgid "Быстрые категории"
+msgstr "Жылдам санаттар"
+
+#: products/templates/products/index.html:55
+msgid "Все"
+msgstr "Барлығы"
+
+#: products/templates/products/index.html:63
+#: products/templates/products/index.html:78
+msgid "Фильтры"
+msgstr "Сүзгілер"
+
+#: products/templates/products/index.html:87
+msgid "Все категории"
+msgstr "Барлық санаттар"
+
+#: products/templates/products/index.html:101
+msgid "Диаметр (DN)"
+msgstr "Диаметр (DN)"
+
+#: products/templates/products/index.html:127
+msgid "Сбросить фильтры"
+msgstr "Сүзгілерді тазарту"
+
+#: products/templates/products/index.html:129
+msgid "Сбросить"
+msgstr "Тазарту"
+
+#: products/templates/products/index.html:130
+msgid "Применить"
+msgstr "Қолдану"
+
+#: products/templates/products/index.html:195
+msgid "Диаметр:"
+msgstr "Диаметр:"
+
+#: products/templates/products/index.html:199
+msgid "Характеристики:"
+msgstr "Сипаттамалар:"
+
+#: products/templates/products/index.html:207
+msgid "Наличие:"
+msgstr "Қолжетімділігі:"
+
+#: products/templates/products/index.html:220
+msgid "Каталог наполняется"
+msgstr "Каталог толтырылуда"
+
+#: products/templates/products/index.html:221
+msgid ""
+"Свяжитесь с нами, и мы подберем нужные электросварные фитинги под ваш объект."
+msgstr "Бізбен хабарласыңыз, жобаңызға қажет электрмуфталы фитингтерді таңдап береміз."
+
+#: products/templates/products/index.html:225
+msgid "Пагинация каталога"
+msgstr "Каталог беттеуі"
+
+#: products/templates/products/index.html:226
+msgid "Предыдущая страница"
+msgstr "Алдыңғы бет"
+
+#: products/templates/products/index.html:230
+msgid "Следующая страница"
+msgstr "Келесі бет"
+
+#: products/views.py:29
+msgid "20 — 32 мм"
+msgstr ""
+
+#: products/views.py:30
+msgid "40 — 63 мм"
+msgstr ""
+
+#: products/views.py:31
+msgid "75 — 110 мм"
+msgstr ""
+
+#: products/views.py:32
+msgid "125 — 225 мм"
+msgstr ""
+
+#: products/views.py:33
+msgid "250 — 400 мм"
+msgstr ""
+
+#: products/views.py:34
+msgid "450 — 630 мм"
+msgstr ""
+
+#: templates/base.html:26 templates/base.html:73 templates/index.html:4
+msgid "Главная"
+msgstr "Басты бет"
+
+#: templates/base.html:27 templates/base.html:74 templates/base.html:153
+#: templates/index.html:124
+msgid "Продукция"
+msgstr "Өнімдер"
+
+#: templates/base.html:28 templates/base.html:75 templates/base.html:166
+msgid "О компании"
+msgstr "Компания туралы"
+
+#: templates/base.html:29 templates/base.html:76 templates/base.html:167
+msgid "Поставки"
+msgstr "Жеткізу"
+
+#: templates/base.html:30 templates/base.html:77 templates/base.html:168
+msgid "Качество"
+msgstr "Сапа"
+
+#: templates/base.html:60
+msgid "Меню"
+msgstr "Мәзір"
+
+#: templates/base.html:103
+msgid "Закрыть"
+msgstr "Жабу"
+
+#: templates/base.html:109 templates/base.html:133
+msgid "Сделать заказ"
+msgstr "Тапсырыс беру"
+
+#: templates/base.html:110
+msgid "Доставка по всему Казахстану"
+msgstr "Қазақстан бойынша жеткізу"
+
+#: templates/base.html:111
+msgid ""
+"Склад в Астане — можно забрать самовывозом. Для оптовых и монтажных компаний "
+"есть специальные условия доставки, которые обговариваются индивидуально."
+msgstr ""
+
+#: templates/base.html:116 templates/thanks.html:36
+msgid "Имя"
+msgstr "Аты"
+
+#: templates/base.html:117
+msgid "Ваше имя"
+msgstr "Атыңыз"
+
+#: templates/base.html:120
+msgid "Номер телефона"
+msgstr "Телефон нөмірі"
+
+#: templates/base.html:124 templates/thanks.html:38
+msgid "Город"
+msgstr "Қала"
+
+#: templates/base.html:125
+msgid "Ваш город"
+msgstr "Қалаңыз"
+
+#: templates/base.html:128 templates/thanks.html:39
+msgid "Комментарий"
+msgstr "Түсініктеме"
+
+#: templates/base.html:129
+msgid "Диаметры, объём, сроки поставки..."
+msgstr ""
+
+#: templates/base.html:131
+msgid "Итоговая сумма:"
+msgstr "Жалпы сома:"
+
+#: templates/base.html:134
+msgid "Или позвонить:"
+msgstr "Немесе қоңырау шалыңыз:"
+
+#: templates/base.html:150
+msgid ""
+"Официальный дистрибьютор европейских электросварных фитингов в Республике "
+"Казахстан с 2009 года."
+msgstr ""
+
+#: templates/base.html:155
+msgid "Все фитинги"
+msgstr "Барлық фитингтер"
+
+#: templates/base.html:156
+msgid "Муфты"
+msgstr ""
+
+#: templates/base.html:157
+msgid "Отводы"
+msgstr ""
+
+#: templates/base.html:158
+msgid "Тройники"
+msgstr ""
+
+#: templates/base.html:159
+msgid "Редукции"
+msgstr ""
+
+#: templates/base.html:160
+msgid "Седёлки"
+msgstr ""
+
+#: templates/base.html:164 templates/base.html:188
+msgid "Компания"
+msgstr "Компания"
+
+#: templates/base.html:173
+msgid "Контакты"
+msgstr "Байланыс"
+
+#: templates/base.html:180
+msgid "Работаем по всему Казахстану"
+msgstr "Бүкіл Қазақстан бойынша жұмыс істейміз"
+
+#: templates/base.html:185
+msgid "Реквизиты"
+msgstr "Реквизиттер"
+
+#: templates/base.html:193 templates/base.html:197 templates/base.html:201
+msgid "Уточняется"
+msgstr "Нақтылануда"
+
+#: templates/base.html:196
+msgid "Банк"
+msgstr "Банк"
+
+#: templates/base.html:206
+msgid "© 2026 EuroFit Kazakhstan. Все права защищены."
+msgstr ""
+
+#: templates/base.html:207
+msgid "Электросварные фитинги из Европы"
+msgstr ""
+
+#: templates/base.html:216 templates/thanks.html:17
+msgid "Написать в WhatsApp"
+msgstr "WhatsApp-қа жазу"
+
+#: templates/index.html:59
+msgid "Официальный дистрибьютор в РК"
+msgstr "ҚР-дағы ресми дистрибьютор"
+
+#: templates/index.html:61
+msgid "Прямые поставки"
+msgstr "Тікелей жеткізілімдер"
+
+#: templates/index.html:62
+msgid "электросварных"
+msgstr "электрмуфталы"
+
+#: templates/index.html:63
+msgid "фитингов"
+msgstr "фитингтер"
+
+#: templates/index.html:65
+msgid ""
+"Официальный дистрибьютор в Казахстане. Наличие на складе в Астане, быстрые "
+"отгрузки и помощь в подборе под ваш объект."
+msgstr ""
+"Қазақстандағы ресми дистрибьютор. Астанада қоймада бар, жылдам жөнелту және "
+"нысаныңызға сай таңдауға көмек."
+
+#: templates/index.html:68
+msgid "Оставить заказ"
+msgstr "Тапсырыс қалдыру"
+
+#: templates/index.html:71
+msgid "Позвонить"
+msgstr "Қоңырау шалу"
+
+#: templates/index.html:76
+msgid "Позиций"
+msgstr ""
+
+#: templates/index.html:76
+msgid "в каталоге"
+msgstr ""
+
+#: templates/index.html:80
+msgid "Стран-"
+msgstr ""
+
+#: templates/index.html:80
+msgid "производителей"
+msgstr ""
+
+#: templates/index.html:84
+msgid "Клиентов"
+msgstr ""
+
+#: templates/index.html:84
+msgid "доверяют нам"
+msgstr ""
+
+#: templates/index.html:88
+msgid "Лет"
+msgstr ""
+
+#: templates/index.html:88
+msgid "на рынке"
+msgstr ""
+
+#: templates/index.html:103 templates/index.html:111
+msgid "80+ лет опыта производства"
+msgstr "80+ жыл өндірістік тәжірибе"
+
+#: templates/index.html:105 templates/index.html:113
+msgid "Прямые поставки с завода"
+msgstr "Зауыттан тікелей жеткізу"
+
+#: templates/index.html:106 templates/index.html:114
+msgid "Наличие в Астане"
+msgstr "Астанада бар"
+
+#: templates/index.html:107 templates/index.html:115
+msgid "Диаметры 20–630 мм"
+msgstr ""
+
+#: templates/index.html:108 templates/index.html:116
+msgid "Быстрая доставка по Казахстану"
+msgstr "Қазақстан бойынша жылдам жеткізу"
+
+#: templates/index.html:109 templates/index.html:117
+msgid "Помощь в подборе"
+msgstr "Таңдауға көмек"
+
+#: templates/index.html:126
+msgid "Подберите фитинги под ваш объект"
+msgstr "Нысаныңызға фитингтерді таңдаңыз"
+
+#: templates/index.html:127
+msgid "Полный каталог"
+msgstr "Толық каталог"
+
+#: templates/index.html:129
+msgid ""
+"Полный ассортимент электросварных фитингов PE100 в наличии и под заказ от "
+"официального дистрибьютора Dökerler"
+msgstr ""
+
+#: templates/index.html:171
+msgid "позиций в каталоге"
+msgstr ""
+
+#: templates/index.html:176
+msgid "КАТАЛОГ"
+msgstr ""
+
+#: templates/index.html:186
+msgid "Электросварные фитинги"
+msgstr "Электрмуфталы фитингтер"
+
+#: templates/index.html:198
+msgid "О нас"
+msgstr "Біз туралы"
+
+#: templates/index.html:200
+msgid "Почему выбирают нас"
+msgstr "Неге бізді таңдайды"
+
+#: templates/index.html:201
+msgid ""
+"Мы являемся официальным и единственным дистрибьютором электросварных "
+"фитингов Dokerler в Казахстане. Работаем напрямую с заводом-производителем, "
+"без посредников и перекупщиков. Благодаря этому наши клиенты получают "
+"оригинальную продукцию по честной цене."
+msgstr ""
+
+#: templates/index.html:209
+msgid "Высшее качество"
+msgstr "Жоғары сапа"
+
+#: templates/index.html:210
+msgid "Материал PE 100-RC с повышенной стойкостью к трещинам и давлению."
+msgstr ""
+
+#: templates/index.html:216
+msgid "Оперативность"
+msgstr "Жеделдік"
+
+#: templates/index.html:217
+msgid "Складская программа в Астане позволяет делать отгрузки день в день."
+msgstr ""
+
+#: templates/index.html:223
+msgid "Полный ассортимент"
+msgstr "Толық ассортимент"
+
+#: templates/index.html:224
+msgid "Диаметры от 20 до 630 мм всегда в наличии для любых задач ГВС и ХВС."
+msgstr ""
+
+#: templates/index.html:228
+msgid ""
+"Наша компания работает на рынке Казахстана более 10 лет. За это время мы "
+"успешно реализовали более 500 проектов в сфере поставок инженерного "
+"оборудования и строительных решений. Выбирая нас, вы работаете с официальным "
+"поставщиком с опытом на рынке и прямыми поставками от производителя."
+msgstr ""
+
+#: templates/index.html:237
+msgid "Наши клиенты"
+msgstr "Біздің клиенттер"
+
+#: templates/index.html:251
+msgid "Как мы работаем"
+msgstr "Біз қалай жұмыс істейміз"
+
+#: templates/index.html:253
+msgid "План поставки"
+msgstr "Жеткізу жоспары"
+
+#: templates/index.html:253
+msgid "по шагам"
+msgstr "қадам бойынша"
+
+#: templates/index.html:254
+msgid ""
+"Показываем прозрачный маршрут проекта: от заявки до отгрузки на объект с "
+"контролем каждого этапа."
+msgstr ""
+
+#: templates/index.html:279
+msgid "Маршрут проекта"
+msgstr "Жоба маршруты"
+
+#: templates/index.html:286
+msgid "до 30 минут"
+msgstr ""
+
+#: templates/index.html:288
+msgid "Консультация и бриф"
+msgstr ""
+
+#: templates/index.html:289
+msgid ""
+"Инженер уточняет задачу объекта, диаметры и условия монтажа, после чего "
+"формируем точный список фитингов."
+msgstr ""
+
+#: templates/index.html:295
+msgid "до 2 часов"
+msgstr ""
+
+#: templates/index.html:297
+msgid "Расчёт и коммерческое предложение"
+msgstr ""
+
+#: templates/index.html:298
+msgid ""
+"Готовим КП с ценой, сроками и логистикой. При необходимости сразу предлагаем "
+"эквиваленты по бюджету."
+msgstr ""
+
+#: templates/index.html:304
+msgid "перед отгрузкой"
+msgstr ""
+
+#: templates/index.html:306
+msgid "Комплектация и контроль качества"
+msgstr ""
+
+#: templates/index.html:307
+msgid ""
+"Проверяем спецификацию, сертификаты и маркировку каждой позиции, чтобы "
+"исключить ошибки на объекте."
+msgstr ""
+
+#: templates/index.html:313
+msgid "доставка по РК"
+msgstr ""
+
+#: templates/index.html:315
+msgid "Доставка и сопровождение"
+msgstr ""
+
+#: templates/index.html:316
+msgid ""
+"Организуем отгрузку на объект или склад, передаём документы и остаёмся на "
+"связи по техническим вопросам."
+msgstr ""
+
+#: templates/thanks.html:4
+msgid "Спасибо"
+msgstr "Рақмет"
+
+#: templates/thanks.html:10
+msgid "Ваша заявка успешно отправлена"
+msgstr "Өтініміңіз сәтті жіберілді"
+
+#: templates/thanks.html:11
+msgid "Менеджер свяжется с вами в рабочее время и уточнит детали заказа."
+msgstr ""
+
+#: templates/thanks.html:12
+msgid ""
+"Если у вас есть дополнительные вопросы, вы можете написать нам в WhatsApp."
+msgstr ""
+
+#: templates/thanks.html:35
+msgid "Здравствуйте! Хочу получить коммерческое предложение."
+msgstr ""
+
+#: templates/thanks.html:37
+msgid "Телефон"
+msgstr "Телефон"

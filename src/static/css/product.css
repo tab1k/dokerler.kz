@@ -322,3 +322,23 @@
     .related-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .prod-title-main { font-size: 28px; }
 }
+/* 3D Model Container */
+.prod-model-container {
+  width: 100%;
+  height: 500px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.prod-main-model-viewer {
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+@media (max-width: 768px) {
+  .prod-model-container {
+    height: 350px;
+  }
+}
