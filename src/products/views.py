@@ -62,7 +62,7 @@ class ProductDetailView(View):
     def get(self, request, slug):
         product = get_object_or_404(Product, slug=slug, is_active=True)
         category_slug = (product.category.slug or '').lower()
-        use_mufta_model = 'mufta' in category_slug or 'муфта' in product.name.lower()
+        use_mufta_model = 'muft' in category_slug or 'муфт' in product.name.lower()
             
         related_products = list(
             Product.objects

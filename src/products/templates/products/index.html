@@ -152,8 +152,8 @@
         data-search="{{ product.diameter_display }} {{ product.angle_display }} {{ product.material }} {{ product.pressure_rating }} {{ product.standard }}"
       >
         <div class="pcard-tag">{{ product.sdr }}</div>
-        <div class="pcard-img {% if 'mufta' in product.category.slug or 'mufta' in product.name|lower %}has-model{% endif %}">
-          {% if 'mufta' in product.category.slug or 'mufta' in product.name|lower %}
+        <div class="pcard-img {% if 'muft' in product.category.slug or 'муфт' in product.name|lower %}has-model{% endif %}">
+          {% if 'muft' in product.category.slug or 'муфт' in product.name|lower %}
           <div class="pcard-model-wrap">
             <model-viewer
               class="pcard-model-viewer"
@@ -244,7 +244,7 @@
               data-name="{{ product.name }}" 
               data-price="{{ product.price }}"
               data-image="{% if product.image %}{{ product.image.url }}{% endif %}"
-              data-use-model="{% if 'mufta' in product.category.slug or 'mufta' in product.name|lower %}1{% else %}0{% endif %}"
+              data-use-model="{% if 'muft' in product.category.slug or 'муфт' in product.name|lower %}1{% else %}0{% endif %}"
               aria-label="{% trans 'Добавить в корзину' %}: {{ product.name }}">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
             </button>
