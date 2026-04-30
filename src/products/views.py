@@ -64,13 +64,23 @@ class ProductDetailView(View):
         category_slug = (product.category.slug or '').lower()
         use_mufta_model = 'mufta' in category_slug or 'муфта' in product.name.lower()
             
-        # Get related products (same category)
-        related_products = (
+        related_products = list(
             Product.objects
             .filter(category=product.category, is_active=True)
             .exclude(id=product.id)
             .order_by('?')[:4]
         )
+
+        if len(related_products) < 4:
+            existing_ids = [item.id for item in related_products]
+            fallback_products = (
+                Product.objects
+                .filter(is_active=True, category__is_active=True)
+                .exclude(id=product.id)
+                .exclude(id__in=existing_ids)
+                .order_by('?')[: 4 - len(related_products)]
+            )
+            related_products.extend(list(fallback_products))
             
         return render(
             request,
