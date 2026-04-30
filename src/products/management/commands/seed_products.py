@@ -7,7 +7,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         category, created = Category.objects.get_or_create(
-            slug='mufty',
+            slug='mufta',
             defaults={
                 'name': 'Муфты', 
                 'sort_order': 1,
