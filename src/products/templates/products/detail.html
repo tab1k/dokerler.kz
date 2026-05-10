@@ -23,248 +23,124 @@
 
     <section class="product-main">
         <div class="product-main-inner">
-            <div class="product-layout">
-                <div class="product-content">
-                    <header class="product-header-card">
-                        <div class="product-header-meta">
-                            <span class="product-kicker">{{ product.category.name }}</span>
-                            <h1 class="product-title">{{ product.name }}</h1>
-                            <p class="product-subtitle">
-                                {% if product.description %}
-                                    {{ product.description|striptags|truncatechars:180 }}
-                                {% else %}
-                                    {% trans "Электросварной фитинг для полиэтиленовых трубопроводов с надежным соединением, стабильной геометрией и удобным монтажом." %}
-                                {% endif %}
-                            </p>
-                        </div>
-                        <div class="product-header-facts">
-                            <div class="product-fact">
-                                <span>{% trans "Артикул" %}</span>
-                                <strong>{{ product.sku }}</strong>
-                            </div>
-                            <div class="product-fact">
-                                <span>{% trans "Диаметр" %}</span>
-                                <strong>{{ product.diameter_display }}</strong>
-                            </div>
-                            <div class="product-fact">
-                                <span>{% trans "SDR" %}</span>
-                                <strong>{{ product.sdr }}</strong>
-                            </div>
-                            <div class="product-fact">
-                                <span>{% trans "Давление" %}</span>
-                                <strong>{{ product.pressure_rating }}</strong>
-                            </div>
-                        </div>
-                    </header>
-
-                    <div class="product-showcase">
-                        <div class="product-visual-card">
-                            {% if use_mufta_model %}
-                            <div class="product-mufta-slider" data-mufta-slider>
-                                <div class="product-mufta-track" data-mufta-track>
-                                    <div class="product-mufta-slide">
-                                        <div class="product-model-wrap">
-                                            <model-viewer
-                                                class="product-model-viewer"
-                                                src="{% static 'glb/mufta.glb' %}"
-                                                camera-controls
-                                                auto-rotate
-                                                interaction-prompt="none"
-                                                shadow-intensity="1"
-                                                exposure="1"
-                                                environment-image="neutral"
-                                                camera-orbit="45deg 75deg 105%"
-                                                min-camera-orbit="auto auto 5%"
-                                                max-camera-orbit="auto auto 200%"
-                                                loading="eager"
-                                            >
-                                                <div class="product-model-skeleton" slot="poster" aria-hidden="true">
-                                                    <div class="product-model-skeleton-ring"></div>
-                                                </div>
-                                            </model-viewer>
-                                        </div>
-                                    </div>
-                                    <div class="product-mufta-slide">
-                                        <div class="product-secondary-shot">
-                                            <img src="{% static 'img/mufta1.png' %}" alt="{{ product.name }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-mufta-controls">
-                                    <button class="product-mufta-arrow" type="button" data-mufta-prev aria-label="{% trans 'Предыдущий слайд' %}">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M15 18l-6-6 6-6"/>
-                                        </svg>
-                                    </button>
-                                    <div class="product-mufta-dots">
-                                        <button class="product-mufta-dot active" type="button" data-mufta-dot="0" aria-label="{% trans 'Слайд 1' %}"></button>
-                                        <button class="product-mufta-dot" type="button" data-mufta-dot="1" aria-label="{% trans 'Слайд 2' %}"></button>
-                                    </div>
-                                    <button class="product-mufta-arrow" type="button" data-mufta-next aria-label="{% trans 'Следующий слайд' %}">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M9 18l6-6-6-6"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                            {% elif product.image %}
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                            {% else %}
-                                {% if product.angle_degree %}
-                                <svg viewBox="0 0 240 180" fill="none" stroke="#0B38D4" stroke-width="2">
-                                    <path d="M55 130 Q55 65 120 65" stroke-width="24" stroke-linecap="round" opacity=".12"/>
-                                    <path d="M55 130 Q55 65 120 65" stroke-linecap="round"/>
-                                    <rect x="42" y="118" width="28" height="36" fill="#FAFAF8"/>
-                                    <rect x="108" y="52" width="36" height="28" fill="#FAFAF8"/>
-                                </svg>
-                                {% elif product.outlet_diameter_mm %}
-                                <svg viewBox="0 0 240 180" fill="none" stroke="#0B38D4" stroke-width="2">
-                                    <rect x="48" y="78" width="144" height="26" rx="12" fill="rgba(11,56,212,.08)"/>
-                                    <rect x="108" y="34" width="24" height="70" rx="10" fill="rgba(11,56,212,.08)"/>
-                                    <rect x="48" y="78" width="144" height="26" rx="12"/>
-                                    <rect x="108" y="34" width="24" height="70" rx="10"/>
-                                </svg>
-                                {% elif product.reduced_diameter_mm %}
-                                <svg viewBox="0 0 240 180" fill="none" stroke="#0B38D4" stroke-width="2">
-                                    <path d="M44 88h58l28-24h66v48h-66l-28-24H44z" fill="rgba(11,56,212,.08)"/>
-                                    <path d="M44 88h58l28-24h66v48h-66l-28-24H44z"/>
-                                </svg>
-                                {% else %}
-                                <svg viewBox="0 0 240 180" fill="none" stroke="#0B38D4" stroke-width="2">
-                                    <rect x="52" y="66" width="136" height="48" rx="22" fill="rgba(11,56,212,.08)"/>
-                                    <circle cx="120" cy="90" r="21"/>
-                                    <rect x="52" y="66" width="136" height="48" rx="22"/>
-                                </svg>
-                                {% endif %}
-                            {% endif %}
-                        </div>
-
-                        <div class="product-summary-card">
-                            <div class="product-summary-row">
-                                <span>{% trans "Материал" %}</span>
-                                <strong>{{ product.material }}</strong>
-                            </div>
-                            <div class="product-summary-row">
-                                <span>{% trans "Стандарт" %}</span>
-                                <strong>{{ product.standard }}</strong>
-                            </div>
-                            {% if product.welding_voltage_v %}
-                            <div class="product-summary-row">
-                                <span>{% trans "Напряжение сварки" %}</span>
-                                <strong>{{ product.welding_voltage_v }} {% trans "В" %}</strong>
-                            </div>
-                            {% endif %}
-                            {% if product.welding_time_sec %}
-                            <div class="product-summary-row">
-                                <span>{% trans "Время сварки" %}</span>
-                                <strong>{{ product.welding_time_sec }} {% trans "сек" %}</strong>
-                            </div>
-                            {% endif %}
-                            {% if product.cooling_time_min %}
-                            <div class="product-summary-row">
-                                <span>{% trans "Охлаждение" %}</span>
-                                <strong>{{ product.cooling_time_min }} {% trans "мин" %}</strong>
-                            </div>
-                            {% endif %}
-                        </div>
+            <section class="product-hero">
+                <div class="product-gallery-card">
+                    <div class="product-gallery-head">
+                        <span class="product-kicker">{{ product.category.name }}</span>
+                        <h1 class="product-title">{{ product.name }}</h1>
                     </div>
 
-                    <section class="product-section-card">
-                        <div class="product-section-head">
-                            <span class="product-kicker">{% trans "Описание" %}</span>
-                            <h2>{% trans "О товаре" %}</h2>
+                    <div class="product-visual-card">
+                        {% if use_mufta_model %}
+                        <div class="product-mufta-slider" data-mufta-slider>
+                            <div class="product-mufta-track" data-mufta-track>
+                                <div class="product-mufta-slide">
+                                    <div class="product-model-wrap">
+                                        <model-viewer
+                                            class="product-model-viewer"
+                                            src="{% static 'glb/mufta.glb' %}"
+                                            camera-controls
+                                            auto-rotate
+                                            interaction-prompt="none"
+                                            shadow-intensity="1"
+                                            exposure="1"
+                                            environment-image="neutral"
+                                            camera-orbit="45deg 75deg 105%"
+                                            min-camera-orbit="auto auto 5%"
+                                            max-camera-orbit="auto auto 200%"
+                                            loading="eager"
+                                        >
+                                            <div class="product-model-skeleton" slot="poster" aria-hidden="true">
+                                                <div class="product-model-skeleton-ring"></div>
+                                            </div>
+                                        </model-viewer>
+                                    </div>
+                                </div>
+                                <div class="product-mufta-slide">
+                                    <div class="product-secondary-shot">
+                                        <img src="{% static 'img/mufta1.png' %}" alt="{{ product.name }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-mufta-controls">
+                                <button class="product-mufta-arrow" type="button" data-mufta-prev aria-label="{% trans 'Предыдущий слайд' %}">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 18l-6-6 6-6"/>
+                                    </svg>
+                                </button>
+                                <div class="product-mufta-dots">
+                                    <button class="product-mufta-dot active" type="button" data-mufta-dot="0" aria-label="{% trans 'Слайд 1' %}"></button>
+                                    <button class="product-mufta-dot" type="button" data-mufta-dot="1" aria-label="{% trans 'Слайд 2' %}"></button>
+                                </div>
+                                <button class="product-mufta-arrow" type="button" data-mufta-next aria-label="{% trans 'Следующий слайд' %}">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 18l6-6-6-6"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
-                        <div class="product-copy">
-                            {% if product.description %}
-                                {{ product.description|linebreaks }}
-                            {% else %}
-                                <p>{% trans "Высококачественный электросварной фитинг для напорных трубопроводов из полиэтилена. Подходит для стабильной и герметичной сварки в инженерных сетях и промышленных проектах." %}</p>
-                            {% endif %}
-                        </div>
-                    </section>
-
-                    <section class="product-section-card">
-                        <div class="product-section-head">
-                            <span class="product-kicker">{% trans "Спецификация" %}</span>
-                            <h2>{% trans "Технические характеристики" %}</h2>
-                        </div>
-                        <div class="product-spec-grid">
-                            <div class="product-spec-item">
-                                <span>{% trans "Категория" %}</span>
-                                <strong>{{ product.category.name }}</strong>
-                            </div>
-                            <div class="product-spec-item">
-                                <span>{% trans "Диаметр" %}</span>
-                                <strong>{{ product.diameter_display }}</strong>
-                            </div>
-                            <div class="product-spec-item">
-                                <span>{% trans "SDR" %}</span>
-                                <strong>{{ product.sdr }}</strong>
-                            </div>
-                            <div class="product-spec-item">
-                                <span>{% trans "Рабочее давление" %}</span>
-                                <strong>{{ product.pressure_rating }}</strong>
-                            </div>
-                            <div class="product-spec-item">
-                                <span>{% trans "Материал" %}</span>
-                                <strong>{{ product.material }}</strong>
-                            </div>
-                            <div class="product-spec-item">
-                                <span>{% trans "Стандарт" %}</span>
-                                <strong>{{ product.standard }}</strong>
-                            </div>
+                        {% elif product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
                             {% if product.angle_degree %}
-                            <div class="product-spec-item">
-                                <span>{% trans "Угол" %}</span>
-                                <strong>{{ product.angle_display }}</strong>
-                            </div>
+                            <svg viewBox="0 0 240 180" fill="none" stroke="#0B38D4" stroke-width="2">
+                                <path d="M55 130 Q55 65 120 65" stroke-width="24" stroke-linecap="round" opacity=".12"/>
+                                <path d="M55 130 Q55 65 120 65" stroke-linecap="round"/>
+                                <rect x="42" y="118" width="28" height="36" fill="#FAFAF8"/>
+                                <rect x="108" y="52" width="36" height="28" fill="#FAFAF8"/>
+                            </svg>
+                            {% elif product.outlet_diameter_mm %}
+                            <svg viewBox="0 0 240 180" fill="none" stroke="#0B38D4" stroke-width="2">
+                                <rect x="48" y="78" width="144" height="26" rx="12" fill="rgba(11,56,212,.08)"/>
+                                <rect x="108" y="34" width="24" height="70" rx="10" fill="rgba(11,56,212,.08)"/>
+                                <rect x="48" y="78" width="144" height="26" rx="12"/>
+                                <rect x="108" y="34" width="24" height="70" rx="10"/>
+                            </svg>
+                            {% elif product.reduced_diameter_mm %}
+                            <svg viewBox="0 0 240 180" fill="none" stroke="#0B38D4" stroke-width="2">
+                                <path d="M44 88h58l28-24h66v48h-66l-28-24H44z" fill="rgba(11,56,212,.08)"/>
+                                <path d="M44 88h58l28-24h66v48h-66l-28-24H44z"/>
+                            </svg>
+                            {% else %}
+                            <svg viewBox="0 0 240 180" fill="none" stroke="#0B38D4" stroke-width="2">
+                                <rect x="52" y="66" width="136" height="48" rx="22" fill="rgba(11,56,212,.08)"/>
+                                <circle cx="120" cy="90" r="21"/>
+                                <rect x="52" y="66" width="136" height="48" rx="22"/>
+                            </svg>
                             {% endif %}
-                            {% if product.length_mm %}
-                            <div class="product-spec-item">
-                                <span>{% trans "Длина" %}</span>
-                                <strong>{{ product.length_mm }} {% trans "мм" %}</strong>
-                            </div>
-                            {% endif %}
-                            {% if product.barcode %}
-                            <div class="product-spec-item">
-                                <span>{% trans "Штрихкод" %}</span>
-                                <strong>{{ product.barcode }}</strong>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </section>
+                        {% endif %}
+                    </div>
                 </div>
 
-                <aside class="product-sidebar">
-                    <div class="product-buy-card">
-                        <span class="product-kicker">{{ product.category.name }}</span>
-                        <div class="product-buy-price">{{ product.price_display }}</div>
-                        <div class="product-stock {% if product.stock_status == 'in_stock' %}is-in-stock{% elif product.stock_status == 'preorder' %}is-preorder{% else %}is-out{% endif %}">
-                            <span class="product-stock-dot"></span>
-                            {{ product.stock_label }}
-                        </div>
-                        <div class="product-buy-actions">
-                            <button
-                                class="product-primary-btn"
-                                type="button"
-                                data-add-cart
-                                data-id="{{ product.id }}"
-                                data-name="{{ product.name }}"
-                                data-price="{{ product.price|default_if_none:0 }}"
-                                data-image="{% if product.image %}{{ product.image.url }}{% endif %}"
-                                data-use-model="{% if use_mufta_model %}1{% else %}0{% endif %}"
-                            >
-                                {% trans "Добавить в корзину" %}
-                            </button>
-                            <button class="product-secondary-btn" type="button" data-open-kp>
-                                {% trans "Получить КП на почту" %}
-                            </button>
-                        </div>
-                        <div class="product-buy-note">
-                            <div>{% trans "Склад в Астане" %}</div>
-                            <div>{% trans "Отгрузка по Казахстану" %}</div>
-                            <div>{% trans "Сопровождение по подбору" %}</div>
-                        </div>
+                <aside class="product-buy-card">
+                    <div class="product-buy-price">{{ product.price_display }}</div>
+                    <div class="product-stock {% if product.stock_status == 'in_stock' %}is-in-stock{% elif product.stock_status == 'preorder' %}is-preorder{% else %}is-out{% endif %}">
+                        <span class="product-stock-dot"></span>
+                        {{ product.stock_label }}
+                    </div>
+
+                    <div class="product-buy-actions">
+                        <button
+                            class="product-primary-btn"
+                            type="button"
+                            data-add-cart
+                            data-id="{{ product.id }}"
+                            data-name="{{ product.name }}"
+                            data-price="{{ product.price|default_if_none:0 }}"
+                            data-image="{% if product.image %}{{ product.image.url }}{% endif %}"
+                            data-use-model="{% if use_mufta_model %}1{% else %}0{% endif %}"
+                        >
+                            {% trans "Добавить в корзину" %}
+                        </button>
+                        <button class="product-secondary-btn" type="button" data-open-kp>
+                            {% trans "Получить КП на почту" %}
+                        </button>
+                    </div>
+
+                    <div class="product-buy-note">
+                        <div>{% trans "Склад в Астане" %}</div>
+                        <div>{% trans "Отгрузка по Казахстану" %}</div>
+                        <div>{% trans "Сопровождение по подбору" %}</div>
                     </div>
 
                     <div class="product-help-card">
@@ -273,15 +149,99 @@
                         <a href="tel:+77025544196">+7 702 554 4196</a>
                     </div>
                 </aside>
-            </div>
+            </section>
+
+            <section class="product-meta-grid">
+                <article class="product-section-card">
+                    <div class="product-section-head">
+                        <h2>{% trans "Описание" %}</h2>
+                    </div>
+                    <div class="product-copy">
+                        {% if product.description %}
+                            {{ product.description|linebreaks }}
+                        {% else %}
+                            <p>{% trans "Высококачественный электросварной фитинг для напорных трубопроводов из полиэтилена. Подходит для стабильной и герметичной сварки в инженерных сетях и промышленных проектах." %}</p>
+                        {% endif %}
+                    </div>
+                </article>
+
+                <article class="product-section-card">
+                    <div class="product-section-head">
+                        <h2>{% trans "Характеристики" %}</h2>
+                    </div>
+                    <div class="product-spec-grid">
+                        <div class="product-spec-item">
+                            <span>{% trans "Артикул" %}</span>
+                            <strong>{{ product.sku }}</strong>
+                        </div>
+                        <div class="product-spec-item">
+                            <span>{% trans "Категория" %}</span>
+                            <strong>{{ product.category.name }}</strong>
+                        </div>
+                        <div class="product-spec-item">
+                            <span>{% trans "Диаметр" %}</span>
+                            <strong>{{ product.diameter_display }}</strong>
+                        </div>
+                        <div class="product-spec-item">
+                            <span>{% trans "SDR" %}</span>
+                            <strong>{{ product.sdr }}</strong>
+                        </div>
+                        <div class="product-spec-item">
+                            <span>{% trans "Рабочее давление" %}</span>
+                            <strong>{{ product.pressure_rating }}</strong>
+                        </div>
+                        <div class="product-spec-item">
+                            <span>{% trans "Материал" %}</span>
+                            <strong>{{ product.material }}</strong>
+                        </div>
+                        <div class="product-spec-item">
+                            <span>{% trans "Стандарт" %}</span>
+                            <strong>{{ product.standard }}</strong>
+                        </div>
+                        {% if product.welding_voltage_v %}
+                        <div class="product-spec-item">
+                            <span>{% trans "Напряжение сварки" %}</span>
+                            <strong>{{ product.welding_voltage_v }} {% trans "В" %}</strong>
+                        </div>
+                        {% endif %}
+                        {% if product.welding_time_sec %}
+                        <div class="product-spec-item">
+                            <span>{% trans "Время сварки" %}</span>
+                            <strong>{{ product.welding_time_sec }} {% trans "сек" %}</strong>
+                        </div>
+                        {% endif %}
+                        {% if product.cooling_time_min %}
+                        <div class="product-spec-item">
+                            <span>{% trans "Охлаждение" %}</span>
+                            <strong>{{ product.cooling_time_min }} {% trans "мин" %}</strong>
+                        </div>
+                        {% endif %}
+                        {% if product.angle_degree %}
+                        <div class="product-spec-item">
+                            <span>{% trans "Угол" %}</span>
+                            <strong>{{ product.angle_display }}</strong>
+                        </div>
+                        {% endif %}
+                        {% if product.length_mm %}
+                        <div class="product-spec-item">
+                            <span>{% trans "Длина" %}</span>
+                            <strong>{{ product.length_mm }} {% trans "мм" %}</strong>
+                        </div>
+                        {% endif %}
+                        {% if product.barcode %}
+                        <div class="product-spec-item">
+                            <span>{% trans "Штрихкод" %}</span>
+                            <strong>{{ product.barcode }}</strong>
+                        </div>
+                        {% endif %}
+                    </div>
+                </article>
+            </section>
 
             {% if related_products %}
             <section class="product-related">
                 <div class="product-section-head product-related-head">
-                    <div>
-                        <span class="product-kicker">{% trans "Вам может понравиться" %}</span>
-                        <h2>{% trans "Похожие товары" %}</h2>
-                    </div>
+                    <h2>{% trans "Похожие товары" %}</h2>
                     <div class="product-related-actions">
                         <button class="product-carousel-btn" type="button" data-related-prev aria-label="{% trans 'Предыдущие товары' %}">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
