@@ -152,32 +152,11 @@
         data-search="{{ product.diameter_display }} {{ product.angle_display }} {{ product.material }} {{ product.pressure_rating }} {{ product.standard }}"
       >
         <div class="pcard-tag">{{ product.sdr }}</div>
-        <div class="pcard-img {% if 'muft' in product.category.slug or 'муфт' in product.name|lower %}has-model{% endif %}">
-          {% if 'muft' in product.category.slug or 'муфт' in product.name|lower %}
-          <div class="pcard-model-wrap">
-            <model-viewer
-              class="pcard-model-viewer"
-              src="{% static 'glb/mufta.glb' %}"
-              camera-controls
-              auto-rotate
-              auto-rotate-delay="0"
-              rotation-per-second="24deg"
-              interaction-prompt="none"
-              shadow-intensity="1"
-              exposure="1.02"
-              environment-image="neutral"
-              bounds="tight"
-              camera-target="auto auto 0"
-              min-camera-orbit="auto auto auto"
-              max-camera-orbit="auto auto auto"
-            >
-              <div class="pcard-model-skeleton" slot="poster" aria-hidden="true">
-                <div class="pcard-model-skeleton-ring"></div>
-              </div>
-            </model-viewer>
-          </div>
-          {% elif product.image %}
+        <div class="pcard-img">
+          {% if product.image %}
           <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          {% elif 'muft' in product.category.slug or 'муфт' in product.name|lower %}
+          <img src="{% static 'img/mufta1.png' %}" alt="{{ product.name }}">
           {% elif product.category.slug == 'otvody' %}
           <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
             <path d="M40 100 Q 40 40 100 40" stroke-width="16" fill="none" opacity=".1"/>

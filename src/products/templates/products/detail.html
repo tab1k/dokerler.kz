@@ -35,6 +35,15 @@
                         <div class="product-mufta-slider" data-mufta-slider>
                             <div class="product-mufta-track" data-mufta-track>
                                 <div class="product-mufta-slide">
+                                    <div class="product-secondary-shot">
+                                        {% if product.image %}
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                        {% else %}
+                                        <img src="{% static 'img/mufta1.png' %}" alt="{{ product.name }}">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="product-mufta-slide">
                                     <div class="product-model-wrap">
                                         <model-viewer
                                             class="product-model-viewer"
@@ -54,11 +63,6 @@
                                                 <div class="product-model-skeleton-ring"></div>
                                             </div>
                                         </model-viewer>
-                                    </div>
-                                </div>
-                                <div class="product-mufta-slide">
-                                    <div class="product-secondary-shot">
-                                        <img src="{% static 'img/mufta1.png' %}" alt="{{ product.name }}">
                                     </div>
                                 </div>
                             </div>
@@ -236,6 +240,39 @@
                         {% endif %}
                     </div>
                 </article>
+            </section>
+
+            <section class="product-section-card product-size-table-section">
+                <div class="product-section-head">
+                    <h2>{% trans "Размерный ряд" %}</h2>
+                </div>
+                <div class="product-table-wrap">
+                    <table class="product-size-table">
+                        <thead>
+                            <tr>
+                                <th>d</th>
+                                <th>{% trans "Давление (bar)" %}</th>
+                                <th>D (mm)</th>
+                                <th>L (mm)</th>
+                                <th>kg</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>20</td><td>pn16</td><td>32</td><td>61</td><td>0,034</td></tr>
+                            <tr><td>25</td><td>pn16</td><td>42</td><td>74</td><td>0,063</td></tr>
+                            <tr><td>32</td><td>pn16</td><td>47</td><td>78</td><td>0,067</td></tr>
+                            <tr><td>40</td><td>pn16</td><td>58</td><td>88</td><td>0,106</td></tr>
+                            <tr><td>50</td><td>pn16</td><td>71</td><td>99</td><td>0,153</td></tr>
+                            <tr><td>63</td><td>pn16</td><td>81</td><td>107</td><td>0,203</td></tr>
+                            <tr><td>75</td><td>pn16</td><td>97</td><td>120</td><td>0,319</td></tr>
+                            <tr><td>90</td><td>pn16</td><td>111</td><td>123</td><td>0,370</td></tr>
+                            <tr><td>110</td><td>pn16</td><td>133</td><td>141</td><td>0,600</td></tr>
+                            <tr><td>125</td><td>pn16</td><td>156</td><td>168</td><td>0,905</td></tr>
+                            <tr><td>140</td><td>pn16</td><td>181</td><td>172</td><td>1,378</td></tr>
+                            <tr><td>160</td><td>pn16</td><td>190</td><td>178</td><td>1,320</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
             {% if related_products %}

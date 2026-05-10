@@ -291,7 +291,7 @@
 }
 .pcard-img{
   width:100%;aspect-ratio:4/3;background:#FFFFFF;
-  display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
 }
 .pcard-img svg{width:100%;height:100%;transition:transform .4s}
 .pcard-img img{width:100%;height:100%;object-fit:contain;display:block}
