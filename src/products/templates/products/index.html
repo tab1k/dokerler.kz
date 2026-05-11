@@ -223,7 +223,8 @@
               data-name="{{ product.name }}" 
               data-price="{{ product.price }}"
               data-image="{% if product.image %}{{ product.image.url }}{% endif %}"
-              data-use-model="{% if 'muft' in product.category.slug or 'муфт' in product.name|lower %}1{% else %}0{% endif %}"
+              data-use-model="{% if product.category.model_3d %}1{% else %}0{% endif %}"
+              data-model-url="{% if product.category.model_3d %}{{ product.category.model_3d.url }}{% endif %}"
               aria-label="{% trans 'Добавить в корзину' %}: {{ product.name }}">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
             </button>

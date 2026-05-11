@@ -4,6 +4,8 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField('Название', max_length=120)
     slug = models.SlugField('URL-код', max_length=140, unique=True)
+    image = models.ImageField('Фото категории', upload_to='categories/', blank=True)
+    model_3d = models.FileField('3D модель категории (.glb/.gltf)', upload_to='category_models/', blank=True)
     description = models.TextField('Описание', blank=True)
     sort_order = models.PositiveIntegerField('Порядок', default=0)
     is_active = models.BooleanField('Активна', default=True)

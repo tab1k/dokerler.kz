@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="product-visual-card">
-                        {% if use_mufta_model %}
+                        {% if model_3d_url %}
                         <div class="product-mufta-slider" data-mufta-slider>
                             <div class="product-mufta-track" data-mufta-track>
                                 <div class="product-mufta-slide">
@@ -47,7 +47,7 @@
                                     <div class="product-model-wrap">
                                         <model-viewer
                                             class="product-model-viewer"
-                                            src="{% static 'glb/mufta.glb' %}"
+                                            src="{{ model_3d_url }}"
                                             camera-controls
                                             auto-rotate
                                             interaction-prompt="none"
@@ -132,7 +132,8 @@
                             data-name="{{ product.name }}"
                             data-price="{{ product.price|default_if_none:0 }}"
                             data-image="{% if product.image %}{{ product.image.url }}{% endif %}"
-                            data-use-model="{% if use_mufta_model %}1{% else %}0{% endif %}"
+                            data-use-model="{% if model_3d_url %}1{% else %}0{% endif %}"
+                            data-model-url="{{ model_3d_url }}"
                         >
                             {% trans "Добавить в корзину" %}
                         </button>
@@ -335,7 +336,8 @@
     data-name="{{ product.name }}"
     data-price="{{ product.price|default_if_none:0 }}"
     data-image="{% if product.image %}{{ product.image.url }}{% endif %}"
-    data-use-model="{% if use_mufta_model %}1{% else %}0{% endif %}"
+    data-use-model="{% if model_3d_url %}1{% else %}0{% endif %}"
+    data-model-url="{{ model_3d_url }}"
 >
     {% trans "Добавить в корзину" %}
 </button>

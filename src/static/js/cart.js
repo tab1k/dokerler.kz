@@ -26,6 +26,7 @@ class Cart {
           price: parseFloat(btn.dataset.price) || 0,
           image: btn.dataset.image || '',
           useModel: btn.dataset.useModel === '1',
+          modelUrl: btn.dataset.modelUrl || '',
           qty: 1
         };
         this.addItem(product);
@@ -160,13 +161,13 @@ class Cart {
     }
 
     container.innerHTML = this.items.map(item => {
-      const showModel = item.useModel || (item.name && item.name.toLowerCase().includes('муфта'));
+      const showModel = item.useModel && item.modelUrl;
       return `
       <div class="cart-item">
         <div class="cart-item-img">
           ${showModel ? `
             <model-viewer 
-              src="/static/glb/mufta.glb" 
+              src="${item.modelUrl}" 
               style="width:100%; height:100%;" 
               auto-rotate 
               interaction-prompt="none" 

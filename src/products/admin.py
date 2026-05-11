@@ -4,7 +4,7 @@ from .models import Category, Product
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'sort_order', 'is_active')
+    list_display = ('name', 'slug', 'sort_order', 'is_active', 'image', 'model_3d')
     prepopulated_fields = {'slug': ('name',)}
     list_editable = ('sort_order', 'is_active')
 

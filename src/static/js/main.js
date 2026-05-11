@@ -30,11 +30,29 @@ document.querySelectorAll('a,button,.prod-card,.feat-cell,.cert-box,.pstep').for
   });
 });
 
-// Nav scroll
-window.addEventListener('scroll',()=>{
-  const nav = document.getElementById('nav');
-  if(nav) nav.classList.toggle('scrolled',scrollY>40);
-});
+// Nav state: transparent over hero until ticker is passed
+const nav = document.getElementById('nav');
+const ticker = document.querySelector('.ticker-wrap');
+const hero = document.querySelector('.hero');
+
+function updateNavState() {
+  if (!nav) return;
+
+  if (hero && ticker) {
+    const switchPoint = ticker.offsetTop + ticker.offsetHeight - nav.offsetHeight;
+    const passedTicker = window.scrollY > switchPoint;
+    nav.classList.toggle('hero-top', !passedTicker);
+    nav.classList.toggle('scrolled', passedTicker);
+    return;
+  }
+
+  nav.classList.remove('hero-top');
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}
+
+window.addEventListener('scroll', updateNavState);
+window.addEventListener('resize', updateNavState);
+updateNavState();
 
 // Counter animation
 function countUp(el,target,suffix=''){

@@ -46,7 +46,6 @@ class CatalogView(View):
             {
                 'categories': categories,
                 'products': products,
-                'has_mufta_models': products.filter(Q(category__slug__icontains='mufta') | Q(name__icontains='муфта')).exists(),
                 'total_products': products.count(),
                 'selected_category_slug': selected_category_slug,
                 'filter_options': {
@@ -61,8 +60,7 @@ class CatalogView(View):
 class ProductDetailView(View):
     def get(self, request, slug):
         product = get_object_or_404(Product, slug=slug, is_active=True)
-        category_slug = (product.category.slug or '').lower()
-        use_mufta_model = 'muft' in category_slug or 'муфт' in product.name.lower()
+        model_3d_url = product.category.model_3d.url if product.category.model_3d else ''
             
         related_products = list(
             Product.objects
@@ -88,6 +86,6 @@ class ProductDetailView(View):
             {
                 'product': product,
                 'related_products': related_products,
-                'use_mufta_model': use_mufta_model,
+                'model_3d_url': model_3d_url,
             }
         )

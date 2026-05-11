@@ -53,6 +53,11 @@
     </svg>
   </div>
   <div class="hero-accent-line"></div>
+  <div class="hero-space" aria-hidden="true">
+    <span class="hero-stars hero-stars-1"></span>
+    <span class="hero-stars hero-stars-2"></span>
+    <span class="hero-stars hero-stars-3"></span>
+  </div>
 
   <div class="hero-inner">
     <div>
@@ -90,6 +95,9 @@
       </div>
     </div>
     <div class="hero-visual">
+      <div class="hero-visual-glow" aria-hidden="true"></div>
+      <div class="hero-visual-scan" aria-hidden="true"></div>
+      <div class="hero-orbit-dots" aria-hidden="true"></div>
       <div class="hero-vis-card">
         <div id="container3d"></div>
       </div>
@@ -119,21 +127,19 @@
 </div>
 
 <!-- PRODUCTS PREVIEW -->
-<div id="products">
+<div id="products" class="products-showcase">
   <div class="section">
-    <div class="sec-tag reveal">{% trans "Продукция" %}</div>
-    <div class="products-header" style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
-      <h2 class="sec-title reveal" style="margin:0">{% trans "Подберите фитинги под ваш объект" %}</h2>
-      <a href="{% url 'products:catalog' %}" class="btn-primary reveal" style="display:inline-flex; white-space: nowrap;">{% trans "Полный каталог" %} <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:8px"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-    </div>
-    <p class="sec-desc reveal" style="margin-top: 24px; max-width: 520px;">Полный ассортимент электросварных фитингов PE100 в наличии и под заказ от официального дистрибьютора Dökerler</p>
+    <h2 class="sec-title reveal" style="margin-bottom: 38px;">{% trans "Подберите фитинги под ваш объект" %}</h2>
     
     <div class="products-grid">
       {% for category in product_categories %}
       <a href="{% url 'products:catalog' %}?category={{ category.slug }}" class="prod-card reveal">
-        <div class="prod-num">0{{ forloop.counter }} / {{ category.name|upper }}</div>
         <div class="prod-img">
-          {% if category.slug == 'otvody' %}
+          {% if category.image %}
+          <img src="{{ category.image.url }}" alt="{{ category.name }}">
+          {% elif category.slug == 'mufta' or category.slug == 'mufty' %}
+          <img src="{% static 'img/mufta1.png' %}" alt="{{ category.name }}">
+          {% elif category.slug == 'otvody' %}
           <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
             <path d="M40 100 Q 40 40 100 40" stroke-width="16" fill="none" opacity=".1"/>
             <path d="M40 100 Q 40 40 100 40"/>
@@ -328,10 +334,12 @@
 {% block extra_js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script>
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setClearColor(0x000000, 0);
     
     const container = document.getElementById('container3d');
     const updateSize = () => {
@@ -349,50 +357,44 @@
         controls.enablePan = false;
         controls.enableDamping = true;
         controls.autoRotate = true;
-        controls.autoRotateSpeed = 2.0;
-        
-        // Materials
-        const hdpeMaterial = new THREE.MeshStandardMaterial({ color: 0x2a2a2a, roughness: 0.3, metalness: 0.2, side: THREE.DoubleSide });
-        const terminalMaterial = new THREE.MeshStandardMaterial({ color: 0x444444, roughness: 0.1, metalness: 0.9 });
+        controls.autoRotateSpeed = 1.47;
 
-        const fitting = new THREE.Group();
-        const bodyGeo = new THREE.CylinderGeometry(50, 50, 140, 64);
-        const body = new THREE.Mesh(bodyGeo, hdpeMaterial);
-        body.rotation.z = Math.PI / 2;
-        fitting.add(body);
+        const loader = new THREE.GLTFLoader();
+        loader.load(
+            "{% static 'glb/mufta.glb' %}",
+            (gltf) => {
+                const model = gltf.scene;
+                scene.add(model);
 
-        const rimGeo = new THREE.CylinderGeometry(55, 55, 22, 64);
-        const rimL = new THREE.Mesh(rimGeo, hdpeMaterial);
-        rimL.position.x = -60;
-        rimL.rotation.z = Math.PI / 2;
-        fitting.add(rimL);
+                model.rotation.set(0, Math.PI, 0);
 
-        const rimR = new THREE.Mesh(rimGeo, hdpeMaterial);
-        rimR.position.x = 60;
-        rimR.rotation.z = Math.PI / 2;
-        fitting.add(rimR);
+                const box = new THREE.Box3().setFromObject(model);
+                const size = box.getSize(new THREE.Vector3());
+                const center = box.getCenter(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z) || 1;
+                const targetSize = 170;
+                const scale = targetSize / maxDim;
+                model.scale.setScalar(scale);
 
-        const makeTerminal = (xPos) => {
-            const group = new THREE.Group();
-            group.add(new THREE.Mesh(new THREE.CylinderGeometry(9, 9, 14, 32), hdpeMaterial));
-            const pin = new THREE.Mesh(new THREE.CylinderGeometry(4, 4, 10, 16), terminalMaterial);
-            pin.position.y = 9;
-            group.add(pin);
-            group.position.set(xPos, 48, 0);
-            return group;
-        };
+                const scaledBox = new THREE.Box3().setFromObject(model);
+                const scaledCenter = scaledBox.getCenter(new THREE.Vector3());
+                model.position.sub(scaledCenter);
 
-        fitting.add(makeTerminal(-35));
-        fitting.add(makeTerminal(35));
-        scene.add(fitting);
+                controls.target.set(0, 0, 0);
+                controls.update();
+            },
+            undefined,
+            (error) => {
+                console.error('GLB load error:', error);
+            }
+        );
 
         scene.add(new THREE.AmbientLight(0xffffff, 0.6));
         const dirLight = new THREE.DirectionalLight(0xffffff, 1);
         dirLight.position.set(10, 20, 10);
         scene.add(dirLight);
 
-        camera.position.z = 400;
-        camera.position.y = 0;
+        camera.position.set(0, 0, 490);
         updateSize();
 
         function animate() {
