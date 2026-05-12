@@ -69,6 +69,12 @@ class ProductDetailView(View):
             model_3d_url = product.category.model_3d.url if product.category.model_3d else ''
         except Exception:
             model_3d_url = ''
+
+        category_products = (
+            Product.objects
+            .filter(category=product.category, is_active=True)
+            .order_by('diameter_mm', 'outlet_diameter_mm', 'reduced_diameter_mm', 'length_mm', 'name')
+        )
             
         related_products = list(
             Product.objects
@@ -93,6 +99,7 @@ class ProductDetailView(View):
             'products/detail.html',
             {
                 'product': product,
+                'category_products': category_products,
                 'related_products': related_products,
                 'model_3d_url': model_3d_url,
             }
