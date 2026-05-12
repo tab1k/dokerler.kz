@@ -15,5 +15,6 @@ urlpatterns += i18n_patterns(
     prefix_default_language=False
 )
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Serve uploaded media files. In this project deployment there is no separate
+# web server location for /media, so Django must expose MEDIA_URL routes.
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

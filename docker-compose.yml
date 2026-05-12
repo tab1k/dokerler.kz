@@ -23,6 +23,7 @@ services:
     restart: unless-stopped
     volumes:
       - static_data:/app/src/staticfiles
+      - media_data:/app/src/media
 
   db:
     image: postgres:16-alpine
@@ -37,3 +38,4 @@ services:
 volumes:
   postgres_data:
   static_data:
+  media_data:

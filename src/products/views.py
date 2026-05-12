@@ -59,8 +59,16 @@ class CatalogView(View):
 
 class ProductDetailView(View):
     def get(self, request, slug):
-        product = get_object_or_404(Product, slug=slug, is_active=True)
-        model_3d_url = product.category.model_3d.url if product.category.model_3d else ''
+        product = get_object_or_404(
+            Product.objects.select_related('category'),
+            slug=slug,
+            is_active=True,
+            category__is_active=True,
+        )
+        try:
+            model_3d_url = product.category.model_3d.url if product.category.model_3d else ''
+        except Exception:
+            model_3d_url = ''
             
         related_products = list(
             Product.objects
