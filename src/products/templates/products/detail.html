@@ -38,6 +38,8 @@
                                     <div class="product-secondary-shot">
                                         {% if product.image %}
                                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                        {% elif product.category.image %}
+                                        <img src="{{ product.category.image.url }}" alt="{{ product.name }}">
                                         {% else %}
                                         <img src="{% static 'img/mufta1.png' %}" alt="{{ product.name }}">
                                         {% endif %}
@@ -85,6 +87,8 @@
                         </div>
                         {% elif product.image %}
                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% elif product.category.image %}
+                        <img src="{{ product.category.image.url }}" alt="{{ product.name }}">
                         {% else %}
                             {% if product.angle_degree %}
                             <svg viewBox="0 0 240 180" fill="none" stroke="#0B38D4" stroke-width="2">
@@ -131,7 +135,7 @@
                             data-id="{{ product.id }}"
                             data-name="{{ product.name }}"
                             data-price="{{ product.price|default_if_none:0 }}"
-                            data-image="{% if product.image %}{{ product.image.url }}{% endif %}"
+                            data-image="{% if product.image %}{{ product.image.url }}{% elif product.category.image %}{{ product.category.image.url }}{% endif %}"
                             data-use-model="{% if model_3d_url %}1{% else %}0{% endif %}"
                             data-model-url="{{ model_3d_url }}"
                         >
@@ -301,6 +305,8 @@
                         <div class="pcard-img">
                             {% if p.image %}
                             <img src="{{ p.image.url }}" alt="{{ p.name }}">
+                            {% elif p.category.image %}
+                            <img src="{{ p.category.image.url }}" alt="{{ p.name }}">
                             {% else %}
                             <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
                                 <rect x="40" y="45" width="120" height="50" fill="rgba(11,56,212,.03)"/>
@@ -335,7 +341,7 @@
     data-id="{{ product.id }}"
     data-name="{{ product.name }}"
     data-price="{{ product.price|default_if_none:0 }}"
-    data-image="{% if product.image %}{{ product.image.url }}{% endif %}"
+    data-image="{% if product.image %}{{ product.image.url }}{% elif product.category.image %}{{ product.category.image.url }}{% endif %}"
     data-use-model="{% if model_3d_url %}1{% else %}0{% endif %}"
     data-model-url="{{ model_3d_url }}"
 >
