@@ -132,20 +132,22 @@
     <h2 class="sec-title reveal" style="margin-bottom: 38px;">{% trans "Подберите фитинги под ваш объект" %}</h2>
     
     <div class="products-grid">
-      {% for category in product_categories %}
+      {% for item in product_categories %}
+      {% with category=item.instance %}
       <a href="{% url 'products:catalog' %}?category={{ category.slug }}" class="prod-card reveal">
         <div class="prod-img">
-          {% if category.image %}
-          <img src="{{ category.image.url }}" alt="{{ category.name }}">
+          {% if item.image_url %}
+          <img src="{{ item.image_url }}" alt="{{ category.name }}">
           {% else %}
           <img src="{% static 'img/mufta1.png' %}" alt="{{ category.name }}">
           {% endif %}
         </div>
         <div class="prod-info">
           <div class="prod-name">{{ category.name }}</div>
-          <div class="prod-specs">{{ category.product_count }} {% trans "позиций в каталоге" %}</div>
+          <div class="prod-specs">{{ item.product_count }} {% trans "позиций в каталоге" %}</div>
         </div>
       </a>
+      {% endwith %}
       {% empty %}
       <a href="{% url 'products:catalog' %}" class="prod-card reveal">
         <div class="prod-num">01 / {% trans "КАТАЛОГ" %}</div>

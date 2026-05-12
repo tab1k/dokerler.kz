@@ -10,14 +10,28 @@ from .models import Order
 
 class BaseIndexView(View):
     def get(self, request):
-        categories = (
+        categories = list(
             Category.objects
             .filter(is_active=True, products__is_active=True)
             .annotate(product_count=Count('products', filter=Q(products__is_active=True)))
             .order_by('sort_order', 'name')
             .distinct()[:4]
         )
-        return render(request, 'index.html', {'product_categories': categories})
+        category_cards = []
+        for category in categories:
+            image_url = ''
+            if category.image and category.image.name:
+                try:
+                    if category.image.storage.exists(category.image.name):
+                        image_url = category.image.url
+                except Exception:
+                    image_url = ''
+            category_cards.append({
+                'instance': category,
+                'image_url': image_url,
+                'product_count': category.product_count,
+            })
+        return render(request, 'index.html', {'product_categories': category_cards})
 
 
 class ThanksView(View):
