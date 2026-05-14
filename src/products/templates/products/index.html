@@ -153,10 +153,8 @@
       >
         <div class="pcard-tag">{{ product.sdr }}</div>
         <div class="pcard-img">
-          {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}">
-          {% elif product.category.image %}
-          <img src="{{ product.category.image.url }}" alt="{{ product.name }}">
+          {% if product.safe_image_url %}
+          <img src="{{ product.safe_image_url }}" alt="{{ product.name }}">
           {% elif 'muft' in product.category.slug or 'муфт' in product.name|lower %}
           <img src="{% static 'img/mufta1.png' %}" alt="{{ product.name }}">
           {% elif product.category.slug == 'otvody' %}
@@ -224,7 +222,7 @@
               data-id="{{ product.id }}" 
               data-name="{{ product.name }}" 
               data-price="{{ product.price }}"
-              data-image="{% if product.image %}{{ product.image.url }}{% elif product.category.image %}{{ product.category.image.url }}{% endif %}"
+              data-image="{% if product.safe_image_url %}{{ product.safe_image_url }}{% endif %}"
               data-use-model="{% if product.category.model_3d %}1{% else %}0{% endif %}"
               data-model-url="{% if product.category.model_3d %}{{ product.category.model_3d.url }}{% endif %}"
               aria-label="{% trans 'Добавить в корзину' %}: {{ product.name }}">

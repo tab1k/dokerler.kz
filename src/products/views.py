@@ -15,7 +15,7 @@ class CatalogView(View):
             .annotate(product_count=Count('products', filter=Q(products__is_active=True)))
             .order_by('sort_order', 'name')
         )
-        products = (
+        products_qs = (
             Product.objects
             .filter(is_active=True, category__is_active=True)
             .select_related('category')
@@ -23,13 +23,28 @@ class CatalogView(View):
         )
 
         if selected_category_slug and categories.filter(slug=selected_category_slug).exists():
-            products = products.filter(category__slug=selected_category_slug)
+            products_qs = products_qs.filter(category__slug=selected_category_slug)
         else:
             selected_category_slug = ''
         
         # Get unique SDR values
-        sdrs = products.values_list('sdr', flat=True).distinct().order_by('sdr')
-        
+        sdrs = products_qs.values_list('sdr', flat=True).distinct().order_by('sdr')
+        total_products = products_qs.count()
+        products = list(products_qs)
+
+        for product in products:
+            safe_image_url = ''
+            for image_field in (product.image, product.category.image):
+                if not image_field or not image_field.name:
+                    continue
+                try:
+                    if image_field.storage.exists(image_field.name):
+                        safe_image_url = image_field.url
+                        break
+                except Exception:
+                    continue
+            product.safe_image_url = safe_image_url
+
         # DN Ranges
         dn_ranges = [
             {'label': _('20 — 32 мм'), 'value': '20-32'},
@@ -46,7 +61,7 @@ class CatalogView(View):
             {
                 'categories': categories,
                 'products': products,
-                'total_products': products.count(),
+                'total_products': total_products,
                 'selected_category_slug': selected_category_slug,
                 'filter_options': {
                     'sdrs': sdrs,

@@ -12,10 +12,9 @@ class BaseIndexView(View):
     def get(self, request):
         categories = list(
             Category.objects
-            .filter(is_active=True, products__is_active=True)
-            .annotate(product_count=Count('products', filter=Q(products__is_active=True)))
+            .filter(is_active=True)
+            .annotate(product_count=Count('products', filter=Q(products__is_active=True), distinct=True))
             .order_by('sort_order', 'name')
-            .distinct()[:4]
         )
         category_cards = []
         for category in categories:
