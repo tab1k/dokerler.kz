@@ -9,7 +9,7 @@
   <div class="hero-blueprint">
     <svg viewBox="0 0 800 700" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Technical drawing components ... (omitted for brevity in this thought, but will include full SVG in the actual write) -->
-      <g stroke="#0B38D4" stroke-width="1">
+      <g stroke="#009fe3" stroke-width="1">
         <rect x="100" y="290" width="600" height="120" rx="0"/>
         <rect x="100" y="310" width="600" height="80" rx="0"/>
         <rect x="80" y="270" width="28" height="160" rx="0"/>
@@ -46,10 +46,10 @@
         <path d="M120 430 L120 410 L100 410" opacity=".5"/>
         <path d="M680 430 L680 410 L700 410" opacity=".5"/>
       </g>
-      <text x="400" y="242" text-anchor="middle" fill="#0B38D4" font-size="11" font-family="monospace" opacity=".6">DN 110 — 630 mm</text>
-      <text x="400" y="476" text-anchor="middle" fill="#0B38D4" font-size="11" font-family="monospace" opacity=".6">L = 220 — 860 mm</text>
-      <text x="250" y="230" fill="#0B38D4" font-size="9" font-family="monospace" opacity=".5">PE 100 / PN 16</text>
-      <text x="500" y="230" fill="#0B38D4" font-size="9" font-family="monospace" opacity=".5">EN 12201 / ISO 8085</text>
+      <text x="400" y="242" text-anchor="middle" fill="#009fe3" font-size="11" font-family="monospace" opacity=".6">DN 110 — 630 mm</text>
+      <text x="400" y="476" text-anchor="middle" fill="#009fe3" font-size="11" font-family="monospace" opacity=".6">L = 220 — 860 mm</text>
+      <text x="250" y="230" fill="#009fe3" font-size="9" font-family="monospace" opacity=".5">PE 100 / PN 16</text>
+      <text x="500" y="230" fill="#009fe3" font-size="9" font-family="monospace" opacity=".5">EN 12201 / ISO 8085</text>
     </svg>
   </div>
   <div class="hero-accent-line"></div>
@@ -90,8 +90,32 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-vis-card">
-        <div id="container3d"></div>
+      <div class="hero-product-selector">
+        <div class="hero-tabs">
+          <button class="hero-tab active" type="button" data-hero-model="mufta">
+            {% trans "ЭС Муфта" %}
+          </button>
+          <button class="hero-tab" type="button" data-hero-model="otvod">
+            {% trans "ЭС Отвод 90°" %}
+          </button>
+        </div>
+        <div class="hero-product-display">
+          <div class="hero-stock-badge">
+            <span class="hero-stock-dot"></span>
+            {% trans "В наличии · Астана" %}
+          </div>
+          <div id="container3d"></div>
+          <div class="hero-product-info">
+            <div class="hero-product-name-block">
+              <div class="hero-product-name" id="hero-product-name">{% trans "ЭС Муфта Dökerler" %}</div>
+              <div class="hero-product-spec" id="hero-product-spec">PE100 · SDR11 · PN16 · 50–160 мм</div>
+            </div>
+            <div class="hero-cert-stack">
+              <span class="hero-cert-pill">EN 12201</span>
+              <span class="hero-cert-pill">ISO 9001</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -144,10 +168,10 @@
       <a href="{% url 'products:catalog' %}" class="prod-card reveal">
         <div class="prod-num">01 / {% trans "КАТАЛОГ" %}</div>
         <div class="prod-img">
-          <svg viewBox="0 0 200 140" fill="none" stroke="#0B38D4" stroke-width="1.2">
-            <rect x="20" y="45" width="160" height="50" fill="rgba(11,56,212,.05)"/>
-            <rect x="10" y="35" width="16" height="70" fill="rgba(11,56,212,.08)"/>
-            <rect x="174" y="35" width="16" height="70" fill="rgba(11,56,212,.08)"/>
+          <svg viewBox="0 0 200 140" fill="none" stroke="#009fe3" stroke-width="1.2">
+            <rect x="20" y="45" width="160" height="50" fill="rgba(0,159,227,.05)"/>
+            <rect x="10" y="35" width="16" height="70" fill="rgba(0,159,227,.08)"/>
+            <rect x="174" y="35" width="16" height="70" fill="rgba(0,159,227,.08)"/>
             <circle cx="100" cy="70" r="20"/>
           </svg>
         </div>
@@ -240,14 +264,14 @@
           <circle cx="95" cy="320" r="10" stroke="currentColor" stroke-width="2.5"/>
           <circle cx="315" cy="250" r="10" stroke="currentColor" stroke-width="2.5"/>
           <circle cx="505" cy="170" r="10" stroke="currentColor" stroke-width="2.5"/>
-          <text x="95" y="104" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Syne, sans-serif">01</text>
-          <text x="300" y="174" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Syne, sans-serif">02</text>
-          <text x="500" y="244" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Syne, sans-serif">03</text>
-          <text x="545" y="174" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Syne, sans-serif">04</text>
-          <text x="96" y="78" text-anchor="middle" fill="currentColor" font-size="11" font-family="DM Sans, sans-serif">Бриф</text>
-          <text x="301" y="148" text-anchor="middle" fill="currentColor" font-size="11" font-family="DM Sans, sans-serif">КП</text>
-          <text x="499" y="218" text-anchor="middle" fill="currentColor" font-size="11" font-family="DM Sans, sans-serif">Контроль</text>
-          <text x="545" y="148" text-anchor="middle" fill="currentColor" font-size="11" font-family="DM Sans, sans-serif">Отгрузка</text>
+          <text x="95" y="104" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Oswald, sans-serif">01</text>
+          <text x="300" y="174" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Oswald, sans-serif">02</text>
+          <text x="500" y="244" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Oswald, sans-serif">03</text>
+          <text x="545" y="174" text-anchor="middle" fill="#FAFAF8" font-size="10" font-family="Oswald, sans-serif">04</text>
+          <text x="96" y="78" text-anchor="middle" fill="currentColor" font-size="11" font-family="Inter, sans-serif">Бриф</text>
+          <text x="301" y="148" text-anchor="middle" fill="currentColor" font-size="11" font-family="Inter, sans-serif">КП</text>
+          <text x="499" y="218" text-anchor="middle" fill="currentColor" font-size="11" font-family="Inter, sans-serif">Контроль</text>
+          <text x="545" y="148" text-anchor="middle" fill="currentColor" font-size="11" font-family="Inter, sans-serif">Отгрузка</text>
         </svg>
         <div class="process-map-note">Маршрут проекта</div>
       </div>
@@ -321,36 +345,88 @@
         controls.enableDamping = true;
         controls.autoRotate = true;
         controls.autoRotateSpeed = 1.47;
+        controls.minDistance = 260;
+        controls.maxDistance = 720;
 
         const loader = new THREE.GLTFLoader();
-        loader.load(
-            "{% static 'glb/mufta.glb' %}",
-            (gltf) => {
-                const model = gltf.scene;
-                scene.add(model);
+        let currentModel = null;
 
-                model.rotation.set(0, Math.PI, 0);
-
-                const box = new THREE.Box3().setFromObject(model);
-                const size = box.getSize(new THREE.Vector3());
-                const center = box.getCenter(new THREE.Vector3());
-                const maxDim = Math.max(size.x, size.y, size.z) || 1;
-                const targetSize = 170;
-                const scale = targetSize / maxDim;
-                model.scale.setScalar(scale);
-
-                const scaledBox = new THREE.Box3().setFromObject(model);
-                const scaledCenter = scaledBox.getCenter(new THREE.Vector3());
-                model.position.sub(scaledCenter);
-
-                controls.target.set(0, 0, 0);
-                controls.update();
+        const heroModels = {
+            mufta: {
+                url: "{% static 'glb/mufta.glb' %}",
+                name: "{% trans 'ЭС Муфта Dökerler' %}",
+                spec: "PE100 · SDR11 · PN16 · 50–160 мм",
             },
-            undefined,
-            (error) => {
-                console.error('GLB load error:', error);
-            }
-        );
+            otvod: {
+                url: "{% static 'glb/отвод-90.glb' %}",
+                name: "{% trans 'ЭС Отвод 90° Dökerler' %}",
+                spec: "PE100 · SDR11 · PN16 · 50–160 мм",
+            },
+        };
+
+        const productNameEl = document.getElementById('hero-product-name');
+        const productSpecEl = document.getElementById('hero-product-spec');
+        const heroTabs = Array.from(document.querySelectorAll('.hero-tab'));
+
+        const clearCurrentModel = () => {
+            if (!currentModel) return;
+            scene.remove(currentModel);
+            currentModel.traverse((child) => {
+                if (child.geometry) child.geometry.dispose();
+                if (!child.material) return;
+                if (Array.isArray(child.material)) {
+                    child.material.forEach((mat) => mat.dispose());
+                } else {
+                    child.material.dispose();
+                }
+            });
+            currentModel = null;
+        };
+
+        const loadModel = (key) => {
+            const config = heroModels[key];
+            if (!config) return;
+            clearCurrentModel();
+            loader.load(
+                config.url,
+                (gltf) => {
+                    const model = gltf.scene;
+                    currentModel = model;
+                    scene.add(model);
+
+                    model.rotation.set(0, Math.PI, 0);
+
+                    const box = new THREE.Box3().setFromObject(model);
+                    const size = box.getSize(new THREE.Vector3());
+                    const maxDim = Math.max(size.x, size.y, size.z) || 1;
+                    const targetSize = 170;
+                    const scale = targetSize / maxDim;
+                    model.scale.setScalar(scale);
+
+                    const scaledBox = new THREE.Box3().setFromObject(model);
+                    const scaledCenter = scaledBox.getCenter(new THREE.Vector3());
+                    model.position.sub(scaledCenter);
+
+                    controls.target.set(0, 0, 0);
+                    controls.update();
+                },
+                undefined,
+                (error) => {
+                    console.error('GLB load error:', error);
+                }
+            );
+            if (productNameEl) productNameEl.textContent = config.name;
+            if (productSpecEl) productSpecEl.textContent = config.spec;
+            heroTabs.forEach((tab) => {
+                tab.classList.toggle('active', tab.dataset.heroModel === key);
+            });
+        };
+
+        heroTabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                loadModel(tab.dataset.heroModel);
+            });
+        });
 
         scene.add(new THREE.AmbientLight(0xffffff, 0.6));
         const dirLight = new THREE.DirectionalLight(0xffffff, 1);
@@ -366,6 +442,7 @@
             renderer.render(scene, camera);
         }
         animate();
+        loadModel('mufta');
         window.addEventListener('resize', updateSize);
     }
 </script>

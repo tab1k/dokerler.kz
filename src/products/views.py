@@ -22,9 +22,7 @@ class CatalogView(View):
             .order_by('category__sort_order', 'sort_order', 'name')
         )
 
-        if selected_category_slug and categories.filter(slug=selected_category_slug).exists():
-            products_qs = products_qs.filter(category__slug=selected_category_slug)
-        else:
+        if selected_category_slug and not categories.filter(slug=selected_category_slug).exists():
             selected_category_slug = ''
         
         # Get unique SDR values

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{% block title %}{% endblock %}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% block extra_css %}{% endblock %}
 </head>
@@ -18,8 +18,14 @@
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="{% url 'base:index' %}" class="logo" id="main-logo">
-      <img style="width: 100px;" src="{% static 'img/logo.png' %}" alt="Dökerler Logo">
+    <a href="{% url 'base:index' %}" class="nav-brand" id="main-logo" aria-label="Dökerler">
+      <span class="nav-mark">
+        <img src="{% static 'img/dokerler-logo-m.png' %}" alt="Dökerler mark">
+      </span>
+      <span>
+        <span class="nav-brand-text">Dökerler</span>
+        <span class="nav-brand-sub">Казахстан</span>
+      </span>
     </a>
     
     <ul class="nav-links">
@@ -30,7 +36,7 @@
     </ul>
 
     <div class="nav-right">
-      <a href="{% url 'products:catalog' %}"><button class="btn-ghost">{% trans "Каталог" %}</button></a>
+      <a href="{% url 'products:catalog' %}"><button class="nav-btn">{% trans "Каталог" %}</button></a>
       
       <div class="lang-switcher">
         <button class="lang-btn" id="lang-btn" aria-label="Switch Language">
@@ -170,6 +176,7 @@
       <div>
         <a href="{% url 'base:index' %}" class="footer-logo" aria-label="Dökerler">
           <img src="{% static 'img/logo.png' %}" alt="Dökerler Logo">
+          <img src="{% static 'img/dokerler-logo-m.png' %}" alt="Dökerler Mark">
         </a>
         <p class="footer-tagline">{% trans "Официальный дистрибьютор электросварных фитингов Dökerler в Республике Казахстан." %}</p>
       </div>
